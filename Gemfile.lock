@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/firstdraft/web_git.git
-  revision: 63dfa52e4ac836589f07f80dece664cd991fa426
+  revision: 82f5920f10db3ba74047a08c6211dbb69ee716b0
   specs:
     web_git (0.0.1)
       git_clone_url
@@ -222,7 +222,7 @@ GEM
     rack (2.0.4)
     rack-contrib (2.0.1)
       rack (~> 2.0)
-    rack-test (0.8.2)
+    rack-test (0.8.3)
       rack (>= 1.0, < 3)
     rails (5.1.5)
       actioncable (= 5.1.5)
