@@ -1,0 +1,66 @@
+<h1>
+  All signups
+</h1>
+
+<a href="/signups/new">
+  Add a new signup
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Event
+    </th>
+
+    <th>
+      Tourist
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @signups.each do |signup| %>
+  <tr>
+    <td>
+      <%= signup.id %>
+    </td>
+
+    <td>
+      <%= signup.event_id %>
+    </td>
+
+    <td>
+      <%= signup.tourist_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(signup.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(signup.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/signups/<%= signup.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

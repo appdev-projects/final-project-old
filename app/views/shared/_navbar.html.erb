@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      PhotogramAuth
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+      
+
+        <% if current_user==nil %>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="/users/sign_in" class="nav-link">
+              Sign In
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_up" class="nav-link">
+              Sign Up
+            </a>
+          </li>
+        <% else %>
+            <div class="collapse navbar-collapse" id="collapsible-nav-links">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a href="/users" class="nav-link">
+            All Users
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/events" class="nav-link">
+            Events
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/users/<%=current_user.id%>" class="nav-link">
+            My Wall
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-right">
+          <li class="nav-item">
+            <a href="/users/edit" class="nav-link">
+              <%=current_user.username%>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/users/sign_out" data-method="delete" class="nav-link">
+              Sign Out
+            </a>
+          </li>
+          </ul>
+        <% end %>
+      
+    </div> <!-- .navbar-collapse -->
+  </div> <!-- .container -->
+</nav>

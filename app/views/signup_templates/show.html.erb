@@ -1,0 +1,49 @@
+<h1>
+  Signup #<%= @signup.id %> details
+</h1>
+
+<a href="/signups/<%= @signup.id %>/edit">
+  Edit signup
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Event
+  </dt>
+  <dd>
+    <%= @signup.event_id %>
+  </dd>
+
+  <dt>
+    Tourist
+  </dt>
+  <dd>
+    <%= @signup.tourist_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@signup.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@signup.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_signup/<%= @signup.id %>">
+  Delete signup
+</a>
+
+<hr>
+
+<a href="/signups">
+  Go back
+</a>

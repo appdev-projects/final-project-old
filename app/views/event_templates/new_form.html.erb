@@ -1,0 +1,75 @@
+
+
+<!-- Validation failure messages -->
+<% if @event.present? %>
+  <% if @event.errors.any? %>
+    <% @event.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new event
+</h1>
+
+<hr>
+
+<form action="/create_event" method="post">
+  <!-- Label and input for city -->
+  <div class="form-group">
+    <label for="city">
+      City
+    </label>
+
+    <input type="text" id="city" name="city" class="form-control" value="<%= @event.try(:city) %>">
+  </div>
+
+  <!-- Label and input for event_name -->
+  <div class="form-group">
+    <label for="event_name">
+      Event name
+    </label>
+
+    <input type="text" id="event_name" name="event_name" class="form-control" value="<%= @event.try(:event_name) %>">
+  </div>
+
+  <!-- Label and input for date -->
+  <div class="form-group">
+    <label for="date">
+      Date
+    </label>
+
+    <input data-provide="datepicker-inline" type="text" id="date" name="date" class="form-control" value="<%= @event.try(:date) %>">
+  </div>
+
+  <!-- Label and input for description -->
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <textarea id="description" name="description" class="form-control" rows="3"><%= @event.try(:description) %></textarea>
+  </div>
+
+  <!-- Label and input for host_id -->
+  <div class="form-group">
+    <label for="host_id">
+      Host
+    </label>
+
+    <input type="hidden" id="host_id" name="host_id" class="form-control" value="<%= current_user.id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create event
+  </button>
+</form>
+
+<hr>
+
+<a href="/events">
+  Go back
+</a>

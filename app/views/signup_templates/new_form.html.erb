@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @signup.present? %>
+  <% if @signup.errors.any? %>
+    <% @signup.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new signup
+</h1>
+
+<hr>
+
+<form action="/create_signup" method="post">
+  <!-- Label and input for event_id -->
+  <div class="form-group">
+    <label for="event_id">
+      Event
+    </label>
+
+    <input type="text" id="event_id" name="event_id" class="form-control" value="<%= @signup.try(:event_id) %>">
+  </div>
+
+  <!-- Label and input for tourist_id -->
+  <div class="form-group">
+    <label for="tourist_id">
+      Tourist
+    </label>
+
+    <input type="text" id="tourist_id" name="tourist_id" class="form-control" value="<%= @signup.try(:tourist_id) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create signup
+  </button>
+</form>
+
+<hr>
+
+<a href="/signups">
+  Go back
+</a>

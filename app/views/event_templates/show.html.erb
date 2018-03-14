@@ -1,0 +1,70 @@
+<h1>
+  Event #<%= @event.id %> details
+</h1>
+
+<a href="/events/<%= @event.id %>/edit">
+  Edit event
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    City
+  </dt>
+  <dd>
+    <%= @event.city %>
+  </dd>
+
+  <dt>
+    Event name
+  </dt>
+  <dd>
+    <%= @event.event_name %>
+  </dd>
+
+  <dt>
+    Date
+  </dt>
+  <dd>
+    <%= @event.date %>
+  </dd>
+
+  <dt>
+    Description
+  </dt>
+  <dd>
+    <%= @event.description %>
+  </dd>
+
+  <dt>
+    Host
+  </dt>
+  <dd>
+    <%= @event.host_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@event.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@event.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_event/<%= @event.id %>">
+  Delete event
+</a>
+
+<hr>
+
+<a href="/events">
+  Go back
+</a>
