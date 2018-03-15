@@ -24,7 +24,7 @@ class SignupsController < ApplicationController
     if @signup.valid?
       @signup.save
 
-      redirect_to("/signups", :notice => "Signup created successfully.")
+      redirect_to("/events", :notice => "Registered successfully.")
     else
       render("signup_templates/new_form.html.erb")
     end
@@ -56,6 +56,6 @@ class SignupsController < ApplicationController
 
     @signup.destroy
 
-    redirect_to("/signups", :notice => "Signup deleted successfully.")
+    redirect_to("/events", :notice => "Unregistered successfully.")
   end
 end

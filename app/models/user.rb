@@ -30,6 +30,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, :presence => true, :uniqueness => true
+  
+  #direct
+  has_many :events, :class_name => "Event", :foreign_key => "host_id"
+  has_many :signups, :class_name => "Signup", :foreign_key => "tourist_id"
+  # looking up the columns in the Signup table has_many :movies, :class_name => "Movie", :foreign_key => "director_id"
+  # has_many :events, :source => :event
+  # has_many :signups, :source =>:signup
+  
+  #indirect
   has_many :plans, :through => :signups, :source => :event
-  has_many :events, :source => :event
+
 end

@@ -7,7 +7,8 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params.fetch("id_to_display"))
-
+    
+  
     render("event_templates/show.html.erb")
   end
 

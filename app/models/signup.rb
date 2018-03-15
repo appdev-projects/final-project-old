@@ -12,6 +12,11 @@
 class Signup < ApplicationRecord
   validates(:tourist_id, {:presence => true})
   validates(:event_id, {:presence => true})
-  belongs_to :user, :class_name => "User", :foreign_key => "tourist_id"
+  
+  #direct
   belongs_to :event, :class_name => "Event", :foreign_key => "event_id"
+  
+  belongs_to :tourist, :class_name => "User", :foreign_key => "tourist_id"
+  
+  has_many :tourists, :through => :signups, :source => :user
 end

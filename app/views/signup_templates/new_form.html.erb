@@ -21,21 +21,21 @@
     <label for="event_id">
       Event
     </label>
-
-    <input type="text" id="event_id" name="event_id" class="form-control" value="<%= @signup.try(:event_id) %>">
+    <%= select_tag("event_id", options_from_collection_for_select(Event.all, :id, :event_name, @signup.try(:event_id)), :class => "form-control") %>
+    
   </div>
 
   <!-- Label and input for tourist_id -->
   <div class="form-group">
     <label for="tourist_id">
-      Tourist
+      
     </label>
 
-    <input type="text" id="tourist_id" name="tourist_id" class="form-control" value="<%= @signup.try(:tourist_id) %>">
+    <input type="hidden" id="tourist_id" name="tourist_id" class="form-control" value="<%= current_user.id %>">
   </div>
 
   <button class="btn btn-block btn-outline-secondary">
-    Create signup
+    Sign up!
   </button>
 </form>
 

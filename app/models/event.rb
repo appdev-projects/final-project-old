@@ -17,6 +17,14 @@ class Event < ApplicationRecord
   validates(:event_name, {:presence => true})
   validates(:city, {:presence => true})
   validates(:date, {:presence => true})
-  belongs_to :user, :class_name => "User", :foreign_key => "host_id"
-  has_many :participants, :through => :signups, :source => :user
+  
+  #direct
+  has_many :signups, :source => "Signup", :foreign_key =>"event_id"
+  
+  belongs_to :host, :class_name => "User", :foreign_key => "host_id"
+  #use "host" instead of user
+  
+  #indirect
+  has_many :tourists, :through => :signups, :source => :user
+  
 end

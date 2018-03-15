@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
   <div class="container">
     <a class="navbar-brand" href="/">
-      PhotogramAuth
+      My Local Buddy
     </a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-nav-links" aria-controls="collapsible-nav-links" aria-expanded="false" aria-label="Toggle navigation">
@@ -13,15 +13,17 @@
 
         <% if current_user==nil %>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="/users/sign_in" class="nav-link">
-              Sign In
-            </a>
-          </li>
+          
 
           <li class="nav-item">
             <a href="/users/sign_up" class="nav-link">
-              Sign Up
+              Sign Up!
+            </a>
+          </li>
+          
+          <li class="nav-item">
+            <a href="/users/sign_in" class="nav-link">
+              Log In
             </a>
           </li>
         <% else %>
