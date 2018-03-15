@@ -1,6 +1,12 @@
 class EventsController < ApplicationController
+
+#I add this for filter
+
+
   def index
-    @events = Event.all
+    # @events = Event.all
+    @q = Event.all.ransack(params[:q])
+    @events = @q.result(distinct: true)
 
     render("event_templates/index.html.erb")
   end

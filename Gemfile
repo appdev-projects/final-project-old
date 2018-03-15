@@ -72,3 +72,6 @@ end
 
 gem 'activeadmin'
 gem 'devise'
+
+#I added this for filter
+gem 'ransack', github: 'activerecord-hackery/ransack'

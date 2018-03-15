@@ -7,6 +7,34 @@
 </a>
 
 <hr>
+<div>
+  <h2>Search Events</h2>
+<%= search_form_for @q do |f| %>
+<dl>
+  
+<div >
+  <%= f.label :event_name_cont %>
+  <%= f.search_field :event_name_cont %>
+</div>
+<div >
+  <%= f.label :city_cont %>
+  <%= f.search_field :city_cont %>
+</div>
+<div >
+  <%= f.label :description_cont %>
+  <%= f.search_field :description_cont %>
+</div>
+<div >
+  <%= f.label :event_name_or_city_or_description_cont %>
+  <%= f.search_field :event_name_or_city_or_description_cont %>
+</div>
+<dl>
+<div >
+  <%= f.submit %>
+</div>
+<% end %>
+</div>
+
 
 <table class="table">
   <tr>
