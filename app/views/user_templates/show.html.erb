@@ -1,5 +1,5 @@
 <h1>
-  <%= @user.username %> 
+  <%= @user.username %>'s Events 
 </h1>
 
 <hr>
@@ -16,19 +16,64 @@
         Number of tourists
       </td>
     </tr>
-      <%@user.events.each do|current_event|%>
+      <%@user.events.each do|event|%>
         <tr>
            <td>
-          <a href="/events/<%=current_event.id%>">
-          <%=current_event.event_name%> 
+          <a href="/events/<%=event.id%>">
+          <%=event.event_name%> 
           </a>
           </td>
           <td>
-            <%=current_event.date%>
+            <%=event.date%>
           </td>
           <td>
-            <%=current_event.signups.count%>
+            <%=event.signups.count%>
           </td>
+             <td>
+      <!-- Validation failure messages -->
+      <% if @signup.present? %>
+        <% if @signup.errors.any? %>
+            <% @signup.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger">
+          <%= message %>
+            < /div>
+            <% end %>
+        <% end %>
+      <% end %>    
+    
+    <%if event.host_id==current_user.id%>
+    <%else%>
+    <!--registration form-->
+     
+      <%if current_user.plans.exists?(event.id) %>
+        <% @current_signup_id  = Signup.where(:event_id => event.id, :tourist_id => current_user.id)[0].id %>
+        
+          <button class="btn btn-block btn-secondary">
+           <a href="/delete_signup/<%= @current_signup_id %>" >
+           Unregister
+           </a>
+          </button>
+          
+              
+          
+          
+      <%else%>
+        <form action="/create_signup" method="post">
+         <label for="event_id">
+        </label>
+        <input type="hidden" id="event_id" name="event_id" class="form-control" value="<%= event.id %>">
+        <label for="tourist_id">
+        </label>
+        <input type="hidden" id="tourist_id" name="tourist_id" class="form-control" value="<%= current_user.id %>">
+
+        <button class="btn btn-block btn-outline-secondary">
+        Register!
+        </button>
+        </form>
+      <%end%>
+      
+    <%end%>   
+  </td>
       <%end%>
       </tr>
 </table>

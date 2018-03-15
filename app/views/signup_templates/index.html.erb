@@ -1,5 +1,5 @@
 <h1>
-  All signups
+  My Sign Ups
 </h1>
 
 <a href="/signups/new">
@@ -10,57 +10,85 @@
 
 <table class="table">
   <tr>
-    <th>
-      ID
-    </th>
+
 
     <th>
       Event
     </th>
-
     <th>
-      Tourist
+      Date
+    </th>
+    <th>
+      # of tourists going
     </th>
 
-    <th>
-      Created at
-    </th>
 
     <th>
-      Updated at
+      
     </th>
 
-    <th>
-    </th>
   </tr>
-
+ 
   <% @signups.each do |signup| %>
+  <%if current_user==signup.tourist%>
   <tr>
+
+
     <td>
-      <%= signup.id %>
+      <%= signup.event.event_name %>
+    </td>
+    <td>
+      <%= signup.event.date %>
+    </td>
+    <td>
+      <%= signup.event.signups.count %>
     </td>
 
     <td>
-      <%= signup.event_id %>
-    </td>
+      <!-- Validation failure messages -->
+      <% if signup.present? %>
+        <% if signup.errors.any? %>
+            <% signup.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger">
+          <%= message %>
+            < /div>
+            <% end %>
+        <% end %>
+      <% end %>    
+    
 
-    <td>
-      <%= signup.tourist_id %>
-    </td>
+    <!--registration form-->
+     
+      <%if current_user.plans.exists?(signup.event.id) %>
+        
+          <button class="btn btn-block btn-secondary">
+           <a href="/delete_signup/<%= signup.id %>" >
+           Unregister
+           </a>
+          </button>
+          
+              
+          
+          
+      <%else%>
+        <form action="/create_signup" method="post">
+         <label for="event_id">
+        </label>
+        <input type="hidden" id="event_id" name="event_id" class="form-control" value="<%= event.id %>">
+        <label for="tourist_id">
+        </label>
+        <input type="hidden" id="tourist_id" name="tourist_id" class="form-control" value="<%= current_user.id %>">
 
-    <td>
-      <%= time_ago_in_words(signup.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(signup.updated_at) %> ago
-    </td>
-
-    <td>
-      <a href="/signups/<%= signup.id %>">
-        Show details
-      </a>
-    </td>
+        <button class="btn btn-block btn-outline-secondary">
+        Register!
+        </button>
+        </form>
+      <%end%>
+      
+    <%end%>   
+  </td>
   </tr>
+
+
   <% end %>
 </table>
