@@ -10,19 +10,37 @@
 
 <dl>
   <dt>
-    Tourists who signed up
+    Host:
   </dt>
-    <%@event.tourists.first%>
-    <%@tourist_of_event.each do |tourist|%>
+  <dd>
+     <%@host_id=@event.host.id%>
+    <a href="/users/@host_id">
+    <%=@event.host.username%>
+    </a>
+  </dd>
+  <dt>
+    Number of tourist(s)
+  </dt>
+  <dd>
+    <%=@event.signups.count%>
+  </dd>
+  <dt>
+    Usernames of tourist(s):
+  </dt>
+    <% @event.signups.each do |current_signup|%>
+      
     <tr>
-      <dl>
-        <%=tourist.username%>
-      </dl>
+      <ol>
+        <li>
+               
+        <a href="/users/<%=current_signup.tourist_id%>">
+        <%=User.find(current_signup.tourist_id).username%>
+        </a>
+        </li>
+      </ol>
     </tr>
     <%end%>
-  <dd>
-    <%= @event.city %>
-  </dd>
+
   <dt>
     City
   </dt>
