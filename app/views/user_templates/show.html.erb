@@ -1,4 +1,47 @@
 <h1>
   <%= @user.username %> 
-  
 </h1>
+
+<hr>
+
+<table class="table">
+    <tr>
+      <td>
+        Event hosted
+      </td>
+      <td>
+        Date
+      </td>
+      <td>
+        Number of tourists
+      </td>
+    </tr>
+      <%@user.events.each do|current_event|%>
+        <tr>
+           <td>
+          <a href="/events/<%=current_event.id%>">
+          <%=current_event.event_name%> 
+          </a>
+          </td>
+          <td>
+            <%=current_event.date%>
+          </td>
+          <td>
+            <%=current_event.signups.count%>
+          </td>
+      <%end%>
+      </tr>
+</table>
+  
+
+    
+
+
+
+<hr>
+
+<a href="/users">
+  Go back
+</a>
+
+

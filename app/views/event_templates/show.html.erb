@@ -2,10 +2,12 @@
   Event #<%= @event.id %> details
 </h1>
 
+<%if current_user==@event.host%>
 <a href="/events/<%= @event.id %>/edit">
   Edit event
 </a>
-
+<%else%>
+<%end%>
 <hr>
 
 <dl>
@@ -85,9 +87,12 @@
   </dd>
 </dl>
 
+<%if current_user==@event.host%>
 <a href="/delete_event/<%= @event.id %>">
   Delete event
 </a>
+<%else%>
+<%end%>
 
 <hr>
 
