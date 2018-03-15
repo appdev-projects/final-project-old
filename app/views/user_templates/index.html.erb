@@ -2,13 +2,40 @@
   All users
 </h1>
 <table class="table">
-   <% @users.each do |user| %>
+  <tr>
+    <td>
+      Hosts
+    </td>
+    <td>
+      City 
+    </td>
+    <td>
+      Number of tours 
+    </td>
+    
+  </tr>
+    <%@hosts=[]%>
+    <%@users.each do |user|%>
+        <%if user.events.present?%>
+        <%@hosts.push(user)%>
+        <%else%>
+        <%end%>
+    <%end%>
+    
+   <% @hosts.each do |user| %>
   <tr>
     <td>
           <a href="/users/<%=user.id%>">
             <%= user.username %>
           </a>
     </td>
+    <td>
+          <%=user.events.first.city%>
+    </td>
+    <td>
+          <%=user.events.count%>
+    </td>
   </tr>
+  
   <%end%>
 </table>
