@@ -52,11 +52,8 @@
 
   <!-- Label and input for host_id -->
   <div class="form-group">
-    <label for="host_id">
-      Host
-    </label>
 
-    <input type="text" id="host_id" name="host_id" class="form-control" value="<%= @event.host_id %>">
+    <input type="hidden" id="host_id" name="host_id" class="form-control" value="<%= @event.host_id %>">
   </div>
 
   <button class="btn btn-block btn-outline-secondary">

@@ -21,10 +21,6 @@
   <%= f.search_field :city_cont %>
 </div>
 <div >
-  <%= f.label :description_cont %>
-  <%= f.search_field :description_cont %>
-</div>
-<div >
   <%= f.label :event_name_or_city_or_description_cont %>
   <%= f.search_field :event_name_or_city_or_description_cont %>
 </div>
@@ -38,20 +34,17 @@
 
 <table class="table">
   <tr>
+
     <th>
-      ID
+      <%= sort_link(@q, :city) %>
     </th>
 
     <th>
-      City
+      <%= sort_link(@q, :event_name) %>
     </th>
 
     <th>
-      Event name
-    </th>
-
-    <th>
-      Date
+      <%= sort_link(@q, :date) %>
     </th>
 
     <th>
@@ -59,17 +52,11 @@
     </th>
 
     <th>
-      Host
+      <%= sort_link(@q, :host) %>
     </th>
 
     <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
-    </th>
-
+      <%= sort_link(@q, :created_at) %>
     <th>
     </th>
     <th>
@@ -80,9 +67,7 @@
 
 <% @events.each do |event| %>
   <tr>
-    <td>
-      <%= event.id %>
-    </td>
+
 
     <td>
       <%= event.city %>
@@ -108,9 +93,6 @@
       <%= time_ago_in_words(event.created_at) %> ago
     </td>
 
-    <td>
-      <%= time_ago_in_words(event.updated_at) %> ago
-    </td>
 
     <td>
       <a href="/events/<%= event.id %>">
@@ -147,7 +129,7 @@
         <% @current_signup_id  = Signup.where(:event_id => event.id, :tourist_id => current_user.id)[0].id %>
         
           <button class="btn btn-block btn-secondary">
-           <a href="/delete_signup/<%= @current_signup_id %>" >
+           <a href="/delete_signup/<%= @current_signup_id %>" style="text-decoration: none;">
            Unregister
            </a>
           </button>

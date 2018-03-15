@@ -49,7 +49,7 @@
         <% @current_signup_id  = Signup.where(:event_id => event.id, :tourist_id => current_user.id)[0].id %>
         
           <button class="btn btn-block btn-secondary">
-           <a href="/delete_signup/<%= @current_signup_id %>" >
+           <a href="/delete_signup/<%= @current_signup_id %>" style="text-decoration: none;">
            Unregister
            </a>
           </button>

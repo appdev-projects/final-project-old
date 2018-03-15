@@ -1,5 +1,5 @@
 <h1>
-  My Sign Ups
+  My Booked Tours
 </h1>
 
 <a href="/signups/new">
@@ -61,8 +61,8 @@
      
       <%if current_user.plans.exists?(signup.event.id) %>
         
-          <button class="btn btn-block btn-secondary">
-           <a href="/delete_signup/<%= signup.id %>" >
+          <button class="btn btn-block btn-secondary" >
+           <a href="/delete_signup/<%= signup.id %>" style="text-decoration: none;">
            Unregister
            </a>
           </button>
