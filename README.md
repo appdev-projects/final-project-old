@@ -2,4 +2,4 @@
 
 This is a blank Rails application to use as a starting point for your project.
 
-Download it to your workspace as usual, `cd final-project`, `bin/setup`, and work away!
+Fork it to your own account, set up a Cloud9 workspace as usual, `bin/setup`, Run Project, and code away!
