@@ -1,0 +1,63 @@
+<!-- Validation failure messages -->
+<% if @shift.errors.any? %>
+  <% @shift.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit shift #<%= @shift.id %>
+</h1>
+
+<hr>
+
+<form action="/update_shift/<%= @shift.id %>" method="post">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @shift.user_id %>">
+  </div>
+
+  <!-- Label and input for service_id -->
+  <div class="form-group">
+    <label for="service_id">
+      Service
+    </label>
+
+    <input type="text" id="service_id" name="service_id" class="form-control" value="<%= @shift.service_id %>">
+  </div>
+
+  <!-- Label and input for date -->
+  <div class="form-group">
+    <label for="date">
+      Date
+    </label>
+
+    <input type="text" id="date" name="date" class="form-control" value="<%= @shift.date %>">
+  </div>
+
+  <!-- Label and input for night -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="night">
+    <input id="night" class="form-check-input" name="night" type="checkbox" value="1" <%= "checked" if @shift.night %>>
+
+    <label for="night" class="form-check-label">
+      Night
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update shift
+  </button>
+</form>
+
+<hr>
+
+<a href="/shifts">
+  Go back
+</a>

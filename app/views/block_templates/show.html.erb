@@ -1,0 +1,49 @@
+<h1>
+  Block #<%= @block.id %> details
+</h1>
+
+<a href="/blocks/<%= @block.id %>/edit">
+  Edit block
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Start date
+  </dt>
+  <dd>
+    <%= @block.start_date %>
+  </dd>
+
+  <dt>
+    End date
+  </dt>
+  <dd>
+    <%= @block.end_date %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@block.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@block.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_block/<%= @block.id %>">
+  Delete block
+</a>
+
+<hr>
+
+<a href="/blocks">
+  Go back
+</a>

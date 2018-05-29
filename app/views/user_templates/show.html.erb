@@ -1,0 +1,55 @@
+<h1>
+<% if current_user.id == @user.id %>
+  My Details
+  <% else %>
+  Dr. <%= @user.last_name %> details
+  <% end %>
+</h1>
+
+<a href="/users/<%= @user.id %>/edit">
+  Edit Resident
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    User Email
+  </dt>
+  <dd>
+    <%= @user.email %>
+  </dd>
+
+  <dt>
+    Seniority
+  </dt>
+  <dd>
+    <%= @user.seniority %>
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@user.updated_at) %> ago
+  </dd>
+</dl>
+
+<!--Can't Delete  yourself-->
+<% if current_user.id == @user.id %>
+<% else %>
+
+<!--Must be a chief to delete users-->
+  <% if User.find(current_user.id).seniority == "Chief" %>
+    <a href="/delete_user/<%= @user.id %>">
+      Delete user
+    </a>
+
+  <% end %>
+<% end %>
+
+<hr>
+
+<a href="/users">
+  Go back
+</a>

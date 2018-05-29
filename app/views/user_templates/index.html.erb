@@ -1,0 +1,67 @@
+<h1>
+  All Residents
+</h1>
+
+<a href="/shifts/new">
+  Add a new resident
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      Resident ID
+    </th>
+
+    <th>
+      Resident Name
+    </th>
+
+    <th>
+      Seniority
+    </th>
+
+    <th>
+      Last Logged In
+    </th>
+
+    <th>
+      Email
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @users.each do |user| %>
+  
+  <tr>
+    <td>
+      <%= user.id %>
+    </td>
+
+    <td>
+      <%= user.first_name %> <%= user.last_name %>
+    </td>
+
+    <td>
+      <%= user.seniority %>
+    </td>
+
+    <td>
+      <%= user.last_sign_in_at %>
+    </td>
+
+    <td>
+      <%= user.email %>
+    </td>
+
+    <td>
+      <a href="/users/<%= user.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

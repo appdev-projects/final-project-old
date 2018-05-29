@@ -1,0 +1,65 @@
+<!-- Validation failure messages -->
+<% if @shift.present? %>
+  <% if @shift.errors.any? %>
+    <% @shift.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new shift
+</h1>
+
+<hr>
+
+<form action="/create_shift" method="post">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id">
+      Resident
+    </label>
+
+    <%= select_tag("user_id", options_from_collection_for_select(User.all, :id, :last_name, @course.try(:user_id)), :class => "form-control") %>
+  </div>
+
+  <!-- Label and input for service_id -->
+  <div class="form-group">
+    <label for="service_id">
+      Service
+    </label>
+
+    <%= select_tag("service_id", options_from_collection_for_select(Service.all, :id, :name, @course.try(:service_id)), :class => "form-control") %>
+  </div>
+
+  <!-- Label and input for date -->
+  <div class="form-group">
+    <label for="date">
+      Date (Year/Month/Day)
+    </label>
+
+    <input type="text" id="date" name="date" class="form-control" value="<%= @shift.try(:date) %>">
+  </div>
+
+  <!-- Label and input for night -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="night">
+    <input id="night" class="form-check-input" name="night" type="checkbox" <%= "checked" if @shift.try(:night) %>>
+
+    <label for="night" class="form-check-label">
+      Night
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create shift
+  </button>
+</form>
+
+<hr>
+
+<a href="/shifts">
+  Go back
+</a>

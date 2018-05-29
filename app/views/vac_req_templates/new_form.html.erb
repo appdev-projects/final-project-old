@@ -1,0 +1,61 @@
+<!-- Validation failure messages -->
+<% if @vac_req.present? %>
+  <% if @vac_req.errors.any? %>
+    <% @vac_req.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Request Vacation
+</h1>
+
+<hr>
+
+<form action="/create_vac_req" method="post">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
+  </div>
+
+  <!-- Label and input for start_date -->
+  <div class="form-group">
+    <label for="start_date">
+      Start date
+    </label>
+
+    <input type="text" id="start_date" name="start_date" class="form-control" value="<%= @vac_req.try(:start_date) %>">
+  </div>
+
+  <!-- Label and input for end_date -->
+  <div class="form-group">
+    <label for="end_date">
+      End date
+    </label>
+
+    <input type="text" id="end_date" name="end_date" class="form-control" value="<%= @vac_req.try(:end_date) %>">
+  </div>
+
+  <!-- Label and input for approval -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="approval">
+    <!-- <input id="approval" class="form-check-input" name="approval" type="checkbox" <%= "checked" if @vac_req.try(:approval) %>>-->
+
+    <label for="approval" class="form-check-label">
+      <!-- Approval-->
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Submit Vacation Request
+  </button>
+</form>
+
+<hr>
+
+<a href="/vac_reqs">
+  Go back
+</a>

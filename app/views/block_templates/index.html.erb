@@ -1,0 +1,66 @@
+<h1>
+  All blocks
+</h1>
+
+<a href="/blocks/new">
+  Add a new block
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Year
+    </th>
+
+    <th>
+      Block Number
+    </th>
+
+    <th>
+      Start date
+    </th>
+
+    <th>
+      End date
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @blocks.each do |block| %>
+  <tr>
+    <td>
+      <%= block.id %>
+    </td>
+
+    <td>
+      <%= block.year %>
+    </td>
+
+    <td>
+      <%= block.number %>
+    </td>
+
+     <td>
+      <%= block.start_date.to_s %>
+    </td>
+
+     <td>
+      <%= block.end_date.to_s %>
+    </td>
+
+    <td>
+      <a href="/blocks/<%= block.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

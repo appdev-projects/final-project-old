@@ -1,0 +1,69 @@
+<h1>
+  Vacation Requests
+</h1>
+
+<a href="/vac_reqs/new">
+  Request Vacation
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      Resident Requestor
+    </th>
+
+    <th>
+      Submit Date
+    </th>
+
+    <th>
+      Start date
+    </th>
+
+    <th>
+      End date
+    </th>
+
+    <th>
+      Approval
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+
+  <% @vac_reqs.each do |vac_req| %>
+  <tr>
+    <td>
+      <%= User.find(vac_req.user_id).last_name %>, <%= User.find(vac_req.user_id).first_name %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(vac_req.created_at) %> ago
+    </td>
+
+    <td>
+      <% @start = vac_req.start_date %>
+      <%= @start.strftime("%m/%d/%Y") %>
+    </td>
+
+    <td>
+      <% @end = vac_req.end_date %>
+      <%= @end.strftime("%m/%d/%y") %>
+    </td>
+
+    <td>
+      <%= vac_req.approval %>
+    </td>
+
+    <td>
+      <a href="/vac_reqs/<%= vac_req.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

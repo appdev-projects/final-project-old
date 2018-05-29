@@ -1,0 +1,44 @@
+<h1>
+  <%= @service.name %> Service Details
+</h1>
+
+<a href="/services/<%= @service.id %>/edit">
+  Edit service
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Crosscover
+  </dt>
+  <dd>
+    <% if @service.crosscover = true%>
+    May Require Crosscover
+    <% else %>
+    No Crosscover
+    <% end %>
+  </dd>
+
+  <dt>
+    Vacation
+  </dt>
+  <dd>
+    <% if @service.vacation = true %>
+    Eligible
+    <% else %>
+    Not Eligible
+    <% end %>
+  </dd>
+
+</dl>
+
+<a href="/delete_service/<%= @service.id %>">
+  Delete service
+</a>
+
+<hr>
+
+<a href="/services">
+  Go back
+</a>
