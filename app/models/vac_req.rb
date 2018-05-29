@@ -32,4 +32,6 @@ class VacReq < ApplicationRecord
     end
   # End custom validation
   
+  belongs_to :user
+  
 end
