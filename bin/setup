@@ -25,4 +25,6 @@ chdir APP_ROOT do
   # unless File.exist?('config/database.yml')
   #   cp 'config/database.yml.sample', 'config/database.yml'
   # end
+  
+  system! 'npm install -g diff2html-cli'
 end
