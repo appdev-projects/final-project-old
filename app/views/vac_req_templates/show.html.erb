@@ -2,6 +2,7 @@
   Request Details
 </h1>
 
+<% if @vac_req.user_id == current_user.id %>
 <a href="/vac_reqs/<%= @vac_req.id %>/edit">
   Update Vacation Request
 </a>
@@ -9,15 +10,17 @@
 <form action:"/delete_vac_req/<%=@vac_req.id %>">
 <button class="btn btn-danger">Cancel Request</button>
 </form>
+
+<% end %>
   
 <hr>
 
 <dl>
   <dt>
-    User
+    Requestor
   </dt>
   <dd>
-    <%= @vac_req.user_id %>
+    <%= User.find(@vac_req.user_id).email %>
   </dd>
 
   <dt>
@@ -56,9 +59,16 @@
   </dd>
 </dl>
 
-<a href="/delete_vac_req/<%= @vac_req.id %>">
-  Delete vac req
-</a>
+<hr>
+
+<% if current_user.seniority == "Chief" %>
+
+<form action:"/update_vac_req/<%=@vac_req.id %>">
+  <input type="hidden" name="approval" value="true">
+<button class="btn btn-primary">Approve Request</button>
+</form>
+
+<% end %>
 
 <hr>
 
