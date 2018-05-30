@@ -1,0 +1,47 @@
+<h1>
+  Assignment Details
+</h1>
+
+<% if current_user.seniority == "Chief" %>
+<a href="/assignments/<%= @assignment.id %>/edit">
+  Edit assignment
+</a>
+<% end %>
+
+<hr>
+
+<dl>
+  <dt>
+    Block
+  </dt>
+  <dd>
+    <%= Block.find(@assignment.block_id).number %>
+  </dd>
+
+  <dt>
+    Resident
+  </dt>
+  <dd>
+    <%= User.find(@assignment.user_id).first_name %> <%= User.find(@assignment.user_id).last_name %>
+  </dd>
+
+  <dt>
+    Service
+  </dt>
+  <dd>
+    <%= Service.find(@assignment.service_id).name %>
+  </dd>
+
+</dl>
+
+<% if current_user.seniority == "Chief" %>
+<a href="/delete_assignment/<%= @assignment.id %>">
+  Delete assignment
+</a>
+<% end %>
+
+<hr>
+
+<a href="/assignments">
+  Go back
+</a>

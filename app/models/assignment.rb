@@ -1,19 +1,18 @@
 # == Schema Information
 #
-# Table name: shifts
+# Table name: assignments
 #
 #  id         :integer          not null, primary key
+#  block_id   :integer
 #  user_id    :integer
 #  service_id :integer
-#  date       :datetime
-#  night      :boolean
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Shift < ApplicationRecord
+class Assignment < ApplicationRecord
   
-  belongs_to :user
-  belongs_to :service
-
+  validates :block_id, uniqueness: { scope: :user_id,
+    message: "Resident is already assigned for Block" }
+  
 end

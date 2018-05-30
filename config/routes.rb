@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
   
+  # Routes for the Assignment resource:
+
+  # CREATE
+  get("/assignments/new", { :controller => "assignments", :action => "new_form" })
+  post("/create_assignment", { :controller => "assignments", :action => "create_row" })
+
+  # READ
+  get("/assignments", { :controller => "assignments", :action => "index" })
+  get("/assignments/:id_to_display", { :controller => "assignments", :action => "show" })
+
+  # UPDATE
+  get("/assignments/:prefill_with_id/edit", { :controller => "assignments", :action => "edit_form" })
+  post("/update_assignment/:id_to_modify", { :controller => "assignments", :action => "update_row" })
+
+  # DELETE
+  get("/delete_assignment/:id_to_remove", { :controller => "assignments", :action => "destroy_row" })
+
+  #------------------------------
+
   # Routes for the Vac req resource:
 
   # CREATE
@@ -45,7 +64,8 @@ Rails.application.routes.draw do
   post("/create_shift", { :controller => "shifts", :action => "create_row" })
 
   # READ
-  get("/shifts", { :controller => "shifts", :action => "index" })
+  get("/scheduling", { :controller => "shifts", :action => "scheduling" })
+  get("/myshifts", { :controller => "shifts", :action => "my_shifts"})
   get("/shifts/:id_to_display", { :controller => "shifts", :action => "show" })
 
   # UPDATE
@@ -76,7 +96,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-root "shifts#index"
+root "shifts#my_shifts"
 
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
