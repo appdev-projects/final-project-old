@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/firstdraft/console_ip_whitelist.git
-  revision: 1af14f91522076488454c29d101aa8d544ce38f9
+  revision: 7ee6da47984855d9a39f5de1f20bd062f3eedcd5
   specs:
     console_ip_whitelist (0.1.0)
       rails
@@ -19,6 +19,13 @@ GIT
   specs:
     draft_generators (0.0.3)
       devise
+
+GIT
+  remote: https://github.com/firstdraft/draft_log.git
+  revision: daea8ecad43fde862432dd5edcf79d4c8b3f807d
+  specs:
+    draft_log (0.0.0)
+      awesome_print
 
 GIT
   remote: https://github.com/firstdraft/grade_runner.git
@@ -110,7 +117,7 @@ GEM
     builder (3.2.3)
     byebug (10.0.2)
     callsite (0.0.11)
-    capybara (3.1.0)
+    capybara (3.1.1)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -143,10 +150,10 @@ GEM
       railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     execjs (2.7.0)
-    factory_bot (4.8.2)
+    factory_bot (4.10.0)
       activesupport (>= 3.0.0)
-    factory_bot_rails (4.8.2)
-      factory_bot (~> 4.8.2)
+    factory_bot_rails (4.10.0)
+      factory_bot (~> 4.10.0)
       railties (>= 3.0.0)
     ffi (1.9.23)
     formtastic (3.1.5)
@@ -346,7 +353,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
-    xpath (3.0.0)
+    xpath (3.1.0)
       nokogiri (~> 1.8)
 
 PLATFORMS
@@ -365,6 +372,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   draft_generators!
+  draft_log!
   factory_bot_rails
   grade_runner!
   jbuilder (~> 2.5)
@@ -378,7 +386,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (~> 5.0)
   spring
-  spring-watcher-listen (~> 2.0.0)
+  spring-watcher-listen (~> 2.0.0f)
   sqlite3
   tzinfo-data
   uglifier (>= 1.3.0)
