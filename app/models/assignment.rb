@@ -12,6 +12,9 @@
 
 class Assignment < ApplicationRecord
   
+  has_many :services, :class_name => "Service", :foreign_key => "service_id"
+  has_many :blocks, :class_name => "Block", :foreign_key => "block_id"
+  
   validates :block_id, uniqueness: { scope: :user_id,
     message: "Resident is already assigned for Block" }
   

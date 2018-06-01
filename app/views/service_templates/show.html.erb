@@ -13,7 +13,7 @@
     Crosscover
   </dt>
   <dd>
-    <% if @service.crosscover = true%>
+    <% if @service.crosscover == true %>
     May Require Crosscover
     <% else %>
     No Crosscover
@@ -33,9 +33,94 @@
 
 </dl>
 
-<a href="/delete_service/<%= @service.id %>">
-  Delete service
-</a>
+<hr>
+
+<h2>
+  Shift Coverage
+</h2>
+
+<hr>
+
+<h3>
+  Create a shift for <%= @service.name %>
+</h3>
+<form action="/create_shift" method="post">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id">
+      Resident
+    </label>
+
+    <%= select_tag("user_id", options_from_collection_for_select(User.all, :id, :last_name, @course.try(:user_id)), :class => "form-control") %>
+  </div>
+
+  <!-- Label and input for service_id -->
+    <input type="hidden" id="service_id" name="service_id" class="form-control" value="<%= @service.id %>">
+    
+  <!-- Label and input for date -->
+  <div class="form-group">
+    <label for="date">
+      Date
+    </label>
+
+    <input type="text" id="date" name="date" class="form-control" value="<%= Date.today.strftime("%d/%m/%y") %>">
+  </div>
+
+  <!-- Label and input for night -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="night">
+    <input id="night" class="form-check-input" name="night" type="checkbox" <%= "checked" if @shift.try(:night) %>>
+
+    <label for="night" class="form-check-label">
+      Night
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create shift
+  </button>
+</form>
+
+<hr>
+
+<h3>
+  Current Assigned Shifts
+</h3>
+<% @shifts = Shift.where(service_id: @service.id) %>
+
+<table class="table">
+  <tr>
+    <th>
+      Date
+    </th>
+    
+    <th>
+      Day/Night
+    </th>
+    
+    <th>
+      Resident
+    </th>
+  </tr>
+  
+  <% @shifts.each do |work| %>
+  <tr>
+    <td>
+      <%= work.date.strftime("%d/%m/%y") %>
+    </td>
+    <td>
+      <% if work.night == false %>
+        Day
+      <% else %>
+        Night
+      <% end %>
+    </td>
+    <td>
+      <%= User.find(work.user_id).first_name %> <%= User.find(work.user_id).last_name %>
+    </td>
+  <% end %>
+  </tr>
+</table>
 
 <hr>
 

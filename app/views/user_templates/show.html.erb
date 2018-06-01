@@ -26,14 +26,28 @@
   <dd>
     <%= @user.seniority %>
   </dd>
-
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@user.updated_at) %> ago
-  </dd>
 </dl>
+
+<table class="table">
+  <tr>
+    <th>
+      Total Night Shifts
+    </th>
+    
+    <th>
+      Cross Cover Shifts
+    </th>
+  </tr>
+  <tr>
+    <td>
+      <%= @night_count %>
+    </td>
+    
+    <td>
+        <%= @cross %>
+    </td>
+  </tr>
+</table>
 
 <!--Can't Delete  yourself-->
 <% if current_user.id == @user.id %>
