@@ -31,6 +31,8 @@ class User < ApplicationRecord
 # validates :seniority, inclusion: %w(intern senior chief)
 validates :email, presence: true
 validates :email, uniqueness: true
+validates :seniority, presence: true
+
 
 has_many :shifts
 has_many :vac_reqs

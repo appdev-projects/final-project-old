@@ -108,6 +108,10 @@ root "shifts#my_shifts"
   get("/users/:id_to_display", {:controller => "users", :action => "show"})
   get("/my_likes", {:controller => "users", :action => "mine"})
   
+  #UPDATE
+  get("/users/edit/:id_to_display", {:controller => "users", :action => "edit_user_form"})
+  post("/update_user/:id_to_modify", {:controller => "users", :action => "edit_user"})
+  
   # DELETE
   get("/delete_user/:id_to_remove", { :controller => "users", :action => "destroy_row" })
   

@@ -65,6 +65,6 @@ class ShiftsController < ApplicationController
 
     @shift.destroy
 
-    redirect_to("/shifts", :notice => "Shift deleted successfully.")
+    redirect_to("/scheduling", :notice => "Shift deleted successfully.")
   end
 end
