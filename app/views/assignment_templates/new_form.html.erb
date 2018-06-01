@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @assignment.present? %>
+  <% if @assignment.errors.any? %>
+    <% @assignment.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new assignment
+</h1>
+
+<hr>
+
+<form action="/create_assignment" method="post">
+  <!-- Label and input for block_id -->
+  <div class="form-group">
+    <label for="block_id">
+      Block
+    </label>
+
+    <%= select_tag("block_id", options_from_collection_for_select(Block.all, :id, :number, @assignment.try(:number)), :class => "form-control") %>
+  </div>
+
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <%= select_tag("user_id", options_from_collection_for_select(User.all, :id, :last_name, @assignment.try(:user_id)), :class => "form-control") %>
+  </div>
+
+  <!-- Label and input for service_id -->
+  <div class="form-group">
+    <label for="service_id">
+      Service
+    </label>
+
+    <%= select_tag("service_id", options_from_collection_for_select(Service.all, :id, :name, @assignment.try(:service_id)), :class => "form-control") %>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create assignment
+  </button>
+</form>
+
+<hr>
+
+<a href="/assignments">
+  Go back
+</a>
