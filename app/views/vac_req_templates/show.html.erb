@@ -3,13 +3,13 @@
 </h1>
 
 <% if @vac_req.user_id == current_user.id %>
-<a href="/vac_reqs/<%= @vac_req.id %>/edit">
-  Update Vacation Request
-</a>
-
-<form action:"/delete_vac_req/<%=@vac_req.id %>">
-<button class="btn btn-danger">Cancel Request</button>
-</form>
+  <a href="/vac_reqs/<%= @vac_req.id %>/edit">
+    Update Vacation Request
+  </a>
+  
+  <form action="/delete_vac_req/<%= @vac_req.id %>">
+    <button class="btn btn-danger">Cancel Request</button>
+  </form>
 
 <% end %>
   
@@ -20,39 +20,40 @@
     Requestor
   </dt>
   <dd>
-    <%= User.find(@vac_req.user_id).email %>
+    <!--<%= User.find(@vac_req.user_id).email %>-->
+    <%= User.find(@vac_req.user_id).first_name %> <%= User.find(@vac_req.user_id).last_name %>
   </dd>
 
   <dt>
     Start date
   </dt>
   <dd>
-    <%= @vac_req.start_date %>
+    <%= @vac_req.start_date.strftime("%b %d, %Y") %>
   </dd>
 
   <dt>
     End date
   </dt>
   <dd>
-    <%= @vac_req.end_date %>
+    <%= @vac_req.end_date.strftime("%b %d, %Y") %>
   </dd>
 
   <dt>
-    Approval
+    Status
   </dt>
   <dd>
     <%= @vac_req.approval %>
   </dd>
 
   <dt>
-    Created at
+    Submitted
   </dt>
   <dd>
     <%= time_ago_in_words(@vac_req.created_at) %> ago
   </dd>
 
   <dt>
-    Updated at
+    Updated
   </dt>
   <dd>
     <%= time_ago_in_words(@vac_req.updated_at) %> ago
@@ -63,10 +64,15 @@
 
 <% if current_user.seniority == "Chief" %>
 
-<form action:"/update_vac_req/<%=@vac_req.id %>">
-  <input type="hidden" name="approval" value="true">
-<button class="btn btn-primary">Approve Request</button>
-</form>
+  <form action="/approve_vac_req/<%= @vac_req.id %>" method="post">
+    <input type="hidden" name="approval" value="Approved">
+  <button class="btn btn-success">Approve Request</button>
+  </form>
+  <br>
+  <form action="/deny_vac_req/<%= @vac_req.id %>" method="post">
+    <input type="hidden" name="approval" value="Denied">
+  <button class="btn btn-warning">Deny Request</button>
+  </form>
 
 <% end %>
 

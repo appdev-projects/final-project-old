@@ -73,3 +73,5 @@ end
 
 gem 'activeadmin'
 gem 'devise'
+
+gem 'bootstrap-datepicker-rails'
