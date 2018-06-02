@@ -1,12 +1,6 @@
 <h1>
-  All shifts
+  My shifts
 </h1>
-
-<% if current_user.seniority == "Chief" %>
-<a href="/shifts/new">
-  Add a new shift
-</a>
-<% end %>
 
 <hr>
 
@@ -15,10 +9,6 @@
 
     <th>
       Resident
-    </th>
-
-    <th>
-      Seniority
     </th>
 
     <th>
@@ -50,15 +40,11 @@
     </td>
 
     <td>
-      <%= User.find(shift.user_id).seniority %>
-    </td>
-
-    <td>
       <%= Service.find(shift.service_id).name %>
     </td>
 
     <td>
-      <%= shift.date %>
+      <%= shift.date.strftime("%m/%d/%Y") %>
     </td>
 
     <td>

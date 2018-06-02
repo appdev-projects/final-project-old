@@ -1,12 +1,13 @@
 class ShiftsController < ApplicationController
  
-  def index
-  if current_user.seniority =="Chief"
+  def scheduling
     @shifts = Shift.all
-  else
-    @shifts = Shift.where(user_id: current_user.id)
+    render("shift_templates/scheduling.html.erb")
   end
-    render("shift_templates/index.html.erb")
+
+  def my_shifts
+    @shifts = Shift.where(user_id: current_user.id)
+    render("shift_templates/myshifts.html.erb")
   end
 
   def show
@@ -30,7 +31,7 @@ class ShiftsController < ApplicationController
     if @shift.valid?
       @shift.save
 
-      redirect_to("/shifts", :notice => "Shift created successfully.")
+      redirect_to("/scheduling", :notice => "Shift created successfully.")
     else
       render("shift_templates/new_form.html.erb")
     end
@@ -64,6 +65,6 @@ class ShiftsController < ApplicationController
 
     @shift.destroy
 
-    redirect_to("/shifts", :notice => "Shift deleted successfully.")
+    redirect_to("/scheduling", :notice => "Shift deleted successfully.")
   end
 end

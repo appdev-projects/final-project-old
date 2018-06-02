@@ -17,6 +17,15 @@ class UsersController < ApplicationController
     render("user_templates/mine.html.erb")
   end
 
+  def edit_user_form
+    @user = User.find(params.fetch("user_id"))
+    render("user_templates/edit_user_form.html.erb")
+  end
+
+  def edit_user
+    
+  end
+
   def destroy_row
     @user = User.find(params.fetch("id_to_remove"))
     
