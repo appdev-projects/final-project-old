@@ -6,7 +6,7 @@
 #  user_id    :integer
 #  start_date :datetime
 #  end_date   :datetime
-#  approval   :boolean
+#  approval   :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

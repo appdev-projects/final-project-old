@@ -13,6 +13,8 @@
   Request Vacation
 </h1>
 
+
+
 <hr>
 
 <form action="/create_vac_req" method="post">
@@ -20,6 +22,8 @@
   <div class="form-group">
     <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= current_user.id %>">
   </div>
+  
+  
 
   <!-- Label and input for start_date -->
   <div class="form-group">
@@ -41,8 +45,7 @@
 
   <!-- Label and input for approval -->
   <div class="form-check">
-    <input type="hidden" value="0" name="approval">
-    <!-- <input id="approval" class="form-check-input" name="approval" type="checkbox" <%= "checked" if @vac_req.try(:approval) %>>-->
+    <input type="hidden" value="Pending" name="approval">
 
     <label for="approval" class="form-check-label">
       <!-- Approval-->

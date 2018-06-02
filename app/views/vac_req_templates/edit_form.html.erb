@@ -37,19 +37,14 @@
     <input type="text" id="end_date" name="end_date" class="form-control" value="<%= @vac_req.end_date %>">
   </div>
 
-<% if current_user.seniority == "Chief" %>
   <!-- Label and input for approval -->
-  <div class="form-check">
-    <input id="approval" class="form-check-input" name="approval" type="checkbox" value="1" <%= "checked" if @vac_req.approval %>>
-
-    <label for="approval" class="form-check-label">
-      Approval
-    </label>
+  <div class="form-group">
+    
+    <input type="hidden" id="approval" name="approval" class="form-control" value="<%= @vac_req.approval %>">
   </div>
-<% end %>
 
   <button class="btn btn-block btn-outline-secondary">
-    Update vac req
+    Update Vacation Request
   </button>
 </form>
 

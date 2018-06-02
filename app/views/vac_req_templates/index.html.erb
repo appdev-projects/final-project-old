@@ -1,17 +1,19 @@
 <h1>
-  Vacation Requests
+  Your Vacation Requests
 </h1>
 
 <a href="/vac_reqs/new">
   Request Vacation
 </a>
 
-<hr>
+<p>
+  
+<% if current_user.seniority == "Chief" %>
 
 <table class="table">
   <tr>
     <th>
-      Resident Requestor
+      Resident
     </th>
 
     <th>
@@ -27,32 +29,97 @@
     </th>
 
     <th>
-      Approval
+      Status
     </th>
 
     <th>
     </th>
   </tr>
 
-
-  <% @vac_reqs.each do |vac_req| %>
+  <% @vac_reqs_chief.each do |vac_req| %>
+  
   <tr>
     <td>
-      <%= User.find(vac_req.user_id).last_name %>, <%= User.find(vac_req.user_id).first_name %>
+      <%= User.find(vac_req.user_id).first_name %> <%= User.find(vac_req.user_id).last_name %>
     </td>
 
     <td>
-      <%= time_ago_in_words(vac_req.created_at) %> ago
+      <%= vac_req.created_at.strftime("%b %d, %Y") %>
     </td>
 
     <td>
       <% @start = vac_req.start_date %>
-      <%= @start.strftime("%m/%d/%Y") %>
+      <%= @start.strftime("%b %d, %Y") %>
     </td>
 
     <td>
       <% @end = vac_req.end_date %>
-      <%= @end.strftime("%m/%d/%y") %>
+      <%= @end.strftime("%b %d, %Y") %>
+    </td>
+
+    <td>
+      <%= vac_req.approval %>
+    </td>
+
+    <td>
+      <a href="/vac_reqs_chief/<%= vac_req.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+
+<h1>
+  Staff Vacation Requests
+</h1>
+
+<table class="table">
+  <tr>
+    <th>
+      Resident
+    </th>
+
+    <th>
+      Submit Date
+    </th>
+
+    <th>
+      Start date
+    </th>
+
+    <th>
+      End date
+    </th>
+
+    <th>
+      Status
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @vac_reqs.each do |vac_req| %>
+  
+  <tr>
+    <td>
+      <%= User.find(vac_req.user_id).first_name %> <%= User.find(vac_req.user_id).last_name %>
+    </td>
+
+    <td>
+      <%= vac_req.created_at.strftime("%b %d, %Y") %>
+    </td>
+
+    <td>
+      <% @start = vac_req.start_date %>
+      <%= @start.strftime("%b %d, %Y") %>
+    </td>
+
+    <td>
+      <% @end = vac_req.end_date %>
+      <%= @end.strftime("%b %d, %Y") %>
     </td>
 
     <td>
@@ -67,3 +134,67 @@
   </tr>
   <% end %>
 </table>
+
+<% else %>
+
+<table class="table">
+  <tr>
+    <th>
+      Resident
+    </th>
+
+    <th>
+      Submit Date
+    </th>
+
+    <th>
+      Start date
+    </th>
+
+    <th>
+      End date
+    </th>
+
+    <th>
+      Status
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @vac_reqs.each do |vac_req| %>
+  
+  <tr>
+    <td>
+      <%= User.find(vac_req.user_id).first_name %> <%= User.find(vac_req.user_id).last_name %>
+    </td>
+
+    <td>
+      <%= vac_req.created_at.strftime("%b %d, %Y") %>
+    </td>
+
+    <td>
+      <% @start = vac_req.start_date %>
+      <%= @start.strftime("%b %d, %Y") %>
+    </td>
+
+    <td>
+      <% @end = vac_req.end_date %>
+      <%= @end.strftime("%b %d, %Y") %>
+    </td>
+
+    <td>
+      <%= vac_req.approval %>
+    </td>
+
+    <td>
+      <a href="/vac_reqs/<%= vac_req.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>
+
+<% end %>
