@@ -173,6 +173,32 @@
               <% end %>
             </div>
             <!-- Devise Input for seniority end -->
+            
+                       <!-- Devise Input for active_status start -->
+            <div class="form-group">
+              <% active_status_was_invalid = resource.errors.include?(:active_status) %>
+  
+              <% seniority_class = "form-control" %>
+  
+              <% if was_validated %>
+                <% if active_status_was_invalid %>
+                  <% active_status_class << " is-invalid" %>
+                <% else %>
+                  <% active_status_class << " is-valid" %>
+                <% end %>
+              <% end %>
+  
+              <%= f.hidden_field :active_status, :value => 'true' %>
+  
+              <% if active_status_was_invalid %>
+                <% resource.errors.full_messages_for(:active_status).each do |message| %>
+                  <div class="invalid-feedback d-flex">
+                    <%= message %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+            <!-- Devise Input for active_status end -->
           
           <%= f.button class: "btn btn-outline-primary btn-block" %>
 

@@ -7,7 +7,6 @@
   Add a new assignment
 </a>
 
-<hr>
 <% end %>
 
 
@@ -38,7 +37,7 @@
     </td>
 
     <td>
-      <%= User.find(assignment.user_id).last_name %>
+      <%= User.find(assignment.user_id).first_name %> <%= User.find(assignment.user_id).last_name %>
     </td>
 
     <td>

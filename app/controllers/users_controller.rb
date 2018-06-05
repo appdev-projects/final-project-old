@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
-
+    @active_users = User.where(active_status: true)
+    @inactive_users = User.where(active_status: false)
+    
     render("user_templates/index.html.erb")
   end
 
@@ -58,6 +59,7 @@ class UsersController < ApplicationController
   def edit_user
     @user = User.find(params.fetch("id_to_modify"))
     @user.seniority = params.fetch("seniority")
+    @user.active_status = params.fetch("active")
     @user.save
     
     redirect_to("/users/#{@user.id}", :notice => "Resident Status Updated")

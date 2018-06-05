@@ -17,8 +17,9 @@
 #  last_name              :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  year                   :integer
+#  active                 :boolean
 #  seniority              :string
+#  active_status          :boolean
 #
 # Indexes
 #

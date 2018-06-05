@@ -29,6 +29,13 @@
     <%= @user.seniority %>
   </dd>
 
+<dt>
+  Active Status?
+</dt>
+<dd>
+  Resident is: <% if @user.active_status == false %> Inactive <% else %> Active <% end %>
+</dd>
+
 <% if current_user.seniority == "Chief" %>
    <table class="table">
     <tr>
@@ -58,13 +65,14 @@
       </td>
     </tr>
   </table>
-  
+<% end %>
+
   <hr>
   
-  <h3>
+<h3>
   <%= @user.last_name %>'s Upcoming Schedule
-  </h3>
-  
+</h3>
+
   <table class="table">
   <tr>
 
@@ -116,20 +124,6 @@
   </tr>
   <% end %>
 </table>
-<% end %>
-
-<!--Can't Delete  yourself-->
-<% if current_user.id == @user.id %>
-<% else %>
-
-<!--Must be a chief to delete users-->
-  <% if User.find(current_user.id).seniority == "Chief" %>
-    <a href="/delete_user/<%= @user.id %>">
-      Delete user
-    </a>
-
-  <% end %>
-<% end %>
 
 <hr>
 
