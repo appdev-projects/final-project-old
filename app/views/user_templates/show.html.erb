@@ -6,9 +6,11 @@
   <% end %>
 </h1>
 
-<a href="/users/edit">
-  Edit Resident
+<% if current_user.seniority == "Chief" %>
+<a href="/users/edit/<%= @user.id %>">
+  Edit Resident Status
 </a>
+<% end %>
 
 <hr>
 

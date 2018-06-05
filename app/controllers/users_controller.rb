@@ -51,12 +51,16 @@ class UsersController < ApplicationController
   end
 
   def edit_user_form
-    @user = User.find(params.fetch("user_id"))
+    @user = User.find(params.fetch("id_to_display"))
     render("user_templates/edit_user_form.html.erb")
   end
 
   def edit_user
+    @user = User.find(params.fetch("id_to_modify"))
+    @user.seniority = params.fetch("seniority")
+    @user.save
     
+    redirect_to("/users/#{@user.id}", :notice => "Resident Status Updated")
   end
 
   def destroy_row
