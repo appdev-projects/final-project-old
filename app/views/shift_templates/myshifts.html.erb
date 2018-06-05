@@ -2,14 +2,10 @@
   My shifts
 </h1>
 
-<hr>
+<!--<hr>-->
 
 <table class="table">
   <tr>
-
-    <th>
-      Resident
-    </th>
 
     <th>
       Service
@@ -34,10 +30,6 @@
   <% @shifts.each do |shift| %>
   
   <tr>
-
-    <td>
-      <%= User.find(shift.user_id).last_name %>
-    </td>
 
     <td>
       <%= Service.find(shift.service_id).name %>

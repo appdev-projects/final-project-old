@@ -2,11 +2,15 @@
   All Residents
 </h1>
 
+<% if current_user.seniority == "Chief" %>
 <a href="/shifts/new">
   Add a new resident
 </a>
-
 <hr>
+
+<% end %>
+
+
 
 <table class="table">
   <tr>

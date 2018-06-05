@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="offset-md-3 col-md-6">
+    <div class="card mb-3">
+        <h2 class="card-header">
+          Edit Resident Status
+        </h2>
+  
+        <div class="card-body">
+          <form action="/update_user/<%= @user.id %>" method="post">
+            <fieldset>
+              <legend><%=@user.first_name %> <%=@user.last_name %></legend>
+              <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="text" readonly="" class="form-control-plaintext" id="staticEmail" value="email@example.com">
+                </div>
+              </div>
+     
+              <fieldset class="form-group">
+                <legend>Seniority</legend>
+                <div class="form-check">
+                  <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="seniority" id="seniority" value="Intern" checked="">
+                    Intern
+                  </label>
+                </div>
+                <div class="form-check">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="seniority" id="seniority" value="Senior">
+                    Senior
+                  </label>
+                </div>
+                <div class="form-check disabled">
+                <label class="form-check-label">
+                    <input type="radio" class="form-check-input" name="seniority" id="seniority" value="Chief">
+                    Chief
+                  </label>
+                </div>
+              </fieldset>
+              
+              
+              <button type="submit" class="btn btn-block btn-primary">Submit</button>
+            </fieldset>
+          </form>
+          
+        </div>
+    </div>
+  </div>
+</div>

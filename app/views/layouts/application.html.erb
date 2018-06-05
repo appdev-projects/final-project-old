@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.2/css/all.css">
 
     <!-- Connect Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">-->
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-87sz15XXg/vK1YUT8aQFH3EIw5aC/jbpolvTC264SVJfjOIBWv0V/o2FyyKclY8G" crossorigin="anonymous">
 
     <!-- Connect Bootstrap JavaScript and its dependencies -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -27,21 +28,29 @@
 
   <body>
 
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
       <a class="navbar-brand" href="/">Hospital Shift Tracker</a>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="/myshifts">My Shifts</a></li>
-          <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="/users">Residents</a></li>
           <li class="nav-item"><a class="nav-link" href="/vac_reqs">Vacation Requests</a></li>
           <li class="nav-item"><a class="nav-link" href="/assignments">Block Schedule</a></li>
         <% if current_user == nil %>
           
         <% elsif current_user.seniority == "Chief" %>
-          <li class="nav-item"><a class="nav-link" href="/scheduling">Scheduling</a></li>
-          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
-          <li class="nav-item"><a class="nav-link" href="/blocks">Blocks</a></li>
+          <li class="nav-item dropdown">
+       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         Chief Tools
+       </a>
+       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+         <a class="dropdown-item" href="/scheduling">Scheduling</a>
+         <div class="dropdown-divider"></div>
+         <a class="dropdown-item" href="/services">Services</a>
+         <a class="dropdown-item" href="/blocks">Blocks</a>
+       </div>
+     </li>
         <% end %>
         </ul>
 
