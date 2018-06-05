@@ -56,7 +56,7 @@
     </td>
 
     <td>
-      <%= user.last_sign_in_at %>
+      <%= user.last_sign_in_at.strftime("%b %d, %Y") %>
     </td>
 
     <td>
@@ -119,7 +119,7 @@
       </td>
   
       <td>
-        <%= user.last_sign_in_at %>
+        <%= user.last_sign_in_at.strftime("%b %d, %Y") %>
       </td>
   
       <td>
