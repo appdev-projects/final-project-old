@@ -25,11 +25,30 @@ class LocationActivitiesController < ApplicationController
     if @location_activity.valid?
       @location_activity.save
 
-      redirect_to("/location_activities", :notice => "Location activity created successfully.")
+      redirect_to("/activities" +  @location_activity.activity_id, :notice => "Location activity created successfully.")
     else
-      render("location_activity_templates/new_form.html.erb")
+      redirect_to("/activities" +  @location_activity.activity_id, :alert => "Location activity not created successfully.")
     end
   end
+  
+  def add_count
+    @location_activity = LocationActivity.find(params.fetch("id_to_modify"))
+    @location_activity.feature_rating = @location_activity.feature_rating + 1
+    @location_activity.save
+    redirect_to("/activities/" + @location_activity.activity_id.to_s, :notice => "Count activity added successfully.")
+  end
+  
+  def remove_count
+    @location_activity = LocationActivity.find(params.fetch("id_to_modify"))
+    @location_activity.feature_rating = @location_activity.feature_rating - 1
+    if @location_activity.valid?
+      @location_activity.save
+      redirect_to("/activities/" + @location_activity.activity_id.to_s, :notice => "Count activity deleted successfully.")
+    else
+      redirect_to("/activities/" + @location_activity.activity_id.to_s, :alert => "Count activity not deleted successfully.")
+    end
+  end
+  
 
   def edit_form
     @location_activity = LocationActivity.find(params.fetch("prefill_with_id"))

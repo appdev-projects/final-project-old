@@ -14,6 +14,21 @@
 #
 
 class Location < ApplicationRecord
+    validates :city_name, :presence => true
+    validates :city_name, :uniqueness => true
+    
+    validates :state_name, :presence => true
+   
+    validates :country_name, :presence => true
+    
+    validates :lat, :uniqueness => true
+        
+    validates :long, :uniqueness => true
+    
+    validates :image, :presence => true
+    validates :image, :uniqueness => true    
+    
+    
     has_many :location_weathers, :dependent => :destroy
     has_many :location_features, :class_name => "LocationActivity", :dependent => :destroy
     has_many :location_geographies, :dependent => :destroy 

@@ -9,6 +9,9 @@
 #
 
 class Geography < ApplicationRecord
+    validates :geography, :presence => true
+    validates :geography, :uniqueness => true    
+    
     has_many :location_geographies, :dependent => :destroy
     has_many :locations, :through => :location_geographies, :source => :location 
 end

@@ -59,6 +59,9 @@ Rails.application.routes.draw do
 
   # DELETE
   get("/delete_location_activity/:id_to_remove", { :controller => "location_activities", :action => "destroy_row" })
+  
+  get("/add_count/:id_to_modify", { :controller => "location_activities", :action => "add_count" })
+  get("/remove_count/:id_to_modify", { :controller => "location_activities", :action => "remove_count" })
 
   #------------------------------
 

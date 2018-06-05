@@ -23,11 +23,7 @@
     </th>
 
     <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
+      Present in
     </th>
 
     <th>
@@ -49,11 +45,16 @@
     </td>
 
     <td>
-      <%= time_ago_in_words(activity.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(activity.updated_at) %> ago
+      <ul class="list-group">
+      <%   LocationActivity.where(activity_id: activity.id).each do |detail| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+           <%= Location.find(detail.location_id).city_name %>
+          <span class="badge badge-primary badge-pill"><%= detail.feature_rating.to_i %></span> 
+        </li>
+      <% end 
+      ## changed float to interger for readability
+      %>
+      </ul>
     </td>
 
     <td>

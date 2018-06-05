@@ -30,8 +30,9 @@
 
   <body>
     <%= render "shared/navbar" %>
-    <%= yield %>
     <%= render "shared/flashes" %>
+    <%= yield %>
+    
     <%= dev_tools if Rails.env.development? %>
   </body>
 </html>

@@ -10,9 +10,6 @@
 
 <table class="table">
   <tr>
-    <th>
-      ID
-    </th>
 
     <th>
       City name
@@ -27,23 +24,7 @@
     </th>
 
     <th>
-      Lat
-    </th>
-
-    <th>
-      Long
-    </th>
-
-    <th>
-      Image
-    </th>
-
-    <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
+      Ratings
     </th>
 
     <th>
@@ -52,9 +33,6 @@
 
   <% @locations.each do |location| %>
   <tr>
-    <td>
-      <%= location.id %>
-    </td>
 
     <td>
       <%= location.city_name %>
@@ -69,23 +47,51 @@
     </td>
 
     <td>
-      <%= location.lat %>
-    </td>
+      <%
+      
+          
+      @relax = 0
+      @nightlife = 0
+      @family = 0
+      @active = 0
+      @culture = 0
+       
+       
+        LocationActivity.where(location_id: location.id).each do |city|
+            Activity.where(id: city.activity_id).each do |activity|
+                if activity.category == "Relax"
+                    @relax = @relax + city.feature_rating
+                end
+                
+                if activity.category == "Night Life"
+                    @nightlife = @nightlife + city.feature_rating
+                end
+                
+                if activity.category == "Family"
+                    @family = @family + city.feature_rating
+                end
+                
+                if activity.category == "Active"
+                    @active = @active + city.feature_rating
+                end
+                
+                if activity.category == "Culture"
+                    @culture = @culture + city.feature_rating
+                end
+            end
+        end
+        
+       @total = @relax + @nightlife + @family + @active + @culture
+       
+       %>
+       
+        <p>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</p>
+        <p>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</p>
+        <p>Family Count: <%= ((@family/@total) *100).round(2) %>%</p>
+        <p>Active Count: <%= ((@active/@total) *100).round(2) %>%</p>
+        <p>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</p>
+      
 
-    <td>
-      <%= location.long %>
-    </td>
-
-    <td>
-      <%= location.image %>
-    </td>
-
-    <td>
-      <%= time_ago_in_words(location.created_at) %> ago
-    </td>
-
-    <td>
-      <%= time_ago_in_words(location.updated_at) %> ago
     </td>
 
     <td>

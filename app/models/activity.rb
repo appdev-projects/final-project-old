@@ -10,6 +10,13 @@
 #
 
 class Activity < ApplicationRecord
+    
+    validates :activity, :presence => true
+    validates :activi, :uniqueness => true
+    
+    validates :category, :presence => true
+    validates :category, :uniqueness => true
+    
     has_many :location_features, :class_name => "LocationActivity", :dependent => :destroy 
     has_many :cities, :through => :location_features, :source => :city 
 end
