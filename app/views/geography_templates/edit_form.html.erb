@@ -1,0 +1,35 @@
+<!-- Validation failure messages -->
+<% if @geography.errors.any? %>
+  <% @geography.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit geography #<%= @geography.id %>
+</h1>
+
+<hr>
+
+<form action="/update_geography/<%= @geography.id %>" method="post">
+  <!-- Label and input for geography -->
+  <div class="form-group">
+    <label for="geography">
+      Geography
+    </label>
+
+    <input type="text" id="geography" name="geography" class="form-control" value="<%= @geography.geography %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update geography
+  </button>
+</form>
+
+<hr>
+
+<a href="/geographies">
+  Go back
+</a>

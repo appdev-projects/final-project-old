@@ -1,0 +1,53 @@
+<!-- Validation failure messages -->
+<% if @location_activity.errors.any? %>
+  <% @location_activity.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit location activity #<%= @location_activity.id %>
+</h1>
+
+<hr>
+
+<form action="/update_location_activity/<%= @location_activity.id %>" method="post">
+  <!-- Label and input for location_id -->
+  <div class="form-group">
+    <label for="location_id">
+      Location
+    </label>
+
+    <input type="text" id="location_id" name="location_id" class="form-control" value="<%= @location_activity.location_id %>">
+  </div>
+
+  <!-- Label and input for activity_id -->
+  <div class="form-group">
+    <label for="activity_id">
+      Activity
+    </label>
+
+    <input type="text" id="activity_id" name="activity_id" class="form-control" value="<%= @location_activity.activity_id %>">
+  </div>
+
+  <!-- Label and input for feature_rating -->
+  <div class="form-group">
+    <label for="feature_rating">
+      Feature rating
+    </label>
+
+    <input type="text" id="feature_rating" name="feature_rating" class="form-control" value="<%= @location_activity.feature_rating %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update location activity
+  </button>
+</form>
+
+<hr>
+
+<a href="/location_activities">
+  Go back
+</a>

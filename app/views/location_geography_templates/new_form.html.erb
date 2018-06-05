@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @location_geography.present? %>
+  <% if @location_geography.errors.any? %>
+    <% @location_geography.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new location geography
+</h1>
+
+<hr>
+
+<form action="/create_location_geography" method="post">
+  <!-- Label and input for geography_id -->
+  <div class="form-group">
+    <label for="geography_id">
+      Geography
+    </label>
+
+    <input type="text" id="geography_id" name="geography_id" class="form-control" value="<%= @location_geography.try(:geography_id) %>">
+  </div>
+
+  <!-- Label and input for location_id -->
+  <div class="form-group">
+    <label for="location_id">
+      Location
+    </label>
+
+    <input type="text" id="location_id" name="location_id" class="form-control" value="<%= @location_geography.try(:location_id) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create location geography
+  </button>
+</form>
+
+<hr>
+
+<a href="/location_geographies">
+  Go back
+</a>

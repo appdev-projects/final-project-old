@@ -1,0 +1,74 @@
+<h1>
+  All location activities
+</h1>
+
+<a href="/location_activities/new">
+  Add a new location activity
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Location
+    </th>
+
+    <th>
+      Activity
+    </th>
+
+    <th>
+      Feature rating
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @location_activities.each do |location_activity| %>
+  <tr>
+    <td>
+      <%= location_activity.id %>
+    </td>
+
+    <td>
+      <%= location_activity.location_id %>
+    </td>
+
+    <td>
+      <%= location_activity.activity_id %>
+    </td>
+
+    <td>
+      <%= location_activity.feature_rating %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location_activity.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location_activity.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/location_activities/<%= location_activity.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

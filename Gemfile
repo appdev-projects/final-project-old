@@ -5,6 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem "hirb"
 gem "activeadmin"
 gem "devise"
 gem "jbuilder", "~> 2.5"
@@ -13,6 +14,7 @@ gem "rails", "~> 5.1.5"
 gem "sass-rails", "~> 5.0"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "uglifier", ">= 1.3.0"
+gem 'bootstrap-datepicker-rails'
 
 group :production do
   gem "pg"

@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @location_weather.present? %>
+  <% if @location_weather.errors.any? %>
+    <% @location_weather.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new location weather
+</h1>
+
+<hr>
+
+<form action="/create_location_weather" method="post">
+  <!-- Label and input for location_id -->
+  <div class="form-group">
+    <label for="location_id">
+      Location
+    </label>
+
+    <input type="text" id="location_id" name="location_id" class="form-control" value="<%= @location_weather.try(:location_id) %>">
+  </div>
+
+  <!-- Label and input for month -->
+  <div class="form-group">
+    <label for="month">
+      Month
+    </label>
+
+    <input type="text" id="month" name="month" class="form-control" value="<%= @location_weather.try(:month) %>">
+  </div>
+
+  <!-- Label and input for temperature -->
+  <div class="form-group">
+    <label for="temperature">
+      Temperature
+    </label>
+
+    <input type="text" id="temperature" name="temperature" class="form-control" value="<%= @location_weather.try(:temperature) %>">
+  </div>
+
+  <!-- Label and input for weather -->
+  <div class="form-group">
+    <label for="weather">
+      Weather
+    </label>
+
+    <input type="text" id="weather" name="weather" class="form-control" value="<%= @location_weather.try(:weather) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create location weather
+  </button>
+</form>
+
+<hr>
+
+<a href="/location_weathers">
+  Go back
+</a>

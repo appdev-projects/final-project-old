@@ -1,0 +1,66 @@
+<h1>
+  All location geographies
+</h1>
+
+<a href="/location_geographies/new">
+  Add a new location geography
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Geography
+    </th>
+
+    <th>
+      Location
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @location_geographies.each do |location_geography| %>
+  <tr>
+    <td>
+      <%= location_geography.id %>
+    </td>
+
+    <td>
+      <%= location_geography.geography_id %>
+    </td>
+
+    <td>
+      <%= location_geography.location_id %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location_geography.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location_geography.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/location_geographies/<%= location_geography.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

@@ -1,0 +1,49 @@
+<h1>
+  Activity #<%= @activity.id %> details
+</h1>
+
+<a href="/activities/<%= @activity.id %>/edit">
+  Edit activity
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Activity
+  </dt>
+  <dd>
+    <%= @activity.activity %>
+  </dd>
+
+  <dt>
+    Category
+  </dt>
+  <dd>
+    <%= @activity.category %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@activity.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@activity.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_activity/<%= @activity.id %>">
+  Delete activity
+</a>
+
+<hr>
+
+<a href="/activities">
+  Go back
+</a>

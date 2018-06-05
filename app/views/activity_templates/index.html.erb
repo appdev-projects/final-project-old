@@ -1,0 +1,66 @@
+<h1>
+  All activities
+</h1>
+
+<a href="/activities/new">
+  Add a new activity
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Activity
+    </th>
+
+    <th>
+      Category
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @activities.each do |activity| %>
+  <tr>
+    <td>
+      <%= activity.id %>
+    </td>
+
+    <td>
+      <%= activity.activity %>
+    </td>
+
+    <td>
+      <%= activity.category %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(activity.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(activity.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/activities/<%= activity.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

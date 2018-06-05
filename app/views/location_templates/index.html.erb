@@ -1,0 +1,98 @@
+<h1>
+  All locations
+</h1>
+
+<a href="/locations/new">
+  Add a new location
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      City name
+    </th>
+
+    <th>
+      State name
+    </th>
+
+    <th>
+      Country name
+    </th>
+
+    <th>
+      Lat
+    </th>
+
+    <th>
+      Long
+    </th>
+
+    <th>
+      Image
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @locations.each do |location| %>
+  <tr>
+    <td>
+      <%= location.id %>
+    </td>
+
+    <td>
+      <%= location.city_name %>
+    </td>
+
+    <td>
+      <%= location.state_name %>
+    </td>
+
+    <td>
+      <%= location.country_name %>
+    </td>
+
+    <td>
+      <%= location.lat %>
+    </td>
+
+    <td>
+      <%= location.long %>
+    </td>
+
+    <td>
+      <%= location.image %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/locations/<%= location.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

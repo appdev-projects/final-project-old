@@ -1,0 +1,56 @@
+<h1>
+  Location activity #<%= @location_activity.id %> details
+</h1>
+
+<a href="/location_activities/<%= @location_activity.id %>/edit">
+  Edit location activity
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Location
+  </dt>
+  <dd>
+    <%= @location_activity.location_id %>
+  </dd>
+
+  <dt>
+    Activity
+  </dt>
+  <dd>
+    <%= @location_activity.activity_id %>
+  </dd>
+
+  <dt>
+    Feature rating
+  </dt>
+  <dd>
+    <%= @location_activity.feature_rating %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location_activity.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location_activity.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_location_activity/<%= @location_activity.id %>">
+  Delete location activity
+</a>
+
+<hr>
+
+<a href="/location_activities">
+  Go back
+</a>

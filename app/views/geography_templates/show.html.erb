@@ -1,0 +1,42 @@
+<h1>
+  Geography #<%= @geography.id %> details
+</h1>
+
+<a href="/geographies/<%= @geography.id %>/edit">
+  Edit geography
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Geography
+  </dt>
+  <dd>
+    <%= @geography.geography %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@geography.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@geography.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_geography/<%= @geography.id %>">
+  Delete geography
+</a>
+
+<hr>
+
+<a href="/geographies">
+  Go back
+</a>

@@ -1,0 +1,101 @@
+<h1>
+  Location #<%= @location.id %> details
+</h1>
+
+<a href="/locations/<%= @location.id %>/edit">
+  Edit location
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    City name
+  </dt>
+  <dd>
+    <%= @location.city_name %>
+  </dd>
+
+  <dt>
+    State name
+  </dt>
+  <dd>
+    <%= @location.state_name %>
+  </dd>
+
+  <dt>
+    Country name
+  </dt>
+  <dd>
+    <%= @location.country_name %>
+  </dd>
+
+  <dt>
+    ratings
+  </dt>
+  <dd>
+    <% 
+    
+      @relax = 0
+      @nightlife = 0
+      @family = 0
+      @active = 0
+      @culture = 0
+       
+        LocationActivity.where(location_id: @location.id).each do |city|
+            Activity.where(id: city.activity_id).each do |activity|
+                if activity.category == "Relax"
+                    @relax = @relax + city.feature_rating
+                end
+                
+                if activity.category == "Night Life"
+                    @nightlife = @nightlife + city.feature_rating
+                end
+                
+                if activity.category == "Family"
+                    @family = @family + city.feature_rating
+                end
+                
+                if activity.category == "Active"
+                    @active = @active + city.feature_rating
+                end
+                
+                if activity.category == "Culture"
+                    @culture = @culture + city.feature_rating
+                end
+            end
+        end
+        %>
+        "Relax Count: " <%=@relax %>
+        "Night Life Count: " <%= @nightlife %>
+        "Family Count: "<%=  @family %>
+        "Active Count: "<%=  @active %>
+        "Culture Count: "<%=  @culture %>
+  </dd>
+
+  <dt>
+    Long
+  </dt>
+  <dd>
+
+    <%= @location.long %>
+  </dd>
+
+  <dt>
+    Image
+  </dt>
+  <dd>
+      <img src="<%= @location.image %>" class="img-fluid">
+  </dd>
+
+</dl>
+
+<a href="/delete_location/<%= @location.id %>">
+  Delete location
+</a>
+
+<hr>
+
+<a href="/locations">
+  Go back
+</a>

@@ -1,0 +1,49 @@
+<h1>
+  Location geography #<%= @location_geography.id %> details
+</h1>
+
+<a href="/location_geographies/<%= @location_geography.id %>/edit">
+  Edit location geography
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Geography
+  </dt>
+  <dd>
+    <%= @location_geography.geography_id %>
+  </dd>
+
+  <dt>
+    Location
+  </dt>
+  <dd>
+    <%= @location_geography.location_id %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location_geography.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location_geography.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_location_geography/<%= @location_geography.id %>">
+  Delete location geography
+</a>
+
+<hr>
+
+<a href="/location_geographies">
+  Go back
+</a>

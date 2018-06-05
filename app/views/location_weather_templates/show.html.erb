@@ -1,0 +1,63 @@
+<h1>
+  Location weather #<%= @location_weather.id %> details
+</h1>
+
+<a href="/location_weathers/<%= @location_weather.id %>/edit">
+  Edit location weather
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Location
+  </dt>
+  <dd>
+    <%= @location_weather.location_id %>
+  </dd>
+
+  <dt>
+    Month
+  </dt>
+  <dd>
+    <%= @location_weather.month %>
+  </dd>
+
+  <dt>
+    Temperature
+  </dt>
+  <dd>
+    <%= @location_weather.temperature %>
+  </dd>
+
+  <dt>
+    Weather
+  </dt>
+  <dd>
+    <%= @location_weather.weather %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location_weather.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@location_weather.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_location_weather/<%= @location_weather.id %>">
+  Delete location weather
+</a>
+
+<hr>
+
+<a href="/location_weathers">
+  Go back
+</a>

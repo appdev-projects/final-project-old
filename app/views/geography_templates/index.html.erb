@@ -1,0 +1,58 @@
+<h1>
+  All geographies
+</h1>
+
+<a href="/geographies/new">
+  Add a new geography
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Geography
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @geographies.each do |geography| %>
+  <tr>
+    <td>
+      <%= geography.id %>
+    </td>
+
+    <td>
+      <%= geography.geography %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(geography.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(geography.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/geographies/<%= geography.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

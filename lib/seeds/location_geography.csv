@@ -1,0 +1,17 @@
+city,Category,geography,count
+2,Geography,2,10
+3,Geography,2,2
+5,Geography,2,2
+6,Geography,2,77
+4,Geography,5,11
+5,Geography,5,2
+6,Geography,5,21
+2,Geography,6,58
+3,Geography,6,50
+6,Geography,6,13
+2,Geography,7,37
+3,Geography,7,30
+4,Geography,7,19
+6,Geography,7,11
+4,Geography,8,29
+6,Geography,8,26

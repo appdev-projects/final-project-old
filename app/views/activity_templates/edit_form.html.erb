@@ -1,0 +1,44 @@
+<!-- Validation failure messages -->
+<% if @activity.errors.any? %>
+  <% @activity.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit activity #<%= @activity.id %>
+</h1>
+
+<hr>
+
+<form action="/update_activity/<%= @activity.id %>" method="post">
+  <!-- Label and input for activity -->
+  <div class="form-group">
+    <label for="activity">
+      Activity
+    </label>
+
+    <input type="text" id="activity" name="activity" class="form-control" value="<%= @activity.activity %>">
+  </div>
+
+  <!-- Label and input for category -->
+  <div class="form-group">
+    <label for="category">
+      Category
+    </label>
+
+    <input type="text" id="category" name="category" class="form-control" value="<%= @activity.category %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update activity
+  </button>
+</form>
+
+<hr>
+
+<a href="/activities">
+  Go back
+</a>

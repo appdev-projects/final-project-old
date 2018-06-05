@@ -1,0 +1,82 @@
+<h1>
+  All location weathers
+</h1>
+
+<a href="/location_weathers/new">
+  Add a new location weather
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Location
+    </th>
+
+    <th>
+      Month
+    </th>
+
+    <th>
+      Temperature
+    </th>
+
+    <th>
+      Weather
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @location_weathers.each do |location_weather| %>
+  <tr>
+    <td>
+      <%= location_weather.id %>
+    </td>
+
+    <td>
+      <%= location_weather.location_id %>
+    </td>
+
+    <td>
+      <%= location_weather.month %>
+    </td>
+
+    <td>
+      <%= location_weather.temperature %>
+    </td>
+
+    <td>
+      <%= location_weather.weather %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location_weather.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(location_weather.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/location_weathers/<%= location_weather.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

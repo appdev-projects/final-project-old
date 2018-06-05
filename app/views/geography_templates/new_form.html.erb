@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @geography.present? %>
+  <% if @geography.errors.any? %>
+    <% @geography.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new geography
+</h1>
+
+<hr>
+
+<form action="/create_geography" method="post">
+  <!-- Label and input for geography -->
+  <div class="form-group">
+    <label for="geography">
+      Geography
+    </label>
+
+    <input type="text" id="geography" name="geography" class="form-control" value="<%= @geography.try(:geography) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create geography
+  </button>
+</form>
+
+<hr>
+
+<a href="/geographies">
+  Go back
+</a>
