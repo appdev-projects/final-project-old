@@ -13,8 +13,13 @@ class UsersController < ApplicationController
     @blocks = Block.all
     @night_count = 0
     @cross = 0
+    @weekend = 0
     @shifts.each do |count|
 
+      if count.date.on_weekend? == true
+        @weekend = @weekend + 1
+      end
+      
       @assignments.each do |day|
         if count.date >= Block.find(day.block_id).start_date
           if count.date <= Block.find(day.block_id).end_date
@@ -31,7 +36,10 @@ class UsersController < ApplicationController
         @night_count = @night_count + 1
       end
     end
-
+    
+    @shifts = Shift.where(user_id: @user.id)
+    @shifts = @shifts.where("date >= ?", Date.today.to_datetime)
+    
     render("user_templates/show.html.erb")
   end
 

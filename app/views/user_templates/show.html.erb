@@ -27,26 +27,94 @@
     <%= @user.seniority %>
   </dd>
 
- <table class="table">
+<% if current_user.seniority == "Chief" %>
+   <table class="table">
+    <tr>
+      <th>
+        Total Night Shifts
+      </th>
+      
+      <th>
+        Cross Cover Shifts
+      </th>
+      
+      <th>
+        Weekend Shifts
+      </th>
+    </tr>
+    <tr>
+      <td>
+        <%= @night_count %>
+      </td>
+      
+      <td>
+          <%= @cross %>
+      </td>
+      
+      <td>
+        <%= @weekend %>
+      </td>
+    </tr>
+  </table>
+  
+  <hr>
+  
+  <h3>
+  <%= @user.last_name %>'s Upcoming Schedule
+  </h3>
+  
+  <table class="table">
   <tr>
+
     <th>
-      Total Night Shifts
+      Resident
     </th>
-    
+
     <th>
-      Cross Cover Shifts
+      Service
+    </th>
+
+    <th>
+      Date
+    </th>
+
+    <th>
+      Night
+    </th>
+
+    <th>
     </th>
   </tr>
+
+  <% @shifts.each do |shift| %>
+  
   <tr>
+
     <td>
-      <%= @night_count %>
+      <%= User.find(shift.user_id).last_name %>
     </td>
-    
+
     <td>
-        <%= @cross %>
+      <%= Service.find(shift.service_id).name %>
+    </td>
+
+    <td>
+      <%= shift.date.strftime("%m/%d/%Y") %>
+    </td>
+
+    <td>
+      <%= shift.night %>
+    </td>
+
+    <td>
+      <a href="/shifts/<%= shift.id %>">
+        Show details
+      </a>
     </td>
   </tr>
+  <% end %>
 </table>
+<% end %>
 
 <!--Can't Delete  yourself-->
 <% if current_user.id == @user.id %>
