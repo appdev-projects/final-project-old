@@ -1,5 +1,5 @@
 <h1>
-  Location #<%= @location.id %> details
+  <%= @location.city_name %> details
 </h1>
 
 <a href="/locations/<%= @location.id %>/edit">
@@ -42,6 +42,7 @@
       @active = 0
       @culture = 0
        
+       
         LocationActivity.where(location_id: @location.id).each do |city|
             Activity.where(id: city.activity_id).each do |activity|
                 if activity.category == "Relax"
@@ -65,24 +66,24 @@
                 end
             end
         end
+        
+       @total = @relax + @nightlife + @family + @active + @culture
+       
+       
+       
         %>
-        "Relax Count: " <%=@relax %>
-        "Night Life Count: " <%= @nightlife %>
-        "Family Count: "<%=  @family %>
-        "Active Count: "<%=  @active %>
-        "Culture Count: "<%=  @culture %>
+        
+        
+        
+        <p>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</p>
+        <p>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</p>
+        <p>Family Count: <%= ((@family/@total) *100).round(2) %>%</p>
+        <p>Active Count: <%= ((@active/@total) *100).round(2) %>%</p>
+        <p>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</p>
   </dd>
 
-  <dt>
-    Long
-  </dt>
-  <dd>
-
-    <%= @location.long %>
-  </dd>
 
   <dt>
-    Image
   </dt>
   <dd>
       <img src="<%= @location.image %>" class="img-fluid">

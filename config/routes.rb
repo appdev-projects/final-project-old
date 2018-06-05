@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   
   get("/", { :controller => "application", :action => "index" })
   get("/index", { :controller => "application", :action => "index" })
+  get("/search", { :controller => "application", :action => "search" })
+  post("/get_results", { :controller => "application", :action => "results" })
   
   # Routes for the Location resource:
 
