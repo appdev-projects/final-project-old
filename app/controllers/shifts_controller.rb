@@ -7,6 +7,8 @@ class ShiftsController < ApplicationController
 
   def my_shifts
     @shifts = Shift.where(user_id: current_user.id)
+    @shifts = @shifts.where("date >= ?", Date.today.to_datetime)
+    
     render("shift_templates/myshifts.html.erb")
   end
 
