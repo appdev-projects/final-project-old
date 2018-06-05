@@ -1,0 +1,56 @@
+<h1>
+  All assignments
+</h1>
+
+<% if current_user.seniority == "Chief" %>
+<a href="/assignments/new">
+  Add a new assignment
+</a>
+
+<hr>
+<% end %>
+
+
+<table class="table">
+  <tr>
+
+    <th>
+      Block
+    </th>
+
+    <th>
+      User
+    </th>
+
+    <th>
+      Service
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @assignments.each do |assignment| %>
+  <tr>
+
+    <td>
+      <%= Block.find(assignment.block_id).number %>
+    </td>
+
+    <td>
+      <%= User.find(assignment.user_id).last_name %>
+    </td>
+
+    <td>
+      <%= Service.find(assignment.service_id).name %>
+    </td>
+
+
+    <td>
+      <a href="/assignments/<%= assignment.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

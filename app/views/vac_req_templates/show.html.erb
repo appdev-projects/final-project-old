@@ -1,0 +1,77 @@
+<h1>
+  Request Details
+</h1>
+
+<% if @vac_req.user_id == current_user.id %>
+<a href="/vac_reqs/<%= @vac_req.id %>/edit">
+  Update Vacation Request
+</a>
+
+<form action:"/delete_vac_req/<%=@vac_req.id %>">
+<button class="btn btn-danger">Cancel Request</button>
+</form>
+
+<% end %>
+  
+<hr>
+
+<dl>
+  <dt>
+    Requestor
+  </dt>
+  <dd>
+    <%= User.find(@vac_req.user_id).email %>
+  </dd>
+
+  <dt>
+    Start date
+  </dt>
+  <dd>
+    <%= @vac_req.start_date %>
+  </dd>
+
+  <dt>
+    End date
+  </dt>
+  <dd>
+    <%= @vac_req.end_date %>
+  </dd>
+
+  <dt>
+    Approval
+  </dt>
+  <dd>
+    <%= @vac_req.approval %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@vac_req.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@vac_req.updated_at) %> ago
+  </dd>
+</dl>
+
+<hr>
+
+<% if current_user.seniority == "Chief" %>
+
+<form action:"/update_vac_req/<%=@vac_req.id %>">
+  <input type="hidden" name="approval" value="true">
+<button class="btn btn-primary">Approve Request</button>
+</form>
+
+<% end %>
+
+<hr>
+
+<a href="/vac_reqs">
+  Go back
+</a>

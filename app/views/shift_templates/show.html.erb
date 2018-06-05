@@ -1,0 +1,63 @@
+<h1>
+  Shift #<%= @shift.id %> details
+</h1>
+
+<a href="/shifts/<%= @shift.id %>/edit">
+  Edit shift
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    User
+  </dt>
+  <dd>
+    <%= @shift.user_id %>
+  </dd>
+
+  <dt>
+    Service
+  </dt>
+  <dd>
+    <%= @shift.service_id %>
+  </dd>
+
+  <dt>
+    Date
+  </dt>
+  <dd>
+    <%= @shift.date %>
+  </dd>
+
+  <dt>
+    Night
+  </dt>
+  <dd>
+    <%= @shift.night %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@shift.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@shift.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_shift/<%= @shift.id %>">
+  Delete shift
+</a>
+
+<hr>
+
+<a href="/shifts">
+  Go back
+</a>

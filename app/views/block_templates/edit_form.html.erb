@@ -1,0 +1,44 @@
+<!-- Validation failure messages -->
+<% if @block.errors.any? %>
+  <% @block.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit block #<%= @block.id %>
+</h1>
+
+<hr>
+
+<form action="/update_block/<%= @block.id %>" method="post">
+  <!-- Label and input for start_date -->
+  <div class="form-group">
+    <label for="start_date">
+      Start date
+    </label>
+
+    <input type="text" id="start_date" name="start_date" class="form-control" value="<%= @block.start_date %>">
+  </div>
+
+  <!-- Label and input for end_date -->
+  <div class="form-group">
+    <label for="end_date">
+      End date
+    </label>
+
+    <input type="text" id="end_date" name="end_date" class="form-control" value="<%= @block.end_date %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update block
+  </button>
+</form>
+
+<hr>
+
+<a href="/blocks">
+  Go back
+</a>

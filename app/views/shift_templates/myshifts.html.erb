@@ -1,0 +1,65 @@
+<h1>
+  My shifts
+</h1>
+
+<hr>
+
+<table class="table">
+  <tr>
+
+    <th>
+      Resident
+    </th>
+
+    <th>
+      Service
+    </th>
+
+    <th>
+      Date
+    </th>
+
+    <th>
+      Night
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @shifts.each do |shift| %>
+  
+  <tr>
+
+    <td>
+      <%= User.find(shift.user_id).last_name %>
+    </td>
+
+    <td>
+      <%= Service.find(shift.service_id).name %>
+    </td>
+
+    <td>
+      <%= shift.date.strftime("%m/%d/%Y") %>
+    </td>
+
+    <td>
+      <%= shift.night %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(shift.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/shifts/<%= shift.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

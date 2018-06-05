@@ -1,0 +1,58 @@
+<h1>
+  All services
+</h1>
+
+<a href="/services/new">
+  Add a new service
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      Name
+    </th>
+
+    <th>
+      Crosscover
+    </th>
+
+    <th>
+      Vacation
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @services.each do |service| %>
+  <tr>
+    <td>
+      <%= service.id %>
+    </td>
+
+    <td>
+      <%= service.name %>
+    </td>
+
+    <td>
+      <%= service.crosscover %>
+    </td>
+
+    <td>
+      <%= service.vacation %>
+    </td>
+
+    <td>
+      <a href="/services/<%= service.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

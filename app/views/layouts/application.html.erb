@@ -26,7 +26,70 @@
   </head>
 
   <body>
-    <%= yield %>
+
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Hospital Shift Tracker</a>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/myshifts">My Shifts</a></li>
+          <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
+          <li class="nav-item"><a class="nav-link" href="/vac_reqs">Vacation Requests</a></li>
+          <li class="nav-item"><a class="nav-link" href="/assignments">Block Schedule</a></li>
+        <% if current_user == nil %>
+          
+        <% elsif current_user.seniority == "Chief" %>
+          <li class="nav-item"><a class="nav-link" href="/scheduling">Scheduling</a></li>
+          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="/blocks">Blocks</a></li>
+        <% end %>
+        </ul>
+
+        <ul class="navbar-nav">
+         <% if current_user== nil %>
+            <li class="nav-item">
+              <a href="/users/sign_up" class="nav-link" >
+                Sign Up
+              </a>
+            </li>
+           
+            <li class="nav-item">
+              <a href="/users/sign_in" class="nav-link" >
+                Sign In
+              </a>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <a href="/users/edit" class="nav-link" >
+                <%= current_user.email %>
+              </a>
+            </li>
+          <li class="nav-item">
+            <a href="/users/sign_out" data-method="delete" class="nav-link">
+              Sign Out
+            </a>
+          </li>
+          <% end %>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container mt-4">
+      <% if notice.present? %>
+        <div class="alert alert-dismissable alert-success">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= notice %>
+        </div>
+      <% end %>
+
+      <% if alert.present? %>
+        <div class="alert alert-dismissable alert-warning">
+          <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+          <%= alert %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </div>
 
     <%= dev_tools if Rails.env.development? %>
   </body>

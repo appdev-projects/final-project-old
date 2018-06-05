@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @service.errors.any? %>
+  <% @service.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit service #<%= @service.id %>
+</h1>
+
+<hr>
+
+<form action="/update_service/<%= @service.id %>" method="post">
+  <!-- Label and input for name -->
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @service.name %>">
+  </div>
+
+  <!-- Label and input for crosscover -->
+  <div class="form-check">
+    <input type="hidden" value="0" name="crosscover">
+    <input id="crosscover" class="form-check-input" name="crosscover" type="checkbox" value="1" <%= "checked" if @service.crosscover %>>
+
+    <label for="crosscover" class="form-check-label">
+      Crosscover
+    </label>
+  </div>
+
+  <!-- Label and input for vacation -->
+  <div class="form-check">
+    <!--<input type="hidden" value="0" name="vacation">-->
+    <input id="vacation" class="form-check-input" name="vacation" type="checkbox" value="1" <%= "checked" if @service.vacation %>>
+
+    <label for="vacation" class="form-check-label">
+      Vacation
+    </label>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update service
+  </button>
+</form>
+
+<hr>
+
+<a href="/services">
+  Go back
+</a>

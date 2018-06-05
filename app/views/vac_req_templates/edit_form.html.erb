@@ -1,0 +1,60 @@
+<!-- Validation failure messages -->
+<% if @vac_req.errors.any? %>
+  <% @vac_req.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit vac req #<%= @vac_req.id %>
+</h1>
+
+<hr>
+
+<form action="/update_vac_req/<%= @vac_req.id %>" method="post">
+  <!-- Label and input for user_id -->
+  <div class="form-group">
+    <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%= @vac_req.user_id %>">
+  </div>
+
+  <!-- Label and input for start_date -->
+  <div class="form-group">
+    <label for="start_date">
+      Start date
+    </label>
+
+    <input type="text" id="start_date" name="start_date" class="form-control" value="<%= @vac_req.start_date %>">
+  </div>
+
+  <!-- Label and input for end_date -->
+  <div class="form-group">
+    <label for="end_date">
+      End date
+    </label>
+
+    <input type="text" id="end_date" name="end_date" class="form-control" value="<%= @vac_req.end_date %>">
+  </div>
+
+<% if current_user.seniority == "Chief" %>
+  <!-- Label and input for approval -->
+  <div class="form-check">
+    <input id="approval" class="form-check-input" name="approval" type="checkbox" value="1" <%= "checked" if @vac_req.approval %>>
+
+    <label for="approval" class="form-check-label">
+      Approval
+    </label>
+  </div>
+<% end %>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update vac req
+  </button>
+</form>
+
+<hr>
+
+<a href="/vac_reqs">
+  Go back
+</a>
