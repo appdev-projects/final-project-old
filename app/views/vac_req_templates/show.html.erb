@@ -37,6 +37,13 @@
   <dd>
     <%= @vac_req.end_date.strftime("%b %d, %Y") %>
   </dd>
+  
+  <dt>
+    Block Assignment
+  </dt>
+  <dd>
+    <%= @service %> - Vacation allowed: <%= @exception %>
+  </dd>
 
   <dt>
     Status
@@ -66,6 +73,7 @@
 
   <form action="/approve_vac_req/<%= @vac_req.id %>" method="post">
     <input type="hidden" name="approval" value="Approved">
+    <input type="hidden" name="service" value="Vacation" >
   <button class="btn btn-success">Approve Request</button>
   </form>
   <br>

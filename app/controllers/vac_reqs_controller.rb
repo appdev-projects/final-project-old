@@ -11,7 +11,20 @@ class VacReqsController < ApplicationController
 
   def show
     @vac_req = VacReq.find(params.fetch("id_to_display"))
-
+    
+    @assignment = Assignment.where(user_id: @vac_req.user_id)
+    @block = Block.all
+    
+    @assignment.each do |test|
+      if  Block.find(test.block_id).start_date <= @vac_req.start_date
+        if Block.find(test.block_id).end_date <= @vac_req.start_date
+          @service = Service.find(test.service_id).name
+          @exception = Service.find(test.service_id).vacation
+        end
+        # @block = @block.where("end_date >= ?", @vac_req.start_date)
+      end
+    end
+    
     render("vac_req_templates/show.html.erb")
   end
 
@@ -48,6 +61,27 @@ class VacReqsController < ApplicationController
 
     if @vac_req.valid?
       @vac_req.save
+      
+    # post vacation shifts automatically
+    
+      @day = @vac_req.start_date
+      @end = @vac_req.end_date + 1.days
+      
+      loop do
+        @shift = Shift.new
+
+        @shift.user_id = @vac_req.user_id
+        @shift.service_id = 5
+        @shift.date = @day
+        @shift.night = false
+    
+        @shift.save
+        @day = @day + 1.days
+        if @day == @end
+          break
+        end
+      end  
+      
       redirect_to("/vac_reqs/#{@vac_req.id}", :notice => "Vacation request approved.")
     else
       render("vac_req_templates/edit_form.html.erb")

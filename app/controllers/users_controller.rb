@@ -8,12 +8,13 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params.fetch("id_to_display"))
 
-@shifts = Shift.where(user_id: @user.id)
+    @shifts = Shift.where(user_id: @user.id)
     @assignments = Assignment.where(user_id: @user.id)
     @blocks = Block.all
     @night_count = 0
     @cross = 0
     @weekend = 0
+    
     @shifts.each do |count|
 
       if count.date.on_weekend? == true
@@ -36,7 +37,7 @@ class UsersController < ApplicationController
         @night_count = @night_count + 1
       end
     end
-    
+     
     @shifts = Shift.where(user_id: @user.id)
     @shifts = @shifts.where("date >= ?", Date.today.to_datetime)
     

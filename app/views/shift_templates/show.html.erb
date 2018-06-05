@@ -13,21 +13,21 @@
     User
   </dt>
   <dd>
-    <%= @shift.user_id %>
+    <%= User.find(@shift.user_id).last_name %>
   </dd>
 
   <dt>
     Service
   </dt>
   <dd>
-    <%= @shift.service_id %>
+    <%= Service.find(@shift.service_id).name %>
   </dd>
 
   <dt>
     Date
   </dt>
   <dd>
-    <%= @shift.date %>
+    <%= @shift.date.strftime("%m/%d/%y") %>
   </dd>
 
   <dt>
@@ -58,6 +58,6 @@
 
 <hr>
 
-<a href="/shifts">
+<a href="/myshifts">
   Go back
 </a>
