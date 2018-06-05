@@ -13,6 +13,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, :keys => [:seniority])
     devise_parameter_sanitizer.permit(:account_update, :keys => [:seniority])
     
+    devise_parameter_sanitizer.permit(:sign_up, :keys => [:active_status])
+    devise_parameter_sanitizer.permit(:account_update, :keys => [:active_status])
+    
   end
   
 end
