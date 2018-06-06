@@ -1,0 +1,58 @@
+<h1>
+  All states
+</h1>
+
+<a href="/states/new">
+  Add a new state
+</a>
+
+<hr>
+
+<table class="table">
+  <tr>
+    <th>
+      ID
+    </th>
+
+    <th>
+      State
+    </th>
+
+    <th>
+      Created at
+    </th>
+
+    <th>
+      Updated at
+    </th>
+
+    <th>
+    </th>
+  </tr>
+
+  <% @states.each do |state| %>
+  <tr>
+    <td>
+      <%= state.id %>
+    </td>
+
+    <td>
+      <%= state.state %>
+    </td>
+
+    <td>
+      <%= time_ago_in_words(state.created_at) %> ago
+    </td>
+
+    <td>
+      <%= time_ago_in_words(state.updated_at) %> ago
+    </td>
+
+    <td>
+      <a href="/states/<%= state.id %>">
+        Show details
+      </a>
+    </td>
+  </tr>
+  <% end %>
+</table>

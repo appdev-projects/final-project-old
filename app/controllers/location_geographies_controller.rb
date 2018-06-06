@@ -24,9 +24,9 @@ class LocationGeographiesController < ApplicationController
     if @location_geography.valid?
       @location_geography.save
 
-      redirect_to("/location_geographies", :notice => "Location geography created successfully.")
+      redirect_to("/geographies/" + @location_geography.geography_id.to_s, :notice => "Location geography created successfully.")
     else
-      render("location_geography_templates/new_form.html.erb")
+       redirect_to("/geographies/" + @location_geography.geography_id.to_s, :notice => "Location geography not created successfully.")
     end
   end
 

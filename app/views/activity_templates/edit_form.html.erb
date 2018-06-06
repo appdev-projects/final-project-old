@@ -7,8 +7,9 @@
   <% end %>
 <% end %>
 
+<div class="container">
 <h1>
-  Edit activity #<%= @activity.id %>
+  Edit <%= @activity.activity %>
 </h1>
 
 <hr>
@@ -28,8 +29,7 @@
     <label for="category">
       Category
     </label>
-
-    <input type="text" id="category" name="category" class="form-control" value="<%= @activity.category %>">
+    <%= select_tag("category", options_from_collection_for_select(Category.all, :category, :category, @activity.try(:category)), :class => "form-control") %>
   </div>
 
   <button class="btn btn-block btn-outline-secondary">
@@ -42,3 +42,4 @@
 <a href="/activities">
   Go back
 </a>
+</div>

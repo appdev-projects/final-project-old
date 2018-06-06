@@ -1,3 +1,6 @@
+
+  
+  
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div class="jumbotron">
@@ -79,20 +82,19 @@
                 end
             end
             
-           @total = @relax + @nightlife + @family + @active + @culture
-           
-           
-           
+            @total =  @relax + @nightlife + @family + @active + @culture
             %>
             
             
-            <ul>
-              <li>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</li>
-              <li>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</li>
-              <li>Family Count: <%= ((@family/@total) *100).round(2) %>%</li>
-              <li>Active Count: <%= ((@active/@total) *100).round(2) %>%</li>
-              <li>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</li>
-            </ul>
+       <% if @total != 0 %>
+        <ul>
+          <li>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</li>
+          <li>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</li>
+          <li>Family Count: <%= ((@family/@total) *100).round(2) %>%</li>
+          <li>Active Count: <%= ((@active/@total) *100).round(2) %>%</li>
+          <li>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</li>
+        </ul>
+      <% end %>
       </dd>
     </div>
     <div class="col-md-8 offset-md-2">
@@ -101,12 +103,12 @@
       </dt>
       <dd>
         <ul>
-          <% LocationGeography.where(location_id: @location.id).each do |city|  %>
+          <% LocationGeography.where(location_id: @location.id).each do |city|%>
             <li>
               <%= Geography.find(city.geography_id).geography %>
             </li>
           <% end %>
-        </ul>   
+          </ul>   
       </dd>
     </div>
     

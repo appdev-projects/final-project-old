@@ -8,7 +8,7 @@
     <% end %>
   <% end %>
 <% end %>
-
+<div class="container">
 <h1>
   Add a new activity
 </h1>
@@ -27,12 +27,11 @@
 
   <!-- Label and input for category -->
   <div class="form-group">
-    <label for="category">
-      Category
-    </label>
-
-    <input type="text" id="category" name="category" class="form-control" value="<%= @activity.try(:category) %>">
-  </div>
+      <label for="category">
+        Category
+      </label>
+      <%= select_tag("category", options_from_collection_for_select(Category.all, :category, :category), :class => "form-control") %>
+    </div>
 
   <button class="btn btn-block btn-outline-secondary">
     Create activity
@@ -44,3 +43,4 @@
 <a href="/activities">
   Go back
 </a>
+</div>

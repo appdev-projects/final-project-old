@@ -25,9 +25,9 @@ class LocationActivitiesController < ApplicationController
     if @location_activity.valid?
       @location_activity.save
 
-      redirect_to("/activities" +  @location_activity.activity_id, :notice => "Location activity created successfully.")
+      redirect_to("/activities/" +  @location_activity.activity_id.to_s, :notice => "Location activity created successfully.")
     else
-      redirect_to("/activities" +  @location_activity.activity_id, :alert => "Location activity not created successfully.")
+      redirect_to("/activities/" +  @location_activity.activity_id.to_s, :alert => "Location activity not created successfully.")
     end
   end
   

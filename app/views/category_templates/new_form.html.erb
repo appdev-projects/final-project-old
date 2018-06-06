@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @category.present? %>
+  <% if @category.errors.any? %>
+    <% @category.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new category
+</h1>
+
+<hr>
+
+<form action="/create_category" method="post">
+  <!-- Label and input for category -->
+  <div class="form-group">
+    <label for="category">
+      Category
+    </label>
+
+    <input type="text" id="category" name="category" class="form-control" value="<%= @category.try(:category) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create category
+  </button>
+</form>
+
+<hr>
+
+<a href="/categories">
+  Go back
+</a>

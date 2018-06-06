@@ -12,4 +12,10 @@
 class LocationGeography < ApplicationRecord
     belongs_to :location
     belongs_to :geography 
+    
+    validates :geography_id, :presence => true
+        validates :geography_id, uniqueness: {
+        scope: :location_id,
+        message: "should be unique with respect to location"
+    }   
 end

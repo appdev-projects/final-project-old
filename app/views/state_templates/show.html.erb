@@ -1,0 +1,42 @@
+<h1>
+  State #<%= @state.id %> details
+</h1>
+
+<a href="/states/<%= @state.id %>/edit">
+  Edit state
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    State
+  </dt>
+  <dd>
+    <%= @state.state %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@state.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@state.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_state/<%= @state.id %>">
+  Delete state
+</a>
+
+<hr>
+
+<a href="/states">
+  Go back
+</a>

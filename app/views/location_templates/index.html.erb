@@ -81,18 +81,21 @@
                 end
             end
         end
-        
-       @total = @relax + @nightlife + @family + @active + @culture
+      #standard add 1 to address divide by 0 issue
+       @total =  @relax + @nightlife + @family + @active + @culture
        
        %>
        
+       
+       <% if @total != 0 %>
         <p>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</p>
         <p>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</p>
         <p>Family Count: <%= ((@family/@total) *100).round(2) %>%</p>
         <p>Active Count: <%= ((@active/@total) *100).round(2) %>%</p>
         <p>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</p>
-      
-
+      <% else %>
+        <p>No Activities</p>
+      <% end %>
     </td>
 
     <td>

@@ -8,24 +8,11 @@
 
 
 require 'csv'
-csv_text = File.read(Rails.root.join('lib','seeds', 'location_geography.csv'))
+csv_text = File.read(Rails.root.join('lib','seeds', 'state_table.csv'))
 csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
 csv.each do |row|
-  t = LocationGeography.new
-  t.location_id = row['city']
-  t.geography_id = row['geography']
+  t = State.new
+  t.state = row['name']
   t.save
-  puts "#{t.location_id}, saved" 
-end
-
-require 'csv'
-csv_text = File.read(Rails.root.join('lib','seeds', 'location_activity.csv'))
-csv = CSV.parse(csv_text, :headers => true, :encoding => 'ISO-8859-1')
-csv.each do |row|
-  t = LocationActivity.new
-  t.location_id = row['city']
-  t.activity_id = row['feature']
-  t.feature_rating = row['count']
-  t.save
-  puts "#{t.location_id}, saved" 
+  puts "#{t.state}, saved" 
 end

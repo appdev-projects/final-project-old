@@ -29,7 +29,7 @@
   </head>
 
   <body>
-    <%= render "shared/navbar" %>
+    <%= render "shared/navbar" unless @skipNavbar %>
     <%= render "shared/flashes" %>
     <%= yield %>
     

@@ -7,8 +7,9 @@
   <% end %>
 <% end %>
 
+<div class="container">
 <h1>
-  Edit location #<%= @location.id %>
+  Edit location #<%= @location.city_name %>
 </h1>
 
 <hr>
@@ -29,7 +30,7 @@
       State name
     </label>
 
-    <input type="text" id="state_name" name="state_name" class="form-control" value="<%= @location.state_name %>">
+    <%= select_tag("state_name", options_from_collection_for_select(State.all, :state, :state, @location.try(:state_name)), :class => "form-control") %>
   </div>
 
   <!-- Label and input for country_name -->
@@ -38,7 +39,7 @@
       Country name
     </label>
 
-    <input type="text" id="country_name" name="country_name" class="form-control" value="<%= @location.country_name %>">
+    <input type="text" id="country_name" name="country_name" class="form-control" value="<%= @location.country_name %>" readonly>
   </div>
 
   <!-- Label and input for lat -->
@@ -78,3 +79,4 @@
 <a href="/locations">
   Go back
 </a>
+</div

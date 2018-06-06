@@ -1,0 +1,42 @@
+<h1>
+  Category #<%= @category.id %> details
+</h1>
+
+<a href="/categories/<%= @category.id %>/edit">
+  Edit category
+</a>
+
+<hr>
+
+<dl>
+  <dt>
+    Category
+  </dt>
+  <dd>
+    <%= @category.category %>
+  </dd>
+
+  <dt>
+    Created at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@category.created_at) %> ago
+  </dd>
+
+  <dt>
+    Updated at
+  </dt>
+  <dd>
+    <%= time_ago_in_words(@category.updated_at) %> ago
+  </dd>
+</dl>
+
+<a href="/delete_category/<%= @category.id %>">
+  Delete category
+</a>
+
+<hr>
+
+<a href="/categories">
+  Go back
+</a>

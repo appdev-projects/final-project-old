@@ -1,0 +1,37 @@
+<!-- Validation failure messages -->
+<% if @state.present? %>
+  <% if @state.errors.any? %>
+    <% @state.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new state
+</h1>
+
+<hr>
+
+<form action="/create_state" method="post">
+  <!-- Label and input for state -->
+  <div class="form-group">
+    <label for="state">
+      State
+    </label>
+
+    <input type="text" id="state" name="state" class="form-control" value="<%= @state.try(:state) %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create state
+  </button>
+</form>
+
+<hr>
+
+<a href="/states">
+  Go back
+</a>

@@ -1,5 +1,43 @@
 Rails.application.routes.draw do
   
+  # Routes for the State resource:
+
+  # CREATE
+  get("/states/new", { :controller => "states", :action => "new_form" })
+  post("/create_state", { :controller => "states", :action => "create_row" })
+
+  # READ
+  get("/states", { :controller => "states", :action => "index" })
+  get("/states/:id_to_display", { :controller => "states", :action => "show" })
+
+  # UPDATE
+  get("/states/:prefill_with_id/edit", { :controller => "states", :action => "edit_form" })
+  post("/update_state/:id_to_modify", { :controller => "states", :action => "update_row" })
+
+  # DELETE
+  get("/delete_state/:id_to_remove", { :controller => "states", :action => "destroy_row" })
+
+  #------------------------------
+
+  # Routes for the Category resource:
+
+  # CREATE
+  get("/categories/new", { :controller => "categories", :action => "new_form" })
+  post("/create_category", { :controller => "categories", :action => "create_row" })
+
+  # READ
+  get("/categories", { :controller => "categories", :action => "index" })
+  get("/categories/:id_to_display", { :controller => "categories", :action => "show" })
+
+  # UPDATE
+  get("/categories/:prefill_with_id/edit", { :controller => "categories", :action => "edit_form" })
+  post("/update_category/:id_to_modify", { :controller => "categories", :action => "update_row" })
+
+  # DELETE
+  get("/delete_category/:id_to_remove", { :controller => "categories", :action => "destroy_row" })
+
+  #------------------------------
+
   get("/", { :controller => "application", :action => "index" })
   get("/index", { :controller => "application", :action => "index" })
   get("/search", { :controller => "application", :action => "search" })

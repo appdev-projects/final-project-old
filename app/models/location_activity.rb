@@ -19,6 +19,10 @@ class LocationActivity < ApplicationRecord
         less_than_or_equal_to: 2764800,
         allow_blank: false
     }
+    
+    validates :location_id, uniqueness: {
+        scope: :activity_id
+    }
         
     
     belongs_to :city, :class_name => "Location", :foreign_key => "location_id"

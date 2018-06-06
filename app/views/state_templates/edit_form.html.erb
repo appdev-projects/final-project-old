@@ -1,0 +1,35 @@
+<!-- Validation failure messages -->
+<% if @state.errors.any? %>
+  <% @state.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit state #<%= @state.id %>
+</h1>
+
+<hr>
+
+<form action="/update_state/<%= @state.id %>" method="post">
+  <!-- Label and input for state -->
+  <div class="form-group">
+    <label for="state">
+      State
+    </label>
+
+    <input type="text" id="state" name="state" class="form-control" value="<%= @state.state %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update state
+  </button>
+</form>
+
+<hr>
+
+<a href="/states">
+  Go back
+</a>

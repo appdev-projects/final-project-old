@@ -1,42 +1,66 @@
-<h1>
-  Geography #<%= @geography.id %> details
-</h1>
 
-<a href="/geographies/<%= @geography.id %>/edit">
-  Edit geography
-</a>
+
+
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <div class="jumbotron">
+      <h3>
+         <%= @geography.geography %> details
+      </h3>
+    </div>
+  </div>
+</div>
+
+
+
+
+<hr>
+<div class="row">
+  <div class="col-md-8 offset-md-2">
+    <dt>
+      Present in
+    </dt>
+  <dd>
+   <ul class="list-group">
+      <%   LocationGeography.where(geography_id: @geography.id).each do |detail| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div>
+             <%= Location.find(detail.location_id).city_name %>
+          </div>
+        </li>
+      <% end  %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <form action="/create_location_geography" method="post">
+            <div class="form-group">
+              <label for="location_id">
+                Add Geography to Location
+              </label>
+              <%= select_tag("location_id", options_from_collection_for_select(Location.all, :id, :city_name), :class => "form-control") %>
+              or <a href="/locations/new">Add a new location</a> first
+            </div>
+            
+            <input type="hidden" name="geography_id" value="<%=@geography.id %>">
+          <button class="btn btn-block btn-outline-secondary">
+            Add Geography
+          </button>
+        </form>
+       </li>
+      </ul>
+    </dd>
+  </div>
+
 
 <hr>
 
-<dl>
-  <dt>
-    Geography
-  </dt>
-  <dd>
-    <%= @geography.geography %>
-  </dd>
 
-  <dt>
-    Created at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@geography.created_at) %> ago
-  </dd>
+  <div class="col-md-8 offset-md-2">
+    <a class="btn btn-primary" href="/geographies">Go back</a>
+    <a class="btn btn-info" href="/geographies/<%= @geography.id %>/edit">Edit geography</a>
+    <a class="btn btn-danger" href="/delete_geography/<%= @geography.id %>">Delete geography</a>
+  </div>
+</div>
 
-  <dt>
-    Updated at
-  </dt>
-  <dd>
-    <%= time_ago_in_words(@geography.updated_at) %> ago
-  </dd>
-</dl>
 
-<a href="/delete_geography/<%= @geography.id %>">
-  Delete geography
-</a>
 
-<hr>
 
-<a href="/geographies">
-  Go back
-</a>
+
