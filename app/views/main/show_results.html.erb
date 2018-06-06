@@ -1,4 +1,30 @@
+
+
+<% tempHash =  @cityRanking.sort_by(&:last).reverse
+   tempHash.each do | city |
+%>
+
+  <div class="row">
+    <div class="col offset-md-2" align="center">
+        City Name: <%= Location.find(city[0]).city_name %>
+    </div>
+    <div class="col offset-md-2" align="center">
+        City Score: <%= city[1].to_s %>
+    </div>
+    <div class="col offset-md-2" align="center">
+        <a href="/locations/<%= city[0] %>">
+        Show details
+      </a>
+    </div>
+ </div>
+
+<% end %>
+
+
+
+
 <p>
+    Array
    <%= @ranking %>
     
 </p>

@@ -1,102 +1,128 @@
-<h1>
-  <%= @location.city_name %> details
-</h1>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="jumbotron">
+        <h3>
+           <%= @location.city_name %>
+        </h3>
+      </div>
+    </div>
+    <div class="col-md-8 offset-md-2">
+      <img src="<%= @location.image %>" class="img-fluid">
+    </div>
+  </div>
 
-<a href="/locations/<%= @location.id %>/edit">
-  Edit location
-</a>
 
 <hr>
-
-<dl>
-  <dt>
-    City name
-  </dt>
-  <dd>
-    <%= @location.city_name %>
-  </dd>
-
-  <dt>
-    State name
-  </dt>
-  <dd>
-    <%= @location.state_name %>
-  </dd>
-
-  <dt>
-    Country name
-  </dt>
-  <dd>
-    <%= @location.country_name %>
-  </dd>
-
-  <dt>
-    ratings
-  </dt>
-  <dd>
-    <% 
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <dt>
+        City name
+      </dt>
+      <dd>
+        <%= @location.city_name %>
+      </dd>
+    </div>
     
-      @relax = 0
-      @nightlife = 0
-      @family = 0
-      @active = 0
-      @culture = 0
-       
-       
-        LocationActivity.where(location_id: @location.id).each do |city|
-            Activity.where(id: city.activity_id).each do |activity|
-                if activity.category == "Relax"
-                    @relax = @relax + city.feature_rating
-                end
-                
-                if activity.category == "Night Life"
-                    @nightlife = @nightlife + city.feature_rating
-                end
-                
-                if activity.category == "Family"
-                    @family = @family + city.feature_rating
-                end
-                
-                if activity.category == "Active"
-                    @active = @active + city.feature_rating
-                end
-                
-                if activity.category == "Culture"
-                    @culture = @culture + city.feature_rating
+    <div class="col-md-8 offset-md-2">
+      <dt>
+        State name
+      </dt>
+      <dd>
+        <%= @location.state_name %>
+      </dd>
+    </div>
+    
+    <div class="col-md-8 offset-md-2">
+      <dt>
+        Country name
+      </dt>
+      <dd>
+        <%= @location.country_name %>
+      </dd>
+    </div> 
+     
+    <div class="col-md-8 offset-md-2">
+      <dt>
+        City Activities
+      </dt>
+      <dd>
+        <% 
+        
+          @relax = 0
+          @nightlife = 0
+          @family = 0
+          @active = 0
+          @culture = 0
+           
+           
+            LocationActivity.where(location_id: @location.id).each do |city|
+                Activity.where(id: city.activity_id).each do |activity|
+                    if activity.category == "Relax"
+                        @relax = @relax + city.feature_rating
+                    end
+                    
+                    if activity.category == "Night Life"
+                        @nightlife = @nightlife + city.feature_rating
+                    end
+                    
+                    if activity.category == "Family"
+                        @family = @family + city.feature_rating
+                    end
+                    
+                    if activity.category == "Active"
+                        @active = @active + city.feature_rating
+                    end
+                    
+                    if activity.category == "Culture"
+                        @culture = @culture + city.feature_rating
+                    end
                 end
             end
-        end
-        
-       @total = @relax + @nightlife + @family + @active + @culture
-       
-       
-       
-        %>
-        
-        
-        
-        <p>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</p>
-        <p>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</p>
-        <p>Family Count: <%= ((@family/@total) *100).round(2) %>%</p>
-        <p>Active Count: <%= ((@active/@total) *100).round(2) %>%</p>
-        <p>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</p>
-  </dd>
-
-
-  <dt>
-  </dt>
-  <dd>
-      <img src="<%= @location.image %>" class="img-fluid">
-  </dd>
-
-</dl>
-
-<a href="/delete_location/<%= @location.id %>">
-  Delete location
-</a>
-
+            
+           @total = @relax + @nightlife + @family + @active + @culture
+           
+           
+           
+            %>
+            
+            
+            <ul>
+              <li>Relax Count:  <%= ((@relax/@total) *100).round(2) %>%</li>
+              <li>Night Life Count:  <%= ((@nightlife/@total) *100).round(2) %>%</li>
+              <li>Family Count: <%= ((@family/@total) *100).round(2) %>%</li>
+              <li>Active Count: <%= ((@active/@total) *100).round(2) %>%</li>
+              <li>Culture Count: <%= ((@culture/@total) *100).round(2) %>%</li>
+            </ul>
+      </dd>
+    </div>
+    <div class="col-md-8 offset-md-2">
+      <dt>
+        Geography Present
+      </dt>
+      <dd>
+        <ul>
+          <% LocationGeography.where(location_id: @location.id).each do |city|  %>
+            <li>
+              <%= Geography.find(city.geography_id).geography %>
+            </li>
+          <% end %>
+        </ul>   
+      </dd>
+    </div>
+  
+  </dl> 
 <hr>
 
-<a href="/locations">
-  Go back
-</a>
+
+
+
+<div class="col-md-8 offset-md-2">
+  <a class="btn btn-primary" href="/locations">Go back</a>
+  <a class="btn btn-info" href="/locations/<%= @location.id %>/edit">Edit location</a>
+  <a class="btn btn-danger" href="/delete_location/<%= @location.id %>">Delete location</a>
+</div>
+
+
+
+
+

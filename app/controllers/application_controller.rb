@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
       @activeMultiplier = params.fetch("active").to_f
       @cultureMultiplier = params.fetch("culture").to_f
       @ranking = Array.new
+      @cityRanking = Hash.new
       
       ## loop through each location
       Location.all.each do |location|
@@ -66,7 +67,8 @@ class ApplicationController < ActionController::Base
           ## weigh based on user preference
           cityTotal = (relax * @relaxMultiplier) + (nightlife * @nightlifeMultiplier) + (family * @familyMultiplier) + (active * @activeMultiplier) + (culture * @cultureMultiplier)
           @ranking.push(location.city_name + " Scored " + cityTotal.to_s)
-          
+          @cityRanking.store(location.id,cityTotal.round(2))
+
       end
       
       render("main/show_results.html.erb")

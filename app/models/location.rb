@@ -15,12 +15,15 @@
 
 class Location < ApplicationRecord
     validates :city_name, :presence => true
-    validates :city_name, :uniqueness => true
+    validates :city_name, uniqueness: {
+        scope: :state_name,
+        message: "should be unique with respect to state"
+    }
     
     validates :state_name, :presence => true
+
+   validates :country_name, :presence => true
    
-    validates :country_name, :presence => true
-    
     validates :lat, :uniqueness => true
         
     validates :long, :uniqueness => true
