@@ -13,6 +13,8 @@ class ApplicationController < ActionController::Base
     
     def results
       
+      
+      
       @relaxMultiplier = params.fetch("relax").to_f
       @nightlifeMultiplier = params.fetch("nightlife").to_f
       @familyMultiplier = params.fetch("family").to_f

@@ -1,3 +1,4 @@
+<div class="container">
 <h1>
   All activities
 </h1>
@@ -10,10 +11,6 @@
 
 <table class="table">
   <tr>
-    <th>
-      ID
-    </th>
-
     <th>
       Activity
     </th>
@@ -33,10 +30,6 @@
   <% @activities.each do |activity| %>
   <tr>
     <td>
-      <%= activity.id %>
-    </td>
-
-    <td>
       <%= activity.activity %>
     </td>
 
@@ -48,7 +41,9 @@
       <ul class="list-group">
       <%   LocationActivity.where(activity_id: activity.id).each do |detail| %>
         <li class="list-group-item d-flex justify-content-between align-items-center">
-           <%= Location.find(detail.location_id).city_name %>
+          <a href="/locations/<%= detail.location_id %>">
+             <%= Location.find(detail.location_id).city_name %>
+          </a>
           <span class="badge badge-primary badge-pill"><%= detail.feature_rating.to_i %></span> 
         </li>
       <% end 
@@ -65,3 +60,4 @@
   </tr>
   <% end %>
 </table>
+</div>

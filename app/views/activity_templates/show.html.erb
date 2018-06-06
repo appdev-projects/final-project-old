@@ -38,8 +38,8 @@
           </div>
           <div>
             <span class="badge badge-primary badge-pill"><%= detail.feature_rating.to_i %></span> 
-            <a href="/add_count/<%= detail.id %>" class="badge badge-success justify-content-end">add</a>
-            <a href="/remove_count/<%= detail.id %>" class="badge badge-danger justify-content-end">subtract</a>
+            <a href="/add_count/<%= detail.id %>" class="badge badge-success justify-content-end"><i class="fas fa-plus"></i></a>
+            <a href="/remove_count/<%= detail.id %>" class="badge badge-danger justify-content-end"><i class="fas fa-minus"></i></a>
           </div>
         </li>
       <% end 

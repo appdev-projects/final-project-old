@@ -1,3 +1,4 @@
+<div class="container">
 <h1>
   All geographies
 </h1>
@@ -11,19 +12,11 @@
 <table class="table">
   <tr>
     <th>
-      ID
-    </th>
-
-    <th>
       Geography
     </th>
-
+    
     <th>
-      Created at
-    </th>
-
-    <th>
-      Updated at
+      Present in
     </th>
 
     <th>
@@ -33,20 +26,21 @@
   <% @geographies.each do |geography| %>
   <tr>
     <td>
-      <%= geography.id %>
-    </td>
-
-    <td>
       <%= geography.geography %>
     </td>
-
+    
     <td>
-      <%= time_ago_in_words(geography.created_at) %> ago
+      <ul class="list-group list-group-flush">
+      <%   LocationGeography.where(geography_id: geography.id).each do |detail| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <a href="/locations/<%= detail.location_id %>">
+            <%= Location.find(detail.location_id).city_name %>
+          </a>
+        </li>
+      <% end  %>
+      </ul>
     </td>
-
-    <td>
-      <%= time_ago_in_words(geography.updated_at) %> ago
-    </td>
+    
 
     <td>
       <a href="/geographies/<%= geography.id %>">
@@ -56,3 +50,4 @@
   </tr>
   <% end %>
 </table>
+</div>

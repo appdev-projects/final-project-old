@@ -12,7 +12,7 @@
 class Activity < ApplicationRecord
     
     validates :activity, :presence => true
-    validates :activi, :uniqueness => true
+    validates :activity, :uniqueness => true
     
     validates :category, :presence => true
     validates :category, :uniqueness => true

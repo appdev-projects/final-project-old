@@ -109,6 +109,24 @@
         </ul>   
       </dd>
     </div>
+    
+        <div class="col-md-8 offset-md-2">
+      <dt>
+        Activities Present
+      </dt>
+      <dd>
+        <ul>
+          <% LocationActivity.where(location_id: @location.id).each do |city|  %>
+            <li>
+              <%= Activity.find(city.activity_id).activity %>
+            </li>
+          <% end %>
+        </ul>   
+      </dd>
+    </div>
+    
+    
+    
   
   </dl> 
 <hr>
