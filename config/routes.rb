@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 
   # UPDATE
   get("/vac_reqs/:prefill_with_id/edit", { :controller => "vac_reqs", :action => "edit_form" })
+  post("/update_vac_req/:id_to_modify", { :controller => "vac_reqs", :action => "update_req"})
   post("/approve_vac_req/:id_to_modify", { :controller => "vac_reqs", :action => "approve_req" })
   post("/deny_vac_req/:id_to_modify", { :controller => "vac_reqs", :action => "deny_req" })
 

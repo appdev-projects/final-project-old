@@ -31,7 +31,7 @@
       Start date
     </label>
 
-    <input type="text" id="start_date" name="start_date" class="form-control" value="<%= @vac_req.try(:start_date) %>">
+    <input type="date" id="start_date" name="start_date" class="form-control" value="<%= @vac_req.try(:start_date) %>">
   </div>
 
   <!-- Label and input for end_date -->
@@ -40,7 +40,7 @@
       End date
     </label>
 
-    <input type="text" id="end_date" name="end_date" class="form-control" value="<%= @vac_req.try(:end_date) %>">
+    <input type="date" id="end_date" name="end_date" class="form-control" value="<%= @vac_req.try(:end_date) %>">
   </div>
 
   <!-- Label and input for approval -->

@@ -1,10 +1,10 @@
 class VacReqsController < ApplicationController
   def index
     if current_user.seniority == "Chief"
-      @vac_reqs_chief = VacReq.where(user_id: current_user.id).order('approval DESC')
+      @vac_reqs_chief = VacReq.where(user_id: current_user.id).order('start_date asc')
       @vac_reqs = VacReq.where.not(user_id: current_user.id).order('approval DESC')
     else 
-      @vac_reqs = VacReq.where(user_id: current_user.id).order('approval DESC')
+      @vac_reqs = VacReq.where(user_id: current_user.id).order('start_date ASC')
     end
     render("vac_req_templates/index.html.erb")
   end
@@ -43,7 +43,7 @@ class VacReqsController < ApplicationController
     if @vac_req.valid?
       @vac_req.save
 
-      redirect_to("/vac_reqs", :notice => "Vac req created successfully.")
+      redirect_to("/vac_reqs", :notice => "Vacation Request created successfully.")
     else
       render("vac_req_templates/new_form.html.erb")
     end
@@ -53,6 +53,15 @@ class VacReqsController < ApplicationController
     @vac_req = VacReq.find(params.fetch("prefill_with_id"))
 
     render("vac_req_templates/edit_form.html.erb")
+  end
+
+  def update_req
+    @vac_req = VacReq.find(params.fetch("id_to_modify"))
+    @vac_req.start_date = params.fetch("start_date")
+    @vac_req.end_date = params.fetch("end_date")
+    @vac_req.save
+    
+    redirect_to("/vac_reqs/#{@vac_req.id}", :notice => "Vacation Request Updated")
   end
 
   def approve_req
