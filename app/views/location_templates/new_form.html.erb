@@ -44,24 +44,6 @@
     <input type="text" id="country_name" name="country_name" class="form-control" value="USA" readonly>
   </div>
 
-  <!-- Label and input for lat -->
-  <div class="form-group">
-    <label for="lat">
-      Lat
-    </label>
-
-    <input type="text" id="lat" name="lat" class="form-control" value="<%= @location.try(:lat) %>">
-  </div>
-
-  <!-- Label and input for long -->
-  <div class="form-group">
-    <label for="long">
-      Long
-    </label>
-
-    <input type="text" id="long" name="long" class="form-control" value="<%= @location.try(:long) %>">
-  </div>
-
   <!-- Label and input for image -->
   <div class="form-group">
     <label for="image">

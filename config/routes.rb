@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+
+  
   # Routes for the State resource:
 
   # CREATE
@@ -37,6 +39,7 @@ Rails.application.routes.draw do
   get("/delete_category/:id_to_remove", { :controller => "categories", :action => "destroy_row" })
 
   #------------------------------
+  
 
   get("/", { :controller => "application", :action => "index" })
   get("/index", { :controller => "application", :action => "index" })

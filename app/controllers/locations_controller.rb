@@ -21,8 +21,6 @@ class LocationsController < ApplicationController
     @location.city_name = params.fetch("city_name")
     @location.state_name = params.fetch("state_name")
     @location.country_name = params.fetch("country_name")
-    @location.lat = params.fetch("lat")
-    @location.long = params.fetch("long")
     @location.image = params.fetch("image")
 
     if @location.valid?
@@ -46,8 +44,6 @@ class LocationsController < ApplicationController
     @location.city_name = params.fetch("city_name")
     @location.state_name = params.fetch("state_name")
     @location.country_name = params.fetch("country_name")
-    @location.lat = params.fetch("lat")
-    @location.long = params.fetch("long")
     @location.image = params.fetch("image")
 
     if @location.valid?

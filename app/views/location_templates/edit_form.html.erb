@@ -9,7 +9,7 @@
 
 <div class="container">
 <h1>
-  Edit location #<%= @location.city_name %>
+  Edit <%= @location.city_name %>
 </h1>
 
 <hr>
@@ -42,23 +42,8 @@
     <input type="text" id="country_name" name="country_name" class="form-control" value="<%= @location.country_name %>" readonly>
   </div>
 
-  <!-- Label and input for lat -->
-  <div class="form-group">
-    <label for="lat">
-      Lat
-    </label>
 
-    <input type="text" id="lat" name="lat" class="form-control" value="<%= @location.lat %>">
-  </div>
 
-  <!-- Label and input for long -->
-  <div class="form-group">
-    <label for="long">
-      Long
-    </label>
-
-    <input type="text" id="long" name="long" class="form-control" value="<%= @location.long %>">
-  </div>
 
   <!-- Label and input for image -->
   <div class="form-group">
@@ -79,4 +64,4 @@
 <a href="/locations">
   Go back
 </a>
-</div
+</div>

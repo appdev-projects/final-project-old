@@ -26,7 +26,7 @@ class LocationGeographiesController < ApplicationController
 
       redirect_to("/geographies/" + @location_geography.geography_id.to_s, :notice => "Location geography created successfully.")
     else
-       redirect_to("/geographies/" + @location_geography.geography_id.to_s, :notice => "Location geography not created successfully.")
+       redirect_to("/geographies/" + @location_geography.geography_id.to_s, :alert => "Location geography not created successfully.")
     end
   end
 

@@ -23,11 +23,7 @@ class Location < ApplicationRecord
     validates :state_name, :presence => true
 
    validates :country_name, :presence => true
-   
-    validates :lat, :uniqueness => true
-        
-    validates :long, :uniqueness => true
-    
+ 
     validates :image, :presence => true
     validates :image, :uniqueness => true    
     

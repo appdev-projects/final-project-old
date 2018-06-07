@@ -65,12 +65,13 @@ class ApplicationController < ActionController::Base
           
           ##evenly weigh each city
           @total = @relax + @nightlife + @family + @active + @culture
-          @relax = (@relax/@total) * 100
-          @nightlife = (@nightlife/@total) * 100
-          @family = (@family/@total) * 100
-          @active = (@active/@total) * 100
-          @culture = (@culture/@total) * 100
-          
+          if @total != 0
+            @relax = (@relax/@total) * 100
+            @nightlife = (@nightlife/@total) * 100
+            @family = (@family/@total) * 100
+            @active = (@active/@total) * 100
+            @culture = (@culture/@total) * 100
+          end
           
           ## weigh based on user preference
           @cityTotal = (@relax * @relaxMultiplier) + (@nightlife * @nightlifeMultiplier) + (@family * @familyMultiplier) + (@active * @activeMultiplier) + (@culture * @cultureMultiplier)
