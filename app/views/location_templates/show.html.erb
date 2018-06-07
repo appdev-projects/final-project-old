@@ -112,11 +112,11 @@
       </dd>
     </div>
     
-        <div class="col-md-8 offset-md-2">
+    <div class="col-md-8 offset-md-2">
       <dt>
-        Activities Present
+        Find a Flight
       </dt>
-      <dd>
+      <dd>7
         <ul>
           <% LocationActivity.where(location_id: @location.id).each do |city|  %>
             <li>
@@ -126,10 +126,16 @@
         </ul>   
       </dd>
     </div>
-    
-    
-    
-  
+    <meta name="destinationLocation" content="<%= @location.city_name %>" />  
+    <div class="col-md-8 offset-md-2">
+      <dt>
+        Activities Present
+      </dt>
+      <dd>
+        <div data-skyscanner-widget="SearchWidget" data-origin-geo-lookup="true" data-destination-name="document.querySelector('meta[name=destinationLocation]').content"></div>
+        <script src="https://widgets.skyscanner.net/widget-server/js/loader.js" async></script>
+      </dd>
+    </div>
   </dl> 
 <hr>
 
