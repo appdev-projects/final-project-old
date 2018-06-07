@@ -8,6 +8,18 @@
 </div>
 
 
-        
-    <a class="btn btn-outline-secondary btn-lg btn-block" href="/search" role="button">Search for Location</a>    
-        
+<div class="container">
+  <form action="/search" method="get">
+    <div class="form-group">
+      <label for="origin">
+        Where are you flying from
+      </label>
+       <input type="text" id="origin" name="origin" class="form-control">
+    </div>
+  
+  
+    <button class="btn btn-block btn-outline-secondary">
+      Find my destination
+    </button>
+  </form>
+</div>

@@ -90,6 +90,26 @@
               High
             </div>
         </div>
+           <div class="container">
+            <div class="col" align="center" >
+              Select geographies you want
+            </div>
+            <div class="form-group form-check">
+                <div class="row">
+                    <% Geography.all.each do |geo| %>
+                        <div class="col-sm">
+                            <input type="checkbox" name="<%= geo.geography %>" value=<%= geo.id %> checked>
+                            <label class="form-check-label" for="<%= geo.geography %>">
+                                <%= geo.geography %>
+                            </label>
+                        </div>
+                    <% end %>
+                </div>
+        </div>
+        </div>
+        
+        
+        <input type="hidden" name="origin" value="<%=@origin %>">
         
         <div class="row justify-content-md-center">
             <div class="col-md-3" align="center">
@@ -98,11 +118,6 @@
                 </div>
             </div>
         </div>
-
-    
-   
-
-   
 </form>
 
 

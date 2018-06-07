@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
-  
+
     
     def index
       @skipNavbar = true
@@ -8,12 +8,21 @@ class ApplicationController < ActionController::Base
     end
   
     def search
+      @origin = params.fetch("origin")
       render("main/search.html.erb")
-   
     end
     
     def results
       
+      @geoSelect = Array.new
+      Geography.all.each do |geo|
+        if params.has_key?(geo.geography)
+          @geoSelect.push(params.fetch(geo.geography))
+        end
+      end
+      
+     
+      cookies[:origin] = params.fetch("origin")
       @relaxMultiplier = params.fetch("relax").to_f
       @nightlifeMultiplier = params.fetch("nightlife").to_f
       @familyMultiplier = params.fetch("family").to_f
