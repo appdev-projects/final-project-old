@@ -26,6 +26,7 @@ chdir APP_ROOT do
   # end
 
   puts "\n== Preparing database =="
+  system! "rails db:drop"
   system! "rails db:create"
   system! "rails db:migrate"
   system! "rails db:seed"
@@ -45,14 +46,19 @@ chdir APP_ROOT do
   puts "\n== MANUAL SETUP =="
   puts <<-HEREDOC
 To enable autoformatting for .rb and .html.erb files:
+
  1. In the Cloud9 menu, select Open Your Init Script and add the following code:
+
         services.pluginManager.loadPackage([
           "~/.c9/plugins/formatruby/package.json",
           "~/.c9/plugins/formathtmlerb/package.json",
         ]);
+
     (if it's not already there).
+
  2. In the Cloud9 menu, select Preferences > Plugin Explorer and check "formathtmlerb" and
     "formatruby". You might need to do this each time you open the workspace.
+
 You should then be able to autoindent with Cmd-Shift-B (Mac) or Ctrl-Shift-B
 (Windows).
 HEREDOC

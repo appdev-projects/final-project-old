@@ -21,6 +21,7 @@ end
 
 group :development, :test do
   gem "better_errors"
+  gem "binding_of_caller"
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
   gem "console_ip_whitelist", github: "firstdraft/console_ip_whitelist"
   gem "dotenv-rails"
@@ -34,7 +35,6 @@ end
 group :development do
   gem "annotate"
   gem "awesome_print"
-  gem "binding_of_caller"
   gem "dev_toolbar", github: "firstdraft/dev_toolbar"
   gem "draft_generators", github: "firstdraft/draft_generators"
   gem "letter_opener"
