@@ -7,14 +7,12 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params.fetch("id_to_display"))
-    # file1="part1.mp3"
-    # file2="part2.mp3"
-    # output_file="output.mp3"
-    #   def merge(file1, file2, output_file)
-    #     system "mp3wrap #{output_file} #{file1} #{file2}"
-    #   end
+    s=@podcast.title
+    x = s.gsub! /\s+/, '_'
+    Dir.chdir('/home/ubuntu/workspace/podcast_audio/') do
+      merge_sounds(@podcast.first_part,@podcast.second_part, x)
+    end
     
-    merge_sounds("output.mp3")
     
     render("podcast_templates/show.html.erb")
   end
