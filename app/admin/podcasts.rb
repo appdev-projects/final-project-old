@@ -1,5 +1,5 @@
 ActiveAdmin.register Podcast do
-  permit_params :title, :first_part, :second_part, :cover
+  permit_params :title, :episode, :podcast_description, :episode_description, :cover, :first_part, :second_part
 
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters

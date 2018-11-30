@@ -7,11 +7,12 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params.fetch("id_to_display"))
-    s=@podcast.title
-    x = s.gsub! /\s+/, '_'
-    Dir.chdir('/home/ubuntu/workspace/podcast_audio/') do
-      merge_sounds(@podcast.first_part,"Chicago_ad.mp3",@podcast.second_part, x)
-    end
+    # s= @podcast.title 
+    # x = s.gsub! /\s+/, '_' 
+    # x= x + "_" + @podcast.episode.to_s 
+    # Dir.chdir('/home/ubuntu/workspace/public/podcast_audio/') do
+    #   merge_sounds(@podcast.first_part,"Chicago_ad.mp3",@podcast.second_part, x)
+    # end
     
     
     render("podcast_templates/show.html.erb")

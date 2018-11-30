@@ -2,13 +2,16 @@
 #
 # Table name: podcasts
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  first_part  :string
-#  second_part :string
-#  cover       :string
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                  :integer          not null, primary key
+#  title               :string
+#  episode             :string
+#  podcast_description :text
+#  episode_description :text
+#  cover               :string
+#  first_part          :string
+#  second_part         :string
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 class Podcast < ApplicationRecord

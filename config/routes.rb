@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  get("/", { :controller => "podcasts", :action => "index" } )
+  get("/", { :controller => "podcasts", :action => "index" })
+
   # Routes for the Podcast resource:
 
   # CREATE
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
 
   # DELETE
   get("/delete_podcast/:id_to_remove", { :controller => "podcasts", :action => "destroy_row" })
+
+  #------------------------------
 
   #------------------------------
 
