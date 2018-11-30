@@ -10,7 +10,7 @@ class PodcastsController < ApplicationController
     s=@podcast.title
     x = s.gsub! /\s+/, '_'
     Dir.chdir('/home/ubuntu/workspace/podcast_audio/') do
-      merge_sounds(@podcast.first_part,@podcast.second_part, x)
+      merge_sounds(@podcast.first_part,"Chicago_ad.mp3",@podcast.second_part, x)
     end
     
     
