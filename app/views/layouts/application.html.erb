@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>FinalProject</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>
+    FinalProject
+  </title>
 
-    <!-- Expand the number of characters we can use in the document beyond basic ASCII 🎉 -->
-    <meta charset="utf-8">
+  <%= render "shared/bootstrapcdn_assets" %>
 
-    <!-- Connect Font Awesome CSS -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.2/css/all.css">
+  <%= csrf_meta_tags %>
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <script src="//maps.google.com/maps/api/js?v=3.24&key=AIzaSyCOTPWiuvyyo6sKoIBzKA4-1ol-vTOIOlM"></script>
+  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 
-    <!-- Connect Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
-    <!-- Connect Bootstrap JavaScript and its dependencies -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta charset="utf-8">
+  <style>
+    body { padding-bottom: 70px }
+  </style>
+</head>
 
-    <!-- Make it responsive to small screens -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<body>
+  <%= render "shared/navbar" %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <div class="container">
+    <%= render "shared/flashes" %>
 
-  <body>
     <%= yield %>
+  </div>
 
-    <%= dev_tools if Rails.env.development? %>
-  </body>
+</body>
 </html>
