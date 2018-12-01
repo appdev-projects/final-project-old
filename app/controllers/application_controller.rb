@@ -6,5 +6,7 @@ class ApplicationController < ActionController::Base
     system "mp3wrap #{d} #{a} #{b} #{c}"
   end
   
+  helper_method :merge_sounds
+  
   
 end

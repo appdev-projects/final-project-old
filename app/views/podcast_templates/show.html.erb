@@ -13,7 +13,19 @@
     <div class="col-md-6">
      <div class="card">
         <div class="card-body">
-          <audio src="<%= asset_path('Bill_Burr_1_MP3WRAP.mp3') %>" controls="controls"></audio>
+          <% x=@podcast.title.gsub!(/\s+/, '_') + "_" + @podcast.episode.to_s + "_MP3WRAP.mp3" %>
+          <% Dir.chdir('/home/ubuntu/workspace/app/assets/podcast_audio/') do %>
+            <% if File.file?(x) %>
+              <audio src="<%= asset_path(x) %>" controls="controls"></audio>
+            <%else%>
+              <% y= @podcast.title + "_" + @podcast.episode.to_s + ".mp3" %>
+              
+              <% merge_sounds(@podcast.first_part,"Chicago_ad.mp3",@podcast.second_part,y)%>
+              
+              <audio src="<%= asset_path(x) %>" controls="controls"></audio>
+              
+            <%end%>
+          <%end%>
           
         </div>
       </div>
