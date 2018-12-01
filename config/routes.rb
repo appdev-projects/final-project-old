@@ -1,5 +1,24 @@
 Rails.application.routes.draw do
   
+  # Routes for the Ad resource:
+
+  # CREATE
+  get("/ads/new", { :controller => "ads", :action => "new_form" })
+  post("/create_ad", { :controller => "ads", :action => "create_row" })
+
+  # READ
+  get("/ads", { :controller => "ads", :action => "index" })
+  get("/ads/:id_to_display", { :controller => "ads", :action => "show" })
+
+  # UPDATE
+  get("/ads/:prefill_with_id/edit", { :controller => "ads", :action => "edit_form" })
+  post("/update_ad/:id_to_modify", { :controller => "ads", :action => "update_row" })
+
+  # DELETE
+  get("/delete_ad/:id_to_remove", { :controller => "ads", :action => "destroy_row" })
+
+  #------------------------------
+
   get("/", { :controller => "podcasts", :action => "index" })
 
   # Routes for the Podcast resource:

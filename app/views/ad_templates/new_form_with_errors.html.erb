@@ -1,0 +1,38 @@
+<!-- Validation failure messages -->
+<% if @ad.present? %>
+  <% if @ad.errors.any? %>
+    <% @ad.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new ad
+</h1>
+
+
+<hr>
+
+<form action="/create_ad" method="post">
+
+  <div class="form-group">
+    <label for="location">
+      Location
+    </label>
+
+    <input type="text" id="location" name="location" class="form-control" value="<%= @ad.location %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create ad
+  </button>
+</form>
+
+<hr>
+
+<a href="/ads">
+  Go back
+</a>

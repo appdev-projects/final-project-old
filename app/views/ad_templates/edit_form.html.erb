@@ -1,0 +1,26 @@
+<h1>
+  Edit ad #<%= @ad.id %>
+</h1>
+
+<hr>
+
+<form action="/update_ad/<%= @ad.id %>" method="post">
+
+  <div class="form-group">
+    <label for="location">
+      Location
+    </label>
+
+    <input type="text" id="location" name="location" class="form-control" value="<%= @ad.location %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update ad
+  </button>
+</form>
+
+<hr>
+
+<a href="/ads">
+  Go back
+</a>

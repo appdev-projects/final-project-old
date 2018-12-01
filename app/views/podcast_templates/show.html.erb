@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
       <div class="card" style="width: 18rem;">
       <img class="card-img-top" src="<%= @podcast.cover %>" alt="Card image cap">
       <div class="card-body">
@@ -10,25 +10,44 @@
       </div>
     </div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
      <div class="card">
         <div class="card-body">
-          <% x=@podcast.title.gsub!(/\s+/, '_') + "_" + @podcast.episode.to_s + "_MP3WRAP.mp3" %>
-          <% Dir.chdir('/home/ubuntu/workspace/app/assets/podcast_audio/') do %>
-            <% if File.file?(x) %>
-              <audio src="<%= asset_path(x) %>" controls="controls"></audio>
-            <%else%>
-              <% y= @podcast.title + "_" + @podcast.episode.to_s + ".mp3" %>
-              
-              <% merge_sounds(@podcast.first_part,"Chicago_ad.mp3",@podcast.second_part,y)%>
-              
-              <audio src="<%= asset_path(x) %>" controls="controls"></audio>
-              
+          <% if @ad_locations.include? @location %>
+            <% x=@podcast.title.gsub!(/\s+/, '_') + "_" + @podcast.episode.to_s + "_"  +@location  + "_MP3WRAP.mp3" %>
+            <% Dir.chdir('/home/ubuntu/workspace/app/assets/podcast_audio/') do %>
+              <% if File.file?(x) %>
+                <audio src="<%= asset_path(x) %>" controls="controls" download="download"></audio>
+              <%else%>
+                <% y= @podcast.title + "_"  + @podcast.episode.to_s + "_" +@location +  ".mp3" %>
+                <% z= @location + "_ad.mp3" %>
+                <% merge_sounds(@podcast.first_part,z,@podcast.second_part,y)%>
+                
+                <audio src="<%= asset_path(x) %>" controls="controls" download="download"></audio>
+                
+              <%end%>
             <%end%>
-          <%end%>
-          
+          <%else%>
+            <% x=@podcast.title.gsub!(/\s+/, '_') + "_" + @podcast.episode.to_s + "_"  + "other"  + "_MP3WRAP.mp3" %>
+            <% Dir.chdir('/home/ubuntu/workspace/app/assets/podcast_audio/') do %>
+              <% if File.file?(x) %>
+                <audio src="<%= asset_path(x) %>" controls="controls" download="download"></audio>
+              <%else%>
+                <% y= @podcast.title + "_"  + @podcast.episode.to_s + "_" + "other" +  ".mp3" %>
+                <% z= "other_ad.mp3" %>
+                <% merge_sounds(@podcast.first_part,z,@podcast.second_part,y)%>
+                
+                <audio src="<%= asset_path(x) %>" controls="controls" download="download"></audio>
+                
+                <%end%>
+              <%end%>
+            <%end%>
         </div>
+        
       </div>
     </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card"> You are in <%=@location%>  </div>
   </div>
 </div>

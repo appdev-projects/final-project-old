@@ -1,3 +1,6 @@
+# require 'open-uri'
+
+
 class PodcastsController < ApplicationController
   def index
     @podcasts = Podcast.all
@@ -7,13 +10,21 @@ class PodcastsController < ApplicationController
 
   def show
     @podcast = Podcast.find(params.fetch("id_to_display"))
-    # s= @podcast.title 
-    # x = s.gsub! /\s+/, '_' 
-    # x= x + "_" + @podcast.episode.to_s 
-    # Dir.chdir('/home/ubuntu/workspace/public/podcast_audio/') do
-    #   merge_sounds(@podcast.first_part,"Chicago_ad.mp3",@podcast.second_part, x)
-    # end
     
+     url=HTTParty.post("https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCtsef6mzWK2OwyhkJgV4fB5S8vG_7i4Q")
+
+    lat= url.parsed_response.fetch("location").fetch("lat")
+    lng= url.parsed_response.fetch("location").fetch("lng")
+    
+    loc=HTTParty.post("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat.to_s + "," + lng.to_s + "&key=AIzaSyDCtsef6mzWK2OwyhkJgV4fB5S8vG_7i4Q")
+    @location= loc.parsed_response.fetch("results")[0].fetch("address_components")[5].fetch("long_name")
+    
+    ad_locations= []
+    Ad.all.each do |ad|
+      ad_locations.push(ad.location)
+    end
+    @ad_locations=ad_locations
+ 
     
     render("podcast_templates/show.html.erb")
   end
