@@ -1,0 +1,83 @@
+<!--We can build Battleship!-->
+
+Current Board
+
+<table border = "1" class = "table">
+<% @curr_board.each do |row| %>
+    <tr>
+        <% row.each do |square| %>
+            <td>
+                <%= square %>
+            </td>
+        <% end %>
+    </tr>
+<% end %>
+</table>
+
+<br>
+
+Player Turn: <%= @curr_player %>
+
+<br>
+
+Game Status: <%= @victor %>
+
+<br>
+
+Player Input
+
+<form action = "/player_move" method = "post">
+    
+    <table>
+        <tr>
+            <td>
+                <!--this needs to be replaceable/dynamic with X's and O's-->
+                <input type = "text" name = "0" value = "">
+            </td>
+            <td>
+                <input type = "text" name = "1" value = "">
+            </td>
+            <td>
+                <input type = "text" name = "2" value = "">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type = "text" name = "3" value = "">
+            </td>
+            <td>
+                <input type = "text" name = "4" value = "">
+            </td>
+            <td>
+                <input type = "text" name = "5" value = "">
+            </td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type = "text" name = "6" value = "">
+            </td>
+            <td>
+                <input type = "text" name = "7" value = "">
+            </td>
+            <td>
+                <input type = "text" name = "8" value = "">
+            </td>
+        </tr>
+        
+    </table>
+
+    <button class = "btn btn-primary">
+        Submit Move
+    </button>
+
+</form>
+
+<br>
+
+<form action = "/restart">
+    <button class = "btn btn-primary">
+        Restart Game
+    </button>
+</form>
