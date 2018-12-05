@@ -3,6 +3,12 @@ class GameController < ApplicationController
         @curr_board = session[:board]
         @curr_player = session[:player]
         
+        if (@curr_player == "X")
+            prev_player = "O"
+        else
+            prev_player = "X"
+        end
+        
         if @curr_board.nil?
             @curr_board = [["", "", ""]] * 3
         end
@@ -13,7 +19,8 @@ class GameController < ApplicationController
             @curr_player = "X"
         end
         
-        @victor = victory_cond(@curr_board, @curr_player)
+        #victory condition for person who just moved
+        @victor = victory_cond(@curr_board, prev_player)
         
         #simple test for function inputs
         #@y = add(1, 2)
@@ -97,14 +104,40 @@ class GameController < ApplicationController
         
         curr_board = session[:board]
         
-        #place O in first available space
-        curr_board.each do |space|
-            if space == ""
-                space = "O"
-                #halt after play 1 move
+        #puts "hello"
+        
+        #my issue is that there is nothing being saved
+        #break exits from if statements and from one loop, not from every loop
+        #explore a for loop or  while loop -- create one array
+        # of all the stuff in the board, find the index of the first available 
+        # blank space and write an O in there -- make sure we write the O!
+        
+        i = 0
+        
+        for i in (0..2).to_a do
+            if (curr_board[i][0] == "")
+                curr_board[i][0] = "O"
+                break
+            elsif (curr_board[i][1] == "")
+                curr_board[i][1] = "O"
+                break
+            elsif (curr_board[i][2] == "")
+                curr_board[i][2] = "O"
                 break
             end
         end
+        
+        #place O in first available space
+#        curr_board.each do |row|
+#            puts "yargh"
+#            row.each do |space|
+#                if space == ""
+#                    space = "O"
+                    #halt after play 1 move
+#                    break
+#                end
+#            end
+#        end
         
         session[:board] = curr_board
         
