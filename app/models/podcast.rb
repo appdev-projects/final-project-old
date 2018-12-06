@@ -15,4 +15,8 @@
 #
 
 class Podcast < ApplicationRecord
+  
+  mount_uploader :first_part, AudioUploader
+  mount_uploader :second_part, AudioUploader
+  
 end

@@ -32,6 +32,10 @@ class PodcastsController < ApplicationController
     @podcast = Podcast.new
 
     @podcast.title = params.fetch("title")
+    @podcast.episode = params.fetch("episode")
+    @podcast.episode_description = params.fetch("episode_description")
+    @podcast.podcast_description = params.fetch("podcast_description")
+    
     @podcast.first_part = params.fetch("first_part")
     @podcast.second_part = params.fetch("second_part")
     @podcast.cover = params.fetch("cover")
@@ -43,6 +47,16 @@ class PodcastsController < ApplicationController
     else
       render("podcast_templates/new_form_with_errors.html.erb")
     end
+    
+    Dir.chdir('/home/ubuntu/workspace/app/assets/podcast_audio/') do
+      File.rename(@podcast.first_part.to_s,@podcast.title.gsub!(/\s+/, '_') + "_" + @podcast.episode.to_s + "_part1.mp3")
+    end
+    
+    Dir.chdir('/home/ubuntu/workspace/app/assets/podcast_audio/') do
+      File.rename(@podcast.second_part.to_s,@podcast.title + "_" + @podcast.episode.to_s + "_part2.mp3")
+    end
+    
+
   end
 
   def edit_form

@@ -21,7 +21,7 @@
               <%else%>
                 <% y= @podcast.title + "_"  + @podcast.episode.to_s + "_" +@location +  ".mp3" %>
                 <% z= @location + "_ad.mp3" %>
-                <% merge_sounds(@podcast.first_part,z,@podcast.second_part,y)%>
+                <% merge_sounds(@podcast.title + "_" + @podcast.episode.to_s + "_part1.mp3",z,@podcast.title + "_" + @podcast.episode.to_s + "_part1.mp3",y)%>
                 
                 <audio src="<%= asset_path(x) %>" controls="controls" download="download"></audio>
                 
@@ -35,7 +35,7 @@
               <%else%>
                 <% y= @podcast.title + "_"  + @podcast.episode.to_s + "_" + "other" +  ".mp3" %>
                 <% z= "other_ad.mp3" %>
-                <% merge_sounds(@podcast.first_part,z,@podcast.second_part,y)%>
+                <% merge_sounds(@podcast.title + "_" + @podcast.episode.to_s + "_part1.mp3",z,@podcast.title + "_" + @podcast.episode.to_s + "_part1.mp3",y)%>
                 
                 <audio src="<%= asset_path(x) %>" controls="controls" download="download"></audio>
                 
