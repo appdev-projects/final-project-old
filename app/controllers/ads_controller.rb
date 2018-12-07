@@ -21,6 +21,7 @@ class AdsController < ApplicationController
     @ad = Ad.new
 
     @ad.location = params.fetch("location")
+    @ad.file=params.fetch("file")
 
     if @ad.valid?
       @ad.save

@@ -5,7 +5,7 @@
 
 <hr>
 
-<form action="/create_ad" method="post">
+<form action="/create_ad" method="post" enctype="multipart/form-data">
 
   <div class="form-group">
     <label for="location">
@@ -14,9 +14,17 @@
 
     <input type="text" id="location" name="location" class="form-control">
   </div>
+  
+  <div class="form-group">
+    <label for="file">
+      First Part
+    </label>
+
+    <input type="file" id="file" name="file" class="form-control">
+  </div>
 
   <button class="btn btn-block btn-outline-secondary">
-    Create ad
+    Create Ad
   </button>
 </form>
 

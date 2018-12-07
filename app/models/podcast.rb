@@ -19,4 +19,6 @@ class Podcast < ApplicationRecord
   mount_uploader :first_part, AudioUploader
   mount_uploader :second_part, AudioUploader
   
+  validates :title, :episode, :cover, :first_part, :second_part, presence: true
+  
 end
