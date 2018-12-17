@@ -1,3 +1,5 @@
+#Things to ask Raghu -- How do I run GDB/debug Segfaults in Ruby and Cloud9? what is the executable that I can run gdb on?
+
 class GameController < ApplicationController
     def home
         @curr_board = session[:board]
@@ -22,9 +24,6 @@ class GameController < ApplicationController
         #victory condition for person who just moved
         @victor = victory_cond(@curr_board, prev_player)
         
-        #simple test for function inputs
-        #@y = add(1, 2)
-        
         #understand whos turn to process, or if the game ended
         if @victor == "ongoing"
             if @curr_player == "X"
@@ -32,7 +31,7 @@ class GameController < ApplicationController
                 #player_move is only after we submit the form -- if we run it here, there's nothing submitted to params
                 render("/index.html.erb")
             elsif @curr_player == "O"
-                computer_move
+                computer_move_1
             end
         else
             #we stop the game -- no more moves
@@ -89,16 +88,167 @@ class GameController < ApplicationController
         
     end
     
+    def avail_moves(board)
+        #returns an array of array of available moves
+        #main array contains the squares of possible moves, each sub array is the
+        #i,jth location of a possible move
+        poss_moves = []
+        
+        for i in (0..2).to_a do
+            for j in (0..2).to_a do
+                if(board[i][j] == "")
+                    poss_moves.push([i, j])
+                end
+            end
+        end
+        
+        #https://stackoverflow.com/questions/10316495/call-ruby-function-from-command-line
+        #call ruby functions from command line
+        
+        #change function name to self.avail_moves
+        #comment out <ApplicationController
+        #run ruby -r "./game_controller.rb" -e "GameController.avail_moves [['', 'X', 'O'], ['', '', 'X'], ['O', '', '']]"
+        
+        print(poss_moves)
+        return(poss_moves)
+        #sample board
+        #sampboard = [['', 'X', 'O'], ['', '', 'X'], ['O', '', '']]
+    end
+    
     def restart
         session[:board] = [["", "", ""]] * 3
         session[:player] = nil
         redirect_to("/")
     end
     
-    def computer_move
-        #we code the computer to always play "O"
+    def place_piece(board, player, rowindex, colindex)
+        #places a piece on the board and updates the board, returns the board
         
-        #we use minimax strategy
+        #we assume the move is valid
+        
+        #player is "X" or "O"
+        
+        board[rowindex][colindex] = player
+        
+        return(board)
+        
+    end
+    
+    def player_switch(player)
+        #returns the opposite player -- if input is X then output is O
+        if(player == "X")
+            return("O")
+        elsif(player == "O")
+            return("X")
+        end
+    end
+    
+    def computer_move_2(board, player)
+        #we use the minimax strategy
+        
+        #base case: we check if there is a winning move
+        
+        poss_moves_cpu = avail_moves(board)
+        
+        if victory_cond(board, player) == "X wins!"
+            #loss for computer if X wins, X is always human
+            return(-10)
+        elsif victory_cond(board, player) == "O wins!"
+            return(10)
+        #if there are no possible moves left (i.e. a draw)
+        elsif poss_moves_cpu.empty?
+            return(0)
+        else
+            #here we have the recursive case -- we have a list of possible moves
+            #we "play" each move, if X then we try to find the lowest possible score,
+            #if O then we try to find the highest possible score
+            
+            #list of scores for each move -- a new move_scores list is being built with each recursive call
+            
+            move_scores = []
+            
+            #run through list of possible moves, each square stored as array, row stored in 0th pos, col stored in 1st pos
+            poss_moves_cpu.each do |movearray|
+                row_index = movearray[0]
+                col_index = movearray[1]
+                
+                #we have to put all the scores in an array
+                move_scores.push(computer_move_2(place_piece(board, player, row_index, col_index), player_switch(player)))
+                
+            end
+            
+        end
+        
+        #now, we have a array of lots of arrays, some nested some not
+        
+        #test array of numbers
+        #b = [1, 2, 3, [4, 5, 6], [7], [8, 9, 10]]
+        
+        #we need a recursive helper function to return an array of move scores
+        
+        #move_score_clean is an array of just Fixnums of scores
+        move_score_clean = array_compress(move_scores)
+        
+        max_score = move_score_clean.max
+        
+        #recal that Ruby indexes run from 0 to n-1 for array of n values
+        max_score_index = move_score_clean.find_index(max_score)
+        
+        #match the highest score with the corresponding move
+        best_move = poss_moves_cpu[max_score_index]
+        
+        #now we play the move
+        new_board = place_piece(board, player, best_move[0], best_move[1])
+        
+        session[:board] = new_board
+        
+        #switch to human move
+        session[:player] = "X"                
+        redirect_to("/")
+        
+    end
+    
+    #we write a recursive helper function to collapse everything into 1 array
+    
+    def array_compress(given_array)
+    #we take an array of array of array ... of array (n nested levels), recursively sum
+    #everything until we reach top level, then return that final array of fixnums
+    
+        clean_array = []
+        
+        given_array.each do |object|
+            summed_num = array_compress_helper(object)
+            clean_array.append(summed_num)
+        end
+    
+        return(clean_array)
+    end
+    
+    def array_compress_helper(given_object)
+        #given object can be an array, can be a fixnum -- gotta check!
+        
+        #base case is that we get a fixnum
+        if (given_object.class == Fixnum)
+            return(given_object)
+        else
+            #we are assuming the only valid inputs that will be passed to array_compress are arrays of Fixnums or Fixnums
+            sum = 0
+            
+            given_object.each do |new_obj|
+                new_item = array_compress_helper(new_obj)
+                #after the recursive calls are returned, new_item will be a Fixnum
+                sum = sum + new_item
+            end
+            
+            return(sum)
+        end
+        
+    end
+    
+    def computer_move_1
+        #this is the most basic computer move
+        
+        #we code the computer to always play "O"
         
         #first build super simple AI -- find first available space to play O
         
