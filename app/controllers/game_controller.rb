@@ -31,7 +31,7 @@ class GameController < ApplicationController
                 #player_move is only after we submit the form -- if we run it here, there's nothing submitted to params
                 render("/index.html.erb")
             elsif @curr_player == "O"
-                computer_move_1
+                computer_move_2(@curr_board, @curr_player)
             end
         else
             #we stop the game -- no more moves
@@ -105,6 +105,7 @@ class GameController < ApplicationController
         #https://stackoverflow.com/questions/10316495/call-ruby-function-from-command-line
         #call ruby functions from command line
         
+        #navigate to the file -- cd app/controllers in terminal
         #change function name to self.avail_moves
         #comment out <ApplicationController
         #run ruby -r "./game_controller.rb" -e "GameController.avail_moves [['', 'X', 'O'], ['', '', 'X'], ['O', '', '']]"
