@@ -1,45 +1,7 @@
 #Things to ask Raghu -- How do I run GDB/debug Segfaults in Ruby and Cloud9? what is the executable that I can run gdb on?
 
 class GameController < ApplicationController
-    def home
-        @curr_board = session[:board]
-        @curr_player = session[:player]
-        
-        if (@curr_player == "X")
-            prev_player = "O"
-        else
-            prev_player = "X"
-        end
-        
-        if @curr_board.nil?
-            @curr_board = [["", "", ""]] * 3
-        end
-        
-        #all we need to keep track of is the current player
-        #@player is "X" or "O", "X" goes first
-        if @curr_player.nil?
-            @curr_player = "X"
-        end
-        
-        #victory condition for person who just moved
-        @victor = victory_cond(@curr_board, prev_player)
-        
-        #understand whos turn to process, or if the game ended
-        if @victor == "ongoing"
-            if @curr_player == "X"
-                #this is human player, by defn
-                #player_move is only after we submit the form -- if we run it here, there's nothing submitted to params
-                render("/index.html.erb")
-            elsif @curr_player == "O"
-                computer_move_2(@curr_board, @curr_player)
-            end
-        else
-            #we stop the game -- no more moves
-            render("/index.html.erb")
-        end
 
-    end
-    
     def victory_cond(board, player)
                 
         #check victory condition
@@ -82,12 +44,6 @@ class GameController < ApplicationController
         return winner
     end
     
-    #simple test function below to see if we can write functions that are callalbe
-    def add(num_1, num_2)
-       @result = num_1 + num_2
-        
-    end
-    
     def avail_moves(board)
         #returns an array of array of available moves
         #main array contains the squares of possible moves, each sub array is the
@@ -110,7 +66,6 @@ class GameController < ApplicationController
         #comment out <ApplicationController
         #run ruby -r "./game_controller.rb" -e "GameController.avail_moves [['', 'X', 'O'], ['', '', 'X'], ['O', '', '']]"
         
-        print(poss_moves)
         return(poss_moves)
         #sample board
         #sampboard = [['', 'X', 'O'], ['', '', 'X'], ['O', '', '']]
@@ -132,7 +87,6 @@ class GameController < ApplicationController
         board[rowindex][colindex] = player
         
         return(board)
-        
     end
     
     def player_switch(player)
@@ -142,71 +96,6 @@ class GameController < ApplicationController
         elsif(player == "O")
             return("X")
         end
-    end
-    
-    def computer_move_2(board, player)
-        #we use the minimax strategy
-        
-        #base case: we check if there is a winning move
-        
-        poss_moves_cpu = avail_moves(board)
-        
-        if victory_cond(board, player) == "X wins!"
-            #loss for computer if X wins, X is always human
-            return(-10)
-        elsif victory_cond(board, player) == "O wins!"
-            return(10)
-        #if there are no possible moves left (i.e. a draw)
-        elsif poss_moves_cpu.empty?
-            return(0)
-        else
-            #here we have the recursive case -- we have a list of possible moves
-            #we "play" each move, if X then we try to find the lowest possible score,
-            #if O then we try to find the highest possible score
-            
-            #list of scores for each move -- a new move_scores list is being built with each recursive call
-            
-            move_scores = []
-            
-            #run through list of possible moves, each square stored as array, row stored in 0th pos, col stored in 1st pos
-            poss_moves_cpu.each do |movearray|
-                row_index = movearray[0]
-                col_index = movearray[1]
-                
-                #we have to put all the scores in an array
-                move_scores.push(computer_move_2(place_piece(board, player, row_index, col_index), player_switch(player)))
-                
-            end
-            
-        end
-        
-        #now, we have a array of lots of arrays, some nested some not
-        
-        #test array of numbers
-        #b = [1, 2, 3, [4, 5, 6], [7], [8, 9, 10]]
-        
-        #we need a recursive helper function to return an array of move scores
-        
-        #move_score_clean is an array of just Fixnums of scores
-        move_score_clean = array_compress(move_scores)
-        
-        max_score = move_score_clean.max
-        
-        #recal that Ruby indexes run from 0 to n-1 for array of n values
-        max_score_index = move_score_clean.find_index(max_score)
-        
-        #match the highest score with the corresponding move
-        best_move = poss_moves_cpu[max_score_index]
-        
-        #now we play the move
-        new_board = place_piece(board, player, best_move[0], best_move[1])
-        
-        session[:board] = new_board
-        
-        #switch to human move
-        session[:player] = "X"                
-        redirect_to("/")
-        
     end
     
     #we write a recursive helper function to collapse everything into 1 array
@@ -240,9 +129,8 @@ class GameController < ApplicationController
                 #after the recursive calls are returned, new_item will be a Fixnum
                 sum = sum + new_item
             end
-            
-            return(sum)
         end
+        return(sum)
         
     end
     
@@ -277,18 +165,6 @@ class GameController < ApplicationController
                 break
             end
         end
-        
-        #place O in first available space
-#        curr_board.each do |row|
-#            puts "yargh"
-#            row.each do |space|
-#                if space == ""
-#                    space = "O"
-                    #halt after play 1 move
-#                    break
-#                end
-#            end
-#        end
         
         session[:board] = curr_board
         
@@ -347,6 +223,161 @@ class GameController < ApplicationController
         session[:player] = "O"
         redirect_to("/")
     
+    end
+    
+    def computer_move_scores(board, player, poss_moves)
+        #this takes an array of moves and returns the highest score
+        
+        #base case -- check if game is over, score based off of that
+        if victory_cond(board, player) == "X wins!"
+            #loss for computer if X wins, X is always human
+            return(-10)
+        elsif victory_cond(board, player) == "O wins!"
+            return(10)
+        #if there are no possible moves left (i.e. a draw)
+        elsif poss_moves.empty?
+            return(0)
+        else
+            #here we have the recursive case -- we have a list of possible moves
+            #we "play" each move, if X then we try to find the lowest possible score,
+            #if O then we try to find the highest possible score
+
+            #list of scores for each move -- a new move_scores list is being built with each recursive call
+                    
+            move_scores = []
+            
+            #run through list of possible moves, each square stored as array, row stored in 0th pos, col stored in 1st pos
+            poss_moves.each do |movearray|
+                row_index = movearray[0]
+                col_index = movearray[1]
+                
+                #we have to put all the scores in an array
+                
+                move_scores.push(computer_move_scores(place_piece(board, player, row_index, col_index), player_switch(player), avail_moves(place_piece(board, player, row_index, col_index))))
+            end
+
+        end
+        
+        #we now have array of array of array of .... of array of scores, need to clean up to 1 array
+        
+        #move_score_clean is an array of just Fixnums of scores
+        move_score_clean = array_compress(move_scores)
+        
+        puts "turn"
+        puts move_score_clean
+        puts "turnend"
+        
+        #we return the clean array
+        return(move_score_clean)
+        
+    end
+    
+    def best_computer_move_2(board, player)
+        
+        puts "init comp board"
+        puts board
+        
+        #this uses minimax to find the best computer move and return the best move
+                   
+        poss_moves_cpu = avail_moves(board)
+
+        #test array of numbers
+        #b = [1, 2, 3, [4, 5, 6], [7], [8, 9, 10]]
+        
+        #get the array of scores
+        
+        move_score_array = computer_move_scores(board, player, poss_moves_cpu)
+        
+        max_score = move_score_array.max
+        
+        #recal that Ruby indexes run from 0 to n-1 for array of n values
+        max_score_index = move_score_array.find_index(max_score)
+        
+        #match the highest score with the corresponding move
+        best_move = poss_moves_cpu[max_score_index]
+        
+     #   puts "best move"
+      #  puts best_move
+       # puts "best_move_end"
+       
+        puts "best comp move board"
+        puts board
+        
+        return(best_move)
+        
+    end
+        
+    def computer_move_2(board, player)
+       
+        #we call the helper function best_computer_move_2 to get the best move
+        
+        preserve_board = session[:board]
+        
+        puts "start board"
+        puts preserve_board
+        
+        #THE PROBLEM IS HERE -- start board has X, best_move somehow places O's at every available spot
+        best_move = best_computer_move_2(board, player)
+        
+        puts "best_move"
+        puts best_move
+        
+        puts "preserve board"
+        puts preserve_board
+        
+        #now we play the move
+        new_board = place_piece(board, player, best_move[0], best_move[1])
+        
+        
+      #  puts "new board"
+      #  puts new_board
+        
+        session[:board] = new_board
+        
+        #switch to human move
+        session[:player] = "X"                
+        redirect_to("/")
+        
+    end
+    
+    
+    def home
+        @curr_board = session[:board]
+        @curr_player = session[:player]
+        
+        if (@curr_player == "X")
+            prev_player = "O"
+        else
+            prev_player = "X"
+        end
+        
+        if @curr_board.nil?
+            @curr_board = [["", "", ""]] * 3
+        end
+        
+        #all we need to keep track of is the current player
+        #@player is "X" or "O", "X" goes first
+        if @curr_player.nil?
+            @curr_player = "X"
+        end
+        
+        #victory condition for person who just moved
+        @victor = victory_cond(@curr_board, prev_player)
+        
+        #understand whos turn to process, or if the game ended
+        if @victor == "ongoing"
+            if @curr_player == "X"
+                #this is human player, by defn
+                #player_move is only after we submit the form -- if we run it here, there's nothing submitted to params
+                render("/index.html.erb")
+            elsif @curr_player == "O"
+                computer_move_2(@curr_board, "O")
+            end
+        else
+            #we stop the game -- no more moves
+            render("/index.html.erb")
+        end
+
     end
     
     
