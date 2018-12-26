@@ -44,6 +44,27 @@ class GameController < ApplicationController
         return winner
     end
     
+    def array_dup(given_array)
+        #purpose of this function is to clone arrays
+        #note that Ruby a = b will assign a pointer to the object -- the object itself is NOT cloned!
+        #array.dup will ONLY copy the 1st order array -- i.e. array of arrays will not be copied
+        #this will copy everything
+        new_array = []
+        
+        given_array.each do |item|
+           if item.class != Array
+               new_array.append(item)
+           else
+               #we run the recursive case - append the array and function on it
+               #append arrays is the same as adding
+               new_array = new_array + [array_dup(item)]
+           end
+        end
+        
+        return(new_array)
+        
+    end
+    
     def avail_moves(board)
         #returns an array of array of available moves
         #main array contains the squares of possible moves, each sub array is the
@@ -228,6 +249,8 @@ class GameController < ApplicationController
     def computer_move_scores(board, player, poss_moves)
         #this takes an array of moves and returns the highest score
         
+        tempboard = array_dup(board)
+        
         #base case -- check if game is over, score based off of that
         if victory_cond(board, player) == "X wins!"
             #loss for computer if X wins, X is always human
@@ -253,7 +276,8 @@ class GameController < ApplicationController
                 
                 #we have to put all the scores in an array
                 
-                move_scores.push(computer_move_scores(place_piece(board, player, row_index, col_index), player_switch(player), avail_moves(place_piece(board, player, row_index, col_index))))
+                #here is the issue -- place_piece is updating the board each time
+                move_scores.push(computer_move_scores(place_piece(tempboard, player, row_index, col_index), player_switch(player), avail_moves(place_piece(board, player, row_index, col_index))))
             end
 
         end
@@ -286,7 +310,15 @@ class GameController < ApplicationController
         
         #get the array of scores
         
+        #write a temporary board for computer_move_scores to work on 
+        #IMPORTANT: a = b will copy the REFERENCE, NOT THE OBJECT -- basically copy the pointer
+        #modifications will still be on the original object
+        
+        #here is where the extra O's get put in, because place_piece keeps updating the board
         move_score_array = computer_move_scores(board, player, poss_moves_cpu)
+        
+        puts "next board"
+        puts board
         
         max_score = move_score_array.max
         
@@ -306,24 +338,23 @@ class GameController < ApplicationController
         return(best_move)
         
     end
+
         
     def computer_move_2(board, player)
        
         #we call the helper function best_computer_move_2 to get the best move
         
-        preserve_board = session[:board]
+        tempboard = array_dup(board)
         
-        puts "start board"
-        puts preserve_board
         
         #THE PROBLEM IS HERE -- start board has X, best_move somehow places O's at every available spot
-        best_move = best_computer_move_2(board, player)
+        best_move = best_computer_move_2(tempboard, player)
         
         puts "best_move"
         puts best_move
         
-        puts "preserve board"
-        puts preserve_board
+        puts "untouched board"
+        puts board
         
         #now we play the move
         new_board = place_piece(board, player, best_move[0], best_move[1])
