@@ -121,38 +121,71 @@ class GameController < ApplicationController
     
     #we write a recursive helper function to collapse everything into 1 array
     
-    def array_compress(given_array)
-    #we take an array of array of array ... of array (n nested levels), recursively sum
-    #everything until we reach top level, then return that final array of fixnums
+    def array_compress(given_array, player)
+    #we take an array of array of array ... of array (n nested levels), recursively find the max and min according to the given player
+    #the given player we want to find the max score, the opposing player we want to find the min score
+    #return the move with the max score at the end
     
         clean_array = []
         
+        puts "sup"
+        puts given_array
+        puts "wtf"
+        
         given_array.each do |object|
-            summed_num = array_compress_helper(object)
-            clean_array.append(summed_num)
+            max_min_output = array_compress_helper(object, player)
+            clean_array.append(max_min_output)
         end
     
         return(clean_array)
     end
     
-    def array_compress_helper(given_object)
+    def array_compress_helper(given_object, player)
         #given object can be an array, can be a fixnum -- gotta check!
         
-        #base case is that we get a fixnum
+        puts "hi"
+        puts given_object
+        puts given_object.class
+        puts "bye"
+        
+        #base case is that we get a fixnum, which we simply return that number
         if (given_object.class == Fixnum)
+            puts "hello"
             return(given_object)
         else
             #we are assuming the only valid inputs that will be passed to array_compress are arrays of Fixnums or Fixnums
-            sum = 0
+            #for arrays, we want to find the max or min according to player
+            #flip the player at each time
             
-            given_object.each do |new_obj|
-                new_item = array_compress_helper(new_obj)
-                #after the recursive calls are returned, new_item will be a Fixnum
-                sum = sum + new_item
+            if pure_array(given_object) == true
+                #first we scan if the new_obj is a pure Array or if it has additional Arrays within it
+                if player == "O"
+                        #we want to maximize the score
+                        return(given_object.max)
+                    elsif player == "X"
+                        #we want to minimize the score
+                        return(given_object.min)
+                end
+            else
+                #if new_obj is not a pure Array, we call the function recursively
+                if player == "O"
+                    return(array_compress_helper(given_object, player_switch(player)).max)
+                elsif player == "X"
+                    return(array_compress_helper(given_object, player_switch(player)).min)
+                end
             end
         end
-        return(sum)
-        
+    end
+    
+    def pure_array(given_array)
+        #determine if the given array is a pure array (array of Fixnums for now) or it contains arrays of fixnums
+        given_array.each do |item|
+            if item.class != Fixnum
+                return false
+            end
+        end
+        #if all of the items are fixnums, then we return true
+        return true
     end
     
     def computer_move_1
@@ -298,8 +331,10 @@ class GameController < ApplicationController
         
         #we now have array of array of array of .... of array of scores, need to clean up to 1 array
         
+        #cleaning up to 1 array is systematically picking out the max and mins of the scores according to which player it is
+        
         #move_score_clean is an array of just Fixnums of scores
-        move_score_clean = array_compress(move_scores)
+        move_score_clean = array_compress(move_scores, player)
         
         #we return the clean array
         return(move_score_clean)
