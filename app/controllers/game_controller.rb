@@ -252,11 +252,16 @@ class GameController < ApplicationController
         tempboard = array_dup(board)
         
         #base case -- check if game is over, score based off of that
-        if victory_cond(board, player) == "X wins!"
+        if (player == "X" && victory_cond(board, player) == "X wins!")
+            #loss for computer if X wins, X is always human
+            return(10)
+        elsif (player == "O" && victory_cond(board, player) == "X wins!")
             #loss for computer if X wins, X is always human
             return(-10)
-        elsif victory_cond(board, player) == "O wins!"
+        elsif (player == "O" && victory_cond(board, player) == "O wins!")
             return(10)
+        elsif (player == "X" && victory_cond(board, player) == "O wins!")
+            return(-10)
         #if there are no possible moves left (i.e. a draw)
         elsif poss_moves.empty?
             return(0)
@@ -277,7 +282,16 @@ class GameController < ApplicationController
                 #we have to put all the scores in an array
                 
                 #here is the issue -- place_piece is updating the board each time
-                move_scores.push(computer_move_scores(place_piece(tempboard, player, row_index, col_index), player_switch(player), avail_moves(place_piece(board, player, row_index, col_index))))
+                move_scores.push(
+                    computer_move_scores(
+                        #new board -- place piece with current player's piece
+                        place_piece(tempboard, player, row_index, col_index), 
+                        #swap the player 
+                        player_switch(player), 
+                        #run again with other player
+                        avail_moves(place_piece(board, player_switch(player), row_index, col_index))
+                    )
+                )
             end
 
         end
@@ -287,10 +301,6 @@ class GameController < ApplicationController
         #move_score_clean is an array of just Fixnums of scores
         move_score_clean = array_compress(move_scores)
         
-        puts "turn"
-        puts move_score_clean
-        puts "turnend"
-        
         #we return the clean array
         return(move_score_clean)
         
@@ -298,12 +308,13 @@ class GameController < ApplicationController
     
     def best_computer_move_2(board, player)
         
-        puts "init comp board"
-        puts board
-        
         #this uses minimax to find the best computer move and return the best move
                    
         poss_moves_cpu = avail_moves(board)
+        
+        puts "poss moves"
+        puts poss_moves_cpu
+        puts "poss moves end"
 
         #test array of numbers
         #b = [1, 2, 3, [4, 5, 6], [7], [8, 9, 10]]
@@ -317,8 +328,9 @@ class GameController < ApplicationController
         #here is where the extra O's get put in, because place_piece keeps updating the board
         move_score_array = computer_move_scores(board, player, poss_moves_cpu)
         
-        puts "next board"
-        puts board
+        puts "score array"
+        puts move_score_array
+        puts "score array end"
         
         max_score = move_score_array.max
         
@@ -328,12 +340,9 @@ class GameController < ApplicationController
         #match the highest score with the corresponding move
         best_move = poss_moves_cpu[max_score_index]
         
-     #   puts "best move"
-      #  puts best_move
-       # puts "best_move_end"
-       
-        puts "best comp move board"
-        puts board
+        puts "best move"
+        puts best_move
+        puts "best_move_end"
         
         return(best_move)
         
@@ -346,8 +355,6 @@ class GameController < ApplicationController
         
         tempboard = array_dup(board)
         
-        
-        #THE PROBLEM IS HERE -- start board has X, best_move somehow places O's at every available spot
         best_move = best_computer_move_2(tempboard, player)
         
         puts "best_move"
