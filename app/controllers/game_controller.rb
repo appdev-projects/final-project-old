@@ -141,6 +141,16 @@ class GameController < ApplicationController
     end
     
     def array_compress_helper(given_object, player)
+        #note to self: right now I'm trying to implement minimax -- each level we have to switch what scores we pick (i.e. for O we want to)
+        #find the maximum score of the subarray, for X we want to find the minimum score of the subarray
+        #right now we have to delve into array_compress_helper -- my idea is to first scan the given subarray to see if it is a "pure" array, or
+        #if it has no further subarrays. if so, we find the max or min (according to the player passed)
+        #if not, then we recursively call the function on the entire subarray and do a min or max on that function -- the idea is to
+        #keep "purifying" arrays at each level and calling the respective max and mins on those purified arrays until we get to the largest
+        #purified array
+        
+        
+        
         #given object can be an array, can be a fixnum -- gotta check!
         
         puts "hi"
@@ -169,6 +179,10 @@ class GameController < ApplicationController
             else
                 #if new_obj is not a pure Array, we call the function recursively
                 if player == "O"
+                    #I suspect what's happening here is that we are chucking out all the non-array values with this recursive call
+                    #we need to preserve that array and call .max or .min on the entire subarray
+                    #what i think this is doing is it's finding the max or min of the furthest subarray, returning a value, and calling
+                    #max or min on that value, which is that same value (max of 1 number is that number)
                     return(array_compress_helper(given_object, player_switch(player)).max)
                 elsif player == "X"
                     return(array_compress_helper(given_object, player_switch(player)).min)
