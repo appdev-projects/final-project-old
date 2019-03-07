@@ -1,0 +1,90 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All causes
+    </h1>
+
+    <a href="/causes/new" class="btn btn-block btn-outline-secondary">
+      Add a new cause
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Goal amount
+        </th>
+
+        <th>
+          Current amount
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @causes.each do |cause| %>
+      <tr>
+        <td>
+          <%= cause.id %>
+        </td>
+
+        <td>
+          <%= cause.description %>
+        </td>
+
+        <td>
+          <%= cause.name %>
+        </td>
+
+        <td>
+          <%= cause.goal_amount %>
+        </td>
+
+        <td>
+          <%= cause.current_amount %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(cause.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(cause.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/causes/<%= cause.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

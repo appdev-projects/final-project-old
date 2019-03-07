@@ -1,0 +1,72 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Customized preference #<%= @customized_preference.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/customized_preferences" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/customized_preferences/<%= @customized_preference.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit customized preference
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_customized_preference/<%= @customized_preference.id %>" class="btn btn-block btn-outline-secondary">
+          Delete customized preference
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Event
+      </dt>
+      <dd>
+        <%= @customized_preference.event_id %>
+      </dd>
+
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @customized_preference.user_id %>
+      </dd>
+
+      <dt>
+        Transaction amount
+      </dt>
+      <dd>
+        <%= @customized_preference.transaction_amount %>
+      </dd>
+
+      <dt>
+        Goal
+      </dt>
+      <dd>
+        <%= @customized_preference.goal_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@customized_preference.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@customized_preference.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

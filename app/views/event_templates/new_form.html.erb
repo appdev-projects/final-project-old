@@ -1,0 +1,59 @@
+<h1>
+  Add a new event
+</h1>
+
+
+<hr>
+
+<form action="/create_event" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="logic">
+      Logic
+    </label>
+
+    <input type="text" id="logic" name="logic" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="frequency">
+      Frequency
+    </label>
+
+    <input type="text" id="frequency" name="frequency" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="suggested_amount">
+      Suggested amount
+    </label>
+
+    <input type="text" id="suggested_amount" name="suggested_amount" class="form-control">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create event
+  </button>
+</form>
+
+<hr>
+
+<a href="/events">
+  Go back
+</a>

@@ -1,0 +1,72 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Cause #<%= @cause.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/causes" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/causes/<%= @cause.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit cause
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_cause/<%= @cause.id %>" class="btn btn-block btn-outline-secondary">
+          Delete cause
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @cause.description %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @cause.name %>
+      </dd>
+
+      <dt>
+        Goal amount
+      </dt>
+      <dd>
+        <%= @cause.goal_amount %>
+      </dd>
+
+      <dt>
+        Current amount
+      </dt>
+      <dd>
+        <%= @cause.current_amount %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@cause.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@cause.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

@@ -1,0 +1,50 @@
+<h1>
+  Edit customized preference #<%= @customized_preference.id %>
+</h1>
+
+<hr>
+
+<form action="/update_customized_preference/<%= @customized_preference.id %>" method="post">
+
+  <div class="form-group">
+    <label for="event_id">
+      Event
+    </label>
+
+    <input type="text" id="event_id" name="event_id" class="form-control" value="<%= @customized_preference.event_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @customized_preference.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="transaction_amount">
+      Transaction amount
+    </label>
+
+    <input type="text" id="transaction_amount" name="transaction_amount" class="form-control" value="<%= @customized_preference.transaction_amount %>">
+  </div>
+
+  <div class="form-group">
+    <label for="goal_id">
+      Goal
+    </label>
+
+    <input type="text" id="goal_id" name="goal_id" class="form-control" value="<%= @customized_preference.goal_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update customized preference
+  </button>
+</form>
+
+<hr>
+
+<a href="/customized_preferences">
+  Go back
+</a>

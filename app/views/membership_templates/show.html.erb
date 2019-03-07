@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Membership #<%= @membership.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/memberships" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/memberships/<%= @membership.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit membership
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_membership/<%= @membership.id %>" class="btn btn-block btn-outline-secondary">
+          Delete membership
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @membership.user_id %>
+      </dd>
+
+      <dt>
+        Cause
+      </dt>
+      <dd>
+        <%= @membership.cause_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@membership.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@membership.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

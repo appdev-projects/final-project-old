@@ -1,0 +1,93 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Goal #<%= @goal.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/goals" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/goals/<%= @goal.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit goal
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_goal/<%= @goal.id %>" class="btn btn-block btn-outline-secondary">
+          Delete goal
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @goal.user_id %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @goal.description %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @goal.name %>
+      </dd>
+
+      <dt>
+        D or s
+      </dt>
+      <dd>
+        <%= @goal.d_or_s %>
+      </dd>
+
+      <dt>
+        Goal amount
+      </dt>
+      <dd>
+        <%= @goal.goal_amount %>
+      </dd>
+
+      <dt>
+        Current amount
+      </dt>
+      <dd>
+        <%= @goal.current_amount %>
+      </dd>
+
+      <dt>
+        Deadline
+      </dt>
+      <dd>
+        <%= @goal.deadline %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@goal.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@goal.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

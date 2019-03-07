@@ -1,0 +1,35 @@
+<h1>
+  Add a new membership
+</h1>
+
+
+<hr>
+
+<form action="/create_membership" method="post">
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="cause_id">
+      Cause
+    </label>
+
+    <input type="text" id="cause_id" name="cause_id" class="form-control">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create membership
+  </button>
+</form>
+
+<hr>
+
+<a href="/memberships">
+  Go back
+</a>

@@ -1,0 +1,58 @@
+<% if @cause.errors.any? %>
+  <% @cause.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit cause #<%= @cause.id %>
+</h1>
+
+<hr>
+
+<form action="/update_cause/<%= @cause.id %>" method="post">
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control" value="<%= @cause.description %>">
+  </div>
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @cause.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="goal_amount">
+      Goal amount
+    </label>
+
+    <input type="text" id="goal_amount" name="goal_amount" class="form-control" value="<%= @cause.goal_amount %>">
+  </div>
+
+  <div class="form-group">
+    <label for="current_amount">
+      Current amount
+    </label>
+
+    <input type="text" id="current_amount" name="current_amount" class="form-control" value="<%= @cause.current_amount %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update cause
+  </button>
+</form>
+
+<hr>
+
+<a href="/causes">
+  Go back
+</a>

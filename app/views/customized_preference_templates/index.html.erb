@@ -1,0 +1,90 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All customized preferences
+    </h1>
+
+    <a href="/customized_preferences/new" class="btn btn-block btn-outline-secondary">
+      Add a new customized preference
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Event
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Transaction amount
+        </th>
+
+        <th>
+          Goal
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @customized_preferences.each do |customized_preference| %>
+      <tr>
+        <td>
+          <%= customized_preference.id %>
+        </td>
+
+        <td>
+          <%= customized_preference.event_id %>
+        </td>
+
+        <td>
+          <%= customized_preference.user_id %>
+        </td>
+
+        <td>
+          <%= customized_preference.transaction_amount %>
+        </td>
+
+        <td>
+          <%= customized_preference.goal_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(customized_preference.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(customized_preference.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/customized_preferences/<%= customized_preference.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

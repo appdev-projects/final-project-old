@@ -1,0 +1,79 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Event #<%= @event.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/events" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/events/<%= @event.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit event
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_event/<%= @event.id %>" class="btn btn-block btn-outline-secondary">
+          Delete event
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @event.name %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @event.description %>
+      </dd>
+
+      <dt>
+        Logic
+      </dt>
+      <dd>
+        <%= @event.logic %>
+      </dd>
+
+      <dt>
+        Frequency
+      </dt>
+      <dd>
+        <%= @event.frequency %>
+      </dd>
+
+      <dt>
+        Suggested amount
+      </dt>
+      <dd>
+        <%= @event.suggested_amount %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@event.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@event.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

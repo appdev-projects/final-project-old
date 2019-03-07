@@ -1,0 +1,58 @@
+<h1>
+  Edit event #<%= @event.id %>
+</h1>
+
+<hr>
+
+<form action="/update_event/<%= @event.id %>" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @event.name %>">
+  </div>
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control" value="<%= @event.description %>">
+  </div>
+
+  <div class="form-group">
+    <label for="logic">
+      Logic
+    </label>
+
+    <input type="text" id="logic" name="logic" class="form-control" value="<%= @event.logic %>">
+  </div>
+
+  <div class="form-group">
+    <label for="frequency">
+      Frequency
+    </label>
+
+    <input type="text" id="frequency" name="frequency" class="form-control" value="<%= @event.frequency %>">
+  </div>
+
+  <div class="form-group">
+    <label for="suggested_amount">
+      Suggested amount
+    </label>
+
+    <input type="text" id="suggested_amount" name="suggested_amount" class="form-control" value="<%= @event.suggested_amount %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update event
+  </button>
+</form>
+
+<hr>
+
+<a href="/events">
+  Go back
+</a>
