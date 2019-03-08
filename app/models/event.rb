@@ -14,5 +14,8 @@
 
 class Event < ApplicationRecord
   has_many :customized_preferences, :dependent => :destroy
+  
+    validates :name, :presence => true
+
 
 end

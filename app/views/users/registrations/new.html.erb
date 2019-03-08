@@ -172,9 +172,9 @@
               <% end %>
             <% end %>
 
-            <%= f.label :bio %>
+            Username
 
-            <%= f.text_field :bio, :class => bio_class, :placeholder => "Enter bio" %>
+            <%= f.text_field :bio, :class => bio_class, :placeholder => "Enter a username" %>
 
             <% if bio_was_invalid %>
               <% resource.errors.full_messages_for(:bio).each do |message| %>

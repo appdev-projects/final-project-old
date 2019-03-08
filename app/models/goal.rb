@@ -19,4 +19,10 @@ class Goal < ApplicationRecord
   belongs_to :user
   has_many :customized_preferences, :dependent => :destroy
 
+  validates :name, :presence => true
+  validates :goal_amount, :presence => true
+   
+
+
+
 end

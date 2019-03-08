@@ -30,8 +30,8 @@ class GoalsController < ApplicationController
 
     if @goal.valid?
       @goal.save
-
-      redirect_back(:fallback_location => "/goals", :notice => "Goal created successfully.")
+      
+      redirect_to("/customized_preferences/new", :notice => "Goal created successfully.")
     else
       render("goal_templates/new_form_with_errors.html.erb")
     end

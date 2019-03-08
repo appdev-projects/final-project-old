@@ -15,4 +15,7 @@ class CustomizedPreference < ApplicationRecord
   belongs_to :user
   belongs_to :goal
   belongs_to :event
+  
+      validates :transaction_amount, :presence => true
+
 end

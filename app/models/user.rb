@@ -26,6 +26,12 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
+         #bio hash is a dummy for username
+  validates :bio, :presence => true, :uniqueness => true
+  
+  validates :first_name, :presence => true
+  
+
   
   has_many :goals, :dependent => :destroy
   has_many :customized_preferences, :dependent => :destroy

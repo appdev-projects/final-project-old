@@ -76,6 +76,8 @@ Rails.application.routes.draw do
   #------------------------------
 
   # Routes for the Goal resource:
+  
+  root "goals#index"
 
   # CREATE
   get("/goals/new", { :controller => "goals", :action => "new_form" })
