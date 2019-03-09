@@ -1,5 +1,6 @@
-# Final Project
+# Trust Circle
 
-This is a blank Rails application to use as a starting point for your project.
+The purpose of this app is to create a platform to help people with their relocation during their undergraduate and graduate studies.
 
-Fork it to your own account, set up a Cloud9 workspace as usual, `bin/setup`, Run Project, and code away!
+Trust Circle will make finding housing during your studies a much easier and pleasent experience.
+
