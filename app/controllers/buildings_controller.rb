@@ -27,7 +27,7 @@ class BuildingsController < ApplicationController
     
     street_address = @building.address
     sanitized_street_address = URI.encode(street_address)
-
+    require "open-uri"
     url = "https://maps.googleapis.com/maps/api/geocode/json?address="+sanitized_street_address+"&key="+ENV.fetch("GOOGLE_MAPS_KEY")
     parsed_data = JSON.parse(open(url).read)
     latitude = parsed_data.dig("results", 0, "geometry", "location", "lat")
