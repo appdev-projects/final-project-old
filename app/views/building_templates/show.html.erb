@@ -1,0 +1,72 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Building #<%= @building.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/buildings" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/buildings/<%= @building.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit building
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_building/<%= @building.id %>" class="btn btn-block btn-outline-secondary">
+          Delete building
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Address
+      </dt>
+      <dd>
+        <%= @building.address %>
+      </dd>
+
+      <dt>
+        Neighborhood
+      </dt>
+      <dd>
+        <%= @building.neighborhood %>
+      </dd>
+
+      <dt>
+        Address latitude
+      </dt>
+      <dd>
+        <%= @building.address_latitude %>
+      </dd>
+
+      <dt>
+        Address longitude
+      </dt>
+      <dd>
+        <%= @building.address_longitude %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@building.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@building.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

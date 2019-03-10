@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All apartment photos
+    </h1>
+
+    <a href="/apartment_photos/new" class="btn btn-block btn-outline-secondary">
+      Add a new apartment photo
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Apartment
+        </th>
+
+        <th>
+          Photo
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @apartment_photos.each do |apartment_photo| %>
+      <tr>
+        <td>
+          <%= apartment_photo.id %>
+        </td>
+
+        <td>
+          <%= apartment_photo.description %>
+        </td>
+
+        <td>
+          <%= apartment_photo.apartment_id %>
+        </td>
+
+        <td>
+          <%= apartment_photo.photo %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(apartment_photo.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(apartment_photo.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/apartment_photos/<%= apartment_photo.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

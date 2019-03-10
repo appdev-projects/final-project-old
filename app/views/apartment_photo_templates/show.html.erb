@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Apartment photo #<%= @apartment_photo.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/apartment_photos" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/apartment_photos/<%= @apartment_photo.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit apartment photo
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_apartment_photo/<%= @apartment_photo.id %>" class="btn btn-block btn-outline-secondary">
+          Delete apartment photo
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @apartment_photo.description %>
+      </dd>
+
+      <dt>
+        Apartment
+      </dt>
+      <dd>
+        <%= @apartment_photo.apartment_id %>
+      </dd>
+
+      <dt>
+        Photo
+      </dt>
+      <dd>
+        <%= @apartment_photo.photo %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@apartment_photo.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@apartment_photo.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

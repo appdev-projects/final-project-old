@@ -1,0 +1,66 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All amenities
+    </h1>
+
+    <a href="/amenities/new" class="btn btn-block btn-outline-secondary">
+      Add a new amenity
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @amenities.each do |amenity| %>
+      <tr>
+        <td>
+          <%= amenity.id %>
+        </td>
+
+        <td>
+          <%= amenity.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(amenity.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(amenity.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/amenities/<%= amenity.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

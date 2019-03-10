@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-1">
+      <div class="card bg-light">
+        <div class="card-header">
+          <h4 class="card-title">
+            Add a new Building
+          </h4>
+        </div>
+        
+        <div class="card-body">
+          <form action="/create_building" method="post">
+                      
+            <div class="form-group">
+              <label for="name">
+                Building Name
+              </label>
+          
+              <input type="text" id="name" name="name" class="form-control">
+            </div>
+        
+            <div class="form-group">
+              <label for="address">
+                Address
+              </label>
+          
+              <input type="text" id="address" name="address" class="form-control" value="The building's address...">
+            </div>
+          
+            <div class="form-group">
+              <label for="neighborhood">
+                Neighborhood
+              </label>
+          
+              <input type="text" id="neighborhood" name="neighborhood" class="form-control">
+            </div>
+          
+            <div class="form-group">
+              <label for="webpage">
+                Contact info
+              </label>
+          
+              <input type="text" id="webpage" name="webpage" class="form-control" value="Building's web page...">
+            </div>
+          
+            <button class="btn btn-block btn-outline-secondary">
+              Create building
+            </button>
+          </form>
+       </div>
+      </div>
+          <a href="/buildings">
+            Go back
+          </a>
+    </div>
+  </div>
+</div>

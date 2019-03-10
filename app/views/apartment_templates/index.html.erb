@@ -1,0 +1,130 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All apartments
+    </h1>
+
+    <a href="/apartments/new" class="btn btn-block btn-outline-secondary">
+      Add a new apartment
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Floor plan
+        </th>
+
+        <th>
+          Building
+        </th>
+
+        <th>
+          Bedrooms
+        </th>
+
+        <th>
+          Bathrooms
+        </th>
+
+        <th>
+          Sq footage
+        </th>
+
+        <th>
+          Orientation
+        </th>
+
+        <th>
+          Floor
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @apartments.each do |apartment| %>
+      <tr>
+        <td>
+          <%= apartment.id %>
+        </td>
+
+        <td>
+          <%= apartment.user_id %>
+        </td>
+
+        <td>
+          <%= apartment.description %>
+        </td>
+
+        <td>
+          <%= apartment.floor_plan %>
+        </td>
+
+        <td>
+          <%= apartment.building_id %>
+        </td>
+
+        <td>
+          <%= apartment.bedrooms %>
+        </td>
+
+        <td>
+          <%= apartment.bathrooms %>
+        </td>
+
+        <td>
+          <%= apartment.sq_footage %>
+        </td>
+
+        <td>
+          <%= apartment.orientation %>
+        </td>
+
+        <td>
+          <%= apartment.floor %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(apartment.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(apartment.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/apartments/<%= apartment.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

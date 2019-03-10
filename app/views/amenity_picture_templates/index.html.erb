@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All amenity pictures
+    </h1>
+
+    <a href="/amenity_pictures/new" class="btn btn-block btn-outline-secondary">
+      Add a new amenity picture
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Picture
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Building amenity
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @amenity_pictures.each do |amenity_picture| %>
+      <tr>
+        <td>
+          <%= amenity_picture.id %>
+        </td>
+
+        <td>
+          <%= amenity_picture.picture %>
+        </td>
+
+        <td>
+          <%= amenity_picture.description %>
+        </td>
+
+        <td>
+          <%= amenity_picture.building_amenity_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(amenity_picture.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(amenity_picture.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/amenity_pictures/<%= amenity_picture.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

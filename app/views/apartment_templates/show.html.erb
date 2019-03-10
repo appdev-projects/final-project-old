@@ -1,0 +1,107 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Apartment #<%= @apartment.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/apartments" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/apartments/<%= @apartment.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit apartment
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_apartment/<%= @apartment.id %>" class="btn btn-block btn-outline-secondary">
+          Delete apartment
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @apartment.user_id %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @apartment.description %>
+      </dd>
+
+      <dt>
+        Floor plan
+      </dt>
+      <dd>
+        <%= @apartment.floor_plan %>
+      </dd>
+
+      <dt>
+        Building
+      </dt>
+      <dd>
+        <%= @apartment.building_id %>
+      </dd>
+
+      <dt>
+        Bedrooms
+      </dt>
+      <dd>
+        <%= @apartment.bedrooms %>
+      </dd>
+
+      <dt>
+        Bathrooms
+      </dt>
+      <dd>
+        <%= @apartment.bathrooms %>
+      </dd>
+
+      <dt>
+        Sq footage
+      </dt>
+      <dd>
+        <%= @apartment.sq_footage %>
+      </dd>
+
+      <dt>
+        Orientation
+      </dt>
+      <dd>
+        <%= @apartment.orientation %>
+      </dd>
+
+      <dt>
+        Floor
+      </dt>
+      <dd>
+        <%= @apartment.floor %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@apartment.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@apartment.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

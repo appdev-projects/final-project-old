@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @building_amenity.present? %>
+  <% if @building_amenity.errors.any? %>
+    <% @building_amenity.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new building amenity
+</h1>
+
+
+<hr>
+
+<form action="/create_building_amenity" method="post">
+
+  <div class="form-group">
+    <label for="building_id">
+      Building
+    </label>
+
+    <input type="text" id="building_id" name="building_id" class="form-control" value="<%= @building_amenity.building_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="amenity_id">
+      Amenity
+    </label>
+
+    <input type="text" id="amenity_id" name="amenity_id" class="form-control" value="<%= @building_amenity.amenity_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create building amenity
+  </button>
+</form>
+
+<hr>
+
+<a href="/building_amenities">
+  Go back
+</a>

@@ -1,0 +1,42 @@
+<h1>
+  Edit amenity picture #<%= @amenity_picture.id %>
+</h1>
+
+<hr>
+
+<form action="/update_amenity_picture/<%= @amenity_picture.id %>" method="post">
+
+  <div class="form-group">
+    <label for="picture">
+      Picture
+    </label>
+
+    <input type="text" id="picture" name="picture" class="form-control" value="<%= @amenity_picture.picture %>">
+  </div>
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control" value="<%= @amenity_picture.description %>">
+  </div>
+
+  <div class="form-group">
+    <label for="building_amenity_id">
+      Building amenity
+    </label>
+
+    <input type="text" id="building_amenity_id" name="building_amenity_id" class="form-control" value="<%= @amenity_picture.building_amenity_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update amenity picture
+  </button>
+</form>
+
+<hr>
+
+<a href="/amenity_pictures">
+  Go back
+</a>

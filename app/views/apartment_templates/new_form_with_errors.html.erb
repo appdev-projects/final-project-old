@@ -1,0 +1,102 @@
+<!-- Validation failure messages -->
+<% if @apartment.present? %>
+  <% if @apartment.errors.any? %>
+    <% @apartment.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new apartment
+</h1>
+
+
+<hr>
+
+<form action="/create_apartment" method="post">
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @apartment.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control" value="<%= @apartment.description %>">
+  </div>
+
+  <div class="form-group">
+    <label for="floor_plan">
+      Floor plan
+    </label>
+
+    <input type="text" id="floor_plan" name="floor_plan" class="form-control" value="<%= @apartment.floor_plan %>">
+  </div>
+
+  <div class="form-group">
+    <label for="building_id">
+      Building
+    </label>
+
+    <input type="text" id="building_id" name="building_id" class="form-control" value="<%= @apartment.building_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="bedrooms">
+      Bedrooms
+    </label>
+
+    <input type="text" id="bedrooms" name="bedrooms" class="form-control" value="<%= @apartment.bedrooms %>">
+  </div>
+
+  <div class="form-group">
+    <label for="bathrooms">
+      Bathrooms
+    </label>
+
+    <input type="text" id="bathrooms" name="bathrooms" class="form-control" value="<%= @apartment.bathrooms %>">
+  </div>
+
+  <div class="form-group">
+    <label for="sq_footage">
+      Sq footage
+    </label>
+
+    <input type="text" id="sq_footage" name="sq_footage" class="form-control" value="<%= @apartment.sq_footage %>">
+  </div>
+
+  <div class="form-group">
+    <label for="orientation">
+      Orientation
+    </label>
+
+    <input type="text" id="orientation" name="orientation" class="form-control" value="<%= @apartment.orientation %>">
+  </div>
+
+  <div class="form-group">
+    <label for="floor">
+      Floor
+    </label>
+
+    <input type="text" id="floor" name="floor" class="form-control" value="<%= @apartment.floor %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create apartment
+  </button>
+</form>
+
+<hr>
+
+<a href="/apartments">
+  Go back
+</a>

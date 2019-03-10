@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All apartment bookmarks
+    </h1>
+
+    <a href="/apartment_bookmarks/new" class="btn btn-block btn-outline-secondary">
+      Add a new apartment bookmark
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Apartment
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @apartment_bookmarks.each do |apartment_bookmark| %>
+      <tr>
+        <td>
+          <%= apartment_bookmark.id %>
+        </td>
+
+        <td>
+          <%= apartment_bookmark.user_id %>
+        </td>
+
+        <td>
+          <%= apartment_bookmark.apartment_id %>
+        </td>
+
+        <td>
+          <%= apartment_bookmark.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(apartment_bookmark.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(apartment_bookmark.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/apartment_bookmarks/<%= apartment_bookmark.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

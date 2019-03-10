@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Apartment bookmark #<%= @apartment_bookmark.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/apartment_bookmarks" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/apartment_bookmarks/<%= @apartment_bookmark.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit apartment bookmark
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_apartment_bookmark/<%= @apartment_bookmark.id %>" class="btn btn-block btn-outline-secondary">
+          Delete apartment bookmark
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @apartment_bookmark.user_id %>
+      </dd>
+
+      <dt>
+        Apartment
+      </dt>
+      <dd>
+        <%= @apartment_bookmark.apartment_id %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @apartment_bookmark.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@apartment_bookmark.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@apartment_bookmark.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

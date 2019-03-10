@@ -1,0 +1,50 @@
+<% if @building_bookmark.errors.any? %>
+  <% @building_bookmark.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit building bookmark #<%= @building_bookmark.id %>
+</h1>
+
+<hr>
+
+<form action="/update_building_bookmark/<%= @building_bookmark.id %>" method="post">
+
+  <div class="form-group">
+    <label for="building_id">
+      Building
+    </label>
+
+    <input type="text" id="building_id" name="building_id" class="form-control" value="<%= @building_bookmark.building_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @building_bookmark.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @building_bookmark.name %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update building bookmark
+  </button>
+</form>
+
+<hr>
+
+<a href="/building_bookmarks">
+  Go back
+</a>

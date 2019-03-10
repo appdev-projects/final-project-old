@@ -1,0 +1,62 @@
+<!-- Validation failure messages -->
+<% if @building.present? %>
+  <% if @building.errors.any? %>
+    <% @building.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new building
+</h1>
+
+
+<hr>
+
+<form action="/create_building" method="post">
+
+  <div class="form-group">
+    <label for="address">
+      Address
+    </label>
+
+    <input type="text" id="address" name="address" class="form-control" value="<%= @building.address %>">
+  </div>
+
+  <div class="form-group">
+    <label for="neighborhood">
+      Neighborhood
+    </label>
+
+    <input type="text" id="neighborhood" name="neighborhood" class="form-control" value="<%= @building.neighborhood %>">
+  </div>
+
+  <div class="form-group">
+    <label for="address_latitude">
+      Address latitude
+    </label>
+
+    <input type="text" id="address_latitude" name="address_latitude" class="form-control" value="<%= @building.address_latitude %>">
+  </div>
+
+  <div class="form-group">
+    <label for="address_longitude">
+      Address longitude
+    </label>
+
+    <input type="text" id="address_longitude" name="address_longitude" class="form-control" value="<%= @building.address_longitude %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create building
+  </button>
+</form>
+
+<hr>
+
+<a href="/buildings">
+  Go back
+</a>

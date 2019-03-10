@@ -1,0 +1,82 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All building bookmarks
+    </h1>
+
+    <a href="/building_bookmarks/new" class="btn btn-block btn-outline-secondary">
+      Add a new building bookmark
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Building
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @building_bookmarks.each do |building_bookmark| %>
+      <tr>
+        <td>
+          <%= building_bookmark.id %>
+        </td>
+
+        <td>
+          <%= building_bookmark.building_id %>
+        </td>
+
+        <td>
+          <%= building_bookmark.user_id %>
+        </td>
+
+        <td>
+          <%= building_bookmark.name %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(building_bookmark.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(building_bookmark.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/building_bookmarks/<%= building_bookmark.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
