@@ -23,6 +23,7 @@ class User < ApplicationRecord
 # Validations
   validates :username, :uniqueness => true
   validates :username, :presence => true
+  validates :email, :uniqueness => true
 
 # Associations
   has_many :apartments, :dependent => :destroy

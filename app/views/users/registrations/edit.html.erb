@@ -1,14 +1,14 @@
 <div class="row">
   <div class="offset-md-3 col-md-6">
-    <div class="card mb-3">
-      <h5 class="card-header">
+    <div class="card shadow bg-white rounded">
+      <h5 class="card-header font-weight-bolder bg-secondary text-white">
         Edit <%= resource_name.to_s.titleize %>
       </h5>
 
       <div class="card-body">
         <% was_validated = resource.errors.any? %>
 
-        <% form_html_options = { method: :put, novalidate: true, class: "mb-3" } %>
+        <% form_html_options = { method: :put, novalidate: true, class: "mb-1" } %>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: form_html_options) do |f| %>
           <% if flash[:notice].present? %>
@@ -23,7 +23,7 @@
             </div>
           <% end %>
 
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% email_was_invalid = resource.errors.include?(:email) %>
 
             <% email_class = "form-control" %>
@@ -55,7 +55,7 @@
             <% end %>
           </div>
 
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% password_was_invalid = resource.errors.include?(:password) %>
 
             <% password_class = "form-control" %>
@@ -89,7 +89,7 @@
             </small>
           </div>
 
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% password_confirmation_was_invalid = resource.errors.include?(:password_confirmation) %>
 
             <% password_confirmation_class = "form-control" %>
@@ -115,7 +115,7 @@
             <% end %>
           </div>
 
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% current_password_was_invalid = resource.errors.include?(:current_password) %>
 
             <% current_password_class = "form-control" %>
@@ -147,7 +147,7 @@
 
           
           <!-- Devise Input for username start -->
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% username_was_invalid = resource.errors.include?(:username) %>
 
             <% username_class = "form-control" %>
@@ -173,14 +173,13 @@
             <% end %>
           </div>
           <!-- Devise Input for username end -->
-          <%= f.submit "Update", class: "btn btn-block btn-outline-primary" %>
+          <%= f.submit "Update", class: "btn btn-block btn-outline-primary font-weight-bold"  %>
         <% end %>
 
-        <%= link_to "Back", :back, class: "btn btn-block btn-outline-secondary" %>
       </div>
 
       <div class="card-footer">
-        <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-block btn-link", method: :delete %>
+        <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "btn btn-block btn-link text-danger", method: :delete %>
       </div>
     </div>
   </div>
