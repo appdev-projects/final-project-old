@@ -22,9 +22,20 @@ class BuildingsController < ApplicationController
 
     @building.address = params.fetch("address")
     @building.neighborhood = params.fetch("neighborhood")
-    @building.address_latitude = params.fetch("address_latitude")
-    @building.address_longitude = params.fetch("address_longitude")
+    @building.name = params.fetch("name")
+    @building.webpage = params.fetch("webpage")
+    
+    street_address = @building.address
+    sanitized_street_address = URI.encode(street_address)
 
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address="+sanitized_street_address+"&key="+ENV.fetch("GOOGLE_MAPS_KEY")
+    parsed_data = JSON.parse(open(url).read)
+    latitude = parsed_data.dig("results", 0, "geometry", "location", "lat")
+    longitude = parsed_data.dig("results", 0, "geometry", "location", "lng")
+    
+    @building.address_latitude = latitude
+
+    @building.address_longitude = longitude
     if @building.valid?
       @building.save
 
