@@ -1,0 +1,51 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Amenity #<%= @amenity.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/amenities" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/amenities/<%= @amenity.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit amenity
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_amenity/<%= @amenity.id %>" class="btn btn-block btn-outline-secondary">
+          Delete amenity
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @amenity.name %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@amenity.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@amenity.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

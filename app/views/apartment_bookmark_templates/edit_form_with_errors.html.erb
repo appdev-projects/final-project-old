@@ -1,0 +1,50 @@
+<% if @apartment_bookmark.errors.any? %>
+  <% @apartment_bookmark.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit apartment bookmark #<%= @apartment_bookmark.id %>
+</h1>
+
+<hr>
+
+<form action="/update_apartment_bookmark/<%= @apartment_bookmark.id %>" method="post">
+
+  <div class="form-group">
+    <label for="user_id">
+      User
+    </label>
+
+    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @apartment_bookmark.user_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="apartment_id">
+      Apartment
+    </label>
+
+    <input type="text" id="apartment_id" name="apartment_id" class="form-control" value="<%= @apartment_bookmark.apartment_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @apartment_bookmark.name %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update apartment bookmark
+  </button>
+</form>
+
+<hr>
+
+<a href="/apartment_bookmarks">
+  Go back
+</a>

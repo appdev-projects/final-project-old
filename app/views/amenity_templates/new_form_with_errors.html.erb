@@ -1,0 +1,38 @@
+<!-- Validation failure messages -->
+<% if @amenity.present? %>
+  <% if @amenity.errors.any? %>
+    <% @amenity.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new amenity
+</h1>
+
+
+<hr>
+
+<form action="/create_amenity" method="post">
+
+  <div class="form-group">
+    <label for="name">
+      Name
+    </label>
+
+    <input type="text" id="name" name="name" class="form-control" value="<%= @amenity.name %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create amenity
+  </button>
+</form>
+
+<hr>
+
+<a href="/amenities">
+  Go back
+</a>

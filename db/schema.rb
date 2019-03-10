@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221161615) do
+ActiveRecord::Schema.define(version: 20190309235721) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -41,6 +41,88 @@ ActiveRecord::Schema.define(version: 20180221161615) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "amenities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "amenity_pictures", force: :cascade do |t|
+    t.string "picture"
+    t.string "description"
+    t.integer "building_amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "apartment_bookmarks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "apartment_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "apartment_photos", force: :cascade do |t|
+    t.string "description"
+    t.integer "apartment_id"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "apartments", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "description"
+    t.string "floor_plan"
+    t.integer "building_id"
+    t.integer "bedrooms"
+    t.integer "bathrooms"
+    t.integer "sq_footage"
+    t.string "orientation"
+    t.integer "floor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "building_amenities", force: :cascade do |t|
+    t.integer "building_id"
+    t.integer "amenity_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "building_bookmarks", force: :cascade do |t|
+    t.integer "building_id"
+    t.integer "user_id"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "buildings", force: :cascade do |t|
+    t.string "address"
+    t.string "neighborhood"
+    t.float "address_latitude"
+    t.float "address_longitude"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "username"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

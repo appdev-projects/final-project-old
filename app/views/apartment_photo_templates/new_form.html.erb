@@ -1,0 +1,43 @@
+<h1>
+  Add a new apartment photo
+</h1>
+
+
+<hr>
+
+<form action="/create_apartment_photo" method="post">
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <input type="text" id="description" name="description" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="apartment_id">
+      Apartment
+    </label>
+
+    <input type="text" id="apartment_id" name="apartment_id" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="photo">
+      Photo
+    </label>
+
+    <input type="text" id="photo" name="photo" class="form-control">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create apartment photo
+  </button>
+</form>
+
+<hr>
+
+<a href="/apartment_photos">
+  Go back
+</a>

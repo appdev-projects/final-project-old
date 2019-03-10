@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Building amenity #<%= @building_amenity.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/building_amenities" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/building_amenities/<%= @building_amenity.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit building amenity
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_building_amenity/<%= @building_amenity.id %>" class="btn btn-block btn-outline-secondary">
+          Delete building amenity
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Building
+      </dt>
+      <dd>
+        <%= @building_amenity.building_id %>
+      </dd>
+
+      <dt>
+        Amenity
+      </dt>
+      <dd>
+        <%= @building_amenity.amenity_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@building_amenity.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@building_amenity.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
