@@ -26,7 +26,7 @@ class BuildingAmenitiesController < ApplicationController
     if @building_amenity.valid?
       @building_amenity.save
 
-      redirect_back(:fallback_location => "/building_amenities", :notice => "Building amenity created successfully.")
+      redirect_back(:fallback_location => "/buildings/", :notice => "Building amenity created successfully.")
     else
       render("building_amenity_templates/new_form_with_errors.html.erb")
     end

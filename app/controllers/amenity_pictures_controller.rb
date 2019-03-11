@@ -23,11 +23,12 @@ class AmenityPicturesController < ApplicationController
     @amenity_picture.picture = params.fetch("picture")
     @amenity_picture.description = params.fetch("description")
     @amenity_picture.building_amenity_id = params.fetch("building_amenity_id")
+    Cloudinary::Uploader.upload(params.fetch("picture"))
 
     if @amenity_picture.valid?
       @amenity_picture.save
 
-      redirect_back(:fallback_location => "/amenity_pictures", :notice => "Amenity picture created successfully.")
+      redirect_back(:fallback_location => "/amenities/")
     else
       render("amenity_picture_templates/new_form_with_errors.html.erb")
     end

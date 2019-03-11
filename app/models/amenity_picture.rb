@@ -11,6 +11,8 @@
 #
 
 class AmenityPicture < ApplicationRecord
+  mount_uploader :picture, PictureUploader
+
 # Validations
     validates :building_amenity_id, :picture, presence: true
 # Associations

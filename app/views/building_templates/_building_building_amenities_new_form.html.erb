@@ -1,0 +1,16 @@
+<form action="/create_building_amenity_from_building" method="post" class="form-horizontal" enctype="multipart/form-data">
+
+  <input type="hidden" name="building_id" value="<%= @building.id %>">
+
+  <div class="form-group">
+    <label for="amenity_id">
+      Amenity
+    </label>
+
+    <%= select_tag(:amenity_id, options_from_collection_for_select(Amenity.all, :id, :name), :class => "form-control") %>
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create building amenity
+  </button>
+</form>

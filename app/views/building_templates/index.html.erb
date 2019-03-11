@@ -10,6 +10,11 @@
   </div>
 </div>
 
+<div class="row mb-3">
+  <div class="col-md-12">
+    <%= render partial: "building_templates/all_photos_map" %>
+  </div>
+</div>
 
 <hr>
 
@@ -18,7 +23,7 @@
     <table class="table">
       <tr>
         <th>
-          ID
+          Name
         </th>
 
         <th>
@@ -29,30 +34,14 @@
           Neighborhood
         </th>
 
-        <th>
-          Address latitude
-        </th>
-
-        <th>
-          Address longitude
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
       </tr>
 
       <% @buildings.each do |building| %>
       <tr>
         <td>
-          <%= building.id %>
+          <a href="/buildings/<%= building.id %>">
+            <%= building.name %>
+          </a>
         </td>
 
         <td>
@@ -61,27 +50,6 @@
 
         <td>
           <%= building.neighborhood %>
-        </td>
-
-        <td>
-          <%= building.address_latitude %>
-        </td>
-
-        <td>
-          <%= building.address_longitude %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(building.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(building.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/buildings/<%= building.id %>">
-            Show details
-          </a>
         </td>
       </tr>
       <% end %>

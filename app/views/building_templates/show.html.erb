@@ -1,9 +1,5 @@
 <div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h1>
-      Building #<%= @building.id %> details
-    </h1>
-
+  <div class="col-md-12">
     <div class="row mb-3">
       <div class="col">
         <a href="/buildings" class="btn btn-block btn-outline-secondary">
@@ -23,50 +19,50 @@
         </a>
       </div>
     </div>
+    <div class="row mb-3 mt-3">
+      <div class="col-md-6">
+        <dl>
+          <dt>
+            Address
+          </dt>
+          <dd>
+            <div>
+              <%= render partial: "building_templates/one_photo_map" %>
+            </div>
+          </dd>
+        </dl>
+      </div>
+      <div class="col-md-6">
+        <dl>
+          <dt>
+            Name
+          </dt>
+          <dd>
+            <%= @building.name %>
+          </dd>
+          
+          <dt>
+            Neighborhood
+          </dt>
+          <dd>
+            <%= @building.neighborhood %>
+          </dd>
+    
+          <dt>
+            Web Page
+          </dt>
+          <dd>
+            <a target="_blank" href="<%= @building.webpage %>"><%= @building.webpage %></a>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <dl>
-      <dt>
-        Address
-      </dt>
-      <dd>
-        <%= @building.address %>
-      </dd>
-
-      <dt>
-        Neighborhood
-      </dt>
-      <dd>
-        <%= @building.neighborhood %>
-      </dd>
-
-      <dt>
-        Address latitude
-      </dt>
-      <dd>
-        <%= @building.address_latitude %>
-      </dd>
-
-      <dt>
-        Address longitude
-      </dt>
-      <dd>
-        <%= @building.address_longitude %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@building.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@building.updated_at) %> ago
-      </dd>
-    </dl>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <%= render partial: "building_templates/building_building_amenities" %>
   </div>
 </div>
 
