@@ -1,0 +1,9 @@
+<div id="location_map" style="height: 480px;"></div>
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'location_map'}}, function(){
+    markers = handler.addMarkers(<%= raw @location_hash.to_json %>);
+    handler.bounds.extendWith(markers);
+    handler.fitMapToBounds();
+  });
+</script>

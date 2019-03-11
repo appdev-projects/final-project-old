@@ -1,0 +1,31 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Building Amenities
+
+    <a data-toggle="collapse" href="#building_building_amenities_new_form">
+      Add building amenity
+    </a>
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @building.building_amenities.each do |building_amenity| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <a href="/building_amenities/<%= building_amenity.id %>">
+          <%= building_amenity.amenity.name %>
+        </a>
+
+        <%building_amenity.amenity_pictures.each do |amenity_picture|%>
+          <img src="<%=amenity_picture.picture%>" class="rounded mx-auto d-block img-responsive">
+          <!--<img src="https://res.cloudinary.com/dsakypwii/image/upload/v1552281362/f0xiv6njtxpl0hp4elup.png" class="rounded mx-auto d-block img-responsive">-->
+        <%end%>
+      </li>
+    <% end %>
+
+    <div class="card-footer">
+      <div class="collapse" id="building_building_amenities_new_form">
+        <%= render partial: "building_templates/building_building_amenities_new_form" %>
+      </div>
+    </div>
+
+  </ul>
+</div>

@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   # CREATE
   get("/building_amenities/new", { :controller => "building_amenities", :action => "new_form" })
   post("/create_building_amenity", { :controller => "building_amenities", :action => "create_row" })
+  post("/create_building_amenity_from_building", { :controller => "building_amenities", :action => "create_row" })
 
+  
   # READ
   get("/building_amenities", { :controller => "building_amenities", :action => "index" })
   get("/building_amenities/:id_to_display", { :controller => "building_amenities", :action => "show" })
