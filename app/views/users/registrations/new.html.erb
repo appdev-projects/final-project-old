@@ -1,7 +1,7 @@
 <div class="row">
   <div class="offset-md-3 col-md-6">
-    <div class="card mb-3">
-      <h5 class="card-header">
+    <div class="card mb-3 shadow bg-white rounded">
+      <h5 class="card-header font-weight-bolder bg-secondary text-white">
         <%= resource_name != "user" ? resource_name.to_s.titleize : "" %> Sign Up
       </h5>
 
@@ -23,7 +23,7 @@
         <% form_html_options = { novalidate: true, class: "mb-3" } %>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: form_html_options) do |f| %>
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% email_was_invalid = resource.errors.include?(:email) %>
 
             <% email_class = "form-control" %>
@@ -49,7 +49,7 @@
             <% end %>
           </div>
 
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% password_was_invalid = resource.errors.include?(:password) %>
 
             <% password_class = "form-control" %>
@@ -75,7 +75,7 @@
             <% end %>
           </div>
 
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% password_confirmation_was_invalid = resource.errors.include?(:password_confirmation) %>
 
             <% password_confirmation_class = "form-control" %>
@@ -103,7 +103,7 @@
 
           
           <!-- Devise Input for username start -->
-          <div class="form-group">
+          <div class="form-group font-weight-bold">
             <% username_was_invalid = resource.errors.include?(:username) %>
 
             <% username_class = "form-control" %>
@@ -129,7 +129,7 @@
             <% end %>
           </div>
           <!-- Devise Input for username end -->
-          <%= f.button class: "btn btn-outline-primary btn-block" %>
+          <%= f.button class: "btn btn-outline-primary btn-block font-weight-bold" %>
 
           <hr>
 
