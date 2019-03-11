@@ -38,14 +38,16 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <% if current_user.present? %>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/users/edit">
+                <i class="fas fa-user-circle"></i>
                 <%= current_user.username %>
               </a>
             </li>
 
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="/users/sign_out" data-method="delete" rel="nofollow">
+                <i class="fas fa-sign-out-alt"></i>
                 Sign Out
               </a>
             </li>
