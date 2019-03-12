@@ -27,7 +27,8 @@ class User < ApplicationRecord
 
 # Associations
   has_many :apartments, :dependent => :destroy
-  
+  validates :email, format: { with: /\@chicagobooth.edu/,
+    message: "you must register with your student account" }
   has_many :bookmarked_apartments, :through => :apartment_bookmarks, :source => :apartment
   has_many :bookmarked_buildings, :through => :building_bookmarks, :source => :building
     
