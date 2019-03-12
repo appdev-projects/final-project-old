@@ -23,7 +23,7 @@ class AmenityPicturesController < ApplicationController
     @amenity_picture.picture = params.fetch("picture")
     @amenity_picture.description = params.fetch("description")
     @amenity_picture.building_amenity_id = params.fetch("building_amenity_id")
-    Cloudinary::Uploader.upload(params.fetch("picture"))
+    # Cloudinary::Uploader.upload(params.fetch("picture"))
 
     if @amenity_picture.valid?
       @amenity_picture.save
