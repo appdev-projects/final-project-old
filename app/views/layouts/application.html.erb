@@ -29,14 +29,29 @@
   </style>
 </head>
 
-<body>
-  <%= render "shared/navbar" %>
 
-  <div class="container">
-    <%= render "shared/flashes" %>
+<% if current_user %>
+  <body>
+    <%= render "shared/navbar" %>
+  
+    <div class="container">
+      <%= render "shared/flashes" %>
+  
+      <%= yield %>
+    </div>
+  
+  </body>
+<% else %>
+  <body class="signin">
+    <%= render "shared/navbar" %>
+  
+    <div class="container">
+      <%= render "shared/flashes" %>
+  
+      <%= yield %>
+    </div>
+  
+  </body>
+<% end %>
 
-    <%= yield %>
-  </div>
-
-</body>
 </html>
