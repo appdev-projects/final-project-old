@@ -6,7 +6,7 @@
   </title>
 
   <!-- Your file css -->
-  <link rel="stylesheet" href="my_stylesheet.css" />
+  <link rel="stylesheet" href="my_stylesheet.css" media="all"/>
 
   <%= render "shared/bootstrapcdn_assets" %>
 
@@ -42,7 +42,7 @@
   
   </body>
 <% else %>
-  <body class="signin">
+  <body class="logged_in">
     <%= render "shared/navbar" %>
   
     <div class="container">
