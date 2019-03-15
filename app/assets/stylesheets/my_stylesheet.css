@@ -1,4 +1,4 @@
-body.signin {
+.logged_in {
   background-image: url(/chicago_night_edited.png);
   
   /* Full height */
@@ -13,4 +13,8 @@ body.signin {
 
 .fa-circle-notch:hover {
     color: red;
+}
+
+.translucid {
+  opacity: 0.8;
 }
