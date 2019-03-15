@@ -20,7 +20,7 @@
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
   <script src='//cdn.jsdelivr.net/gmaps4rails/2.1.2/gmaps4rails.js'> </script>
   <script src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js'> </script>
-  <script src='my_js.js'></script>
+  <!--<script src='my_js.js'></script>-->
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -30,14 +30,29 @@
   </style>
 </head>
 
-<body>
-  <%= render "shared/navbar" %>
 
-  <div class="container">
-    <%= render "shared/flashes" %>
+<% if current_user %>
+  <body>
+    <%= render "shared/navbar" %>
+  
+    <div class="container">
+      <%= render "shared/flashes" %>
+  
+      <%= yield %>
+    </div>
+  
+  </body>
+<% else %>
+  <body class="signin">
+    <%= render "shared/navbar" %>
+  
+    <div class="container">
+      <%= render "shared/flashes" %>
+  
+      <%= yield %>
+    </div>
+  
+  </body>
+<% end %>
 
-    <%= yield %>
-  </div>
-
-</body>
 </html>

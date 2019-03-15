@@ -1,6 +1,6 @@
 body {
   background-image: url("/assets/images/chicago_night.jpg");
-  background-color: lightgrey !important;
+  /*background-color: lightgrey !important;*/
 }
 
 .fa-circle-notch:hover {
