@@ -13,10 +13,6 @@
         <a href="/building_amenities/<%= building_amenity.id %>">
           <%= building_amenity.amenity.name %>
         </a>
-
-        <%building_amenity.amenity_pictures.each do |amenity_picture|%>
-          <img src="<%=amenity_picture.picture%>" class="rounded mx-auto d-block img-responsive">
-        <%end%>
       </li>
     <% end %>
 
