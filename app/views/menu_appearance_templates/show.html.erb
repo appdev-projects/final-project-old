@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Menu appearance #<%= @menu_appearance.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/menu_appearances" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/menu_appearances/<%= @menu_appearance.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit menu appearance
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_menu_appearance/<%= @menu_appearance.id %>" class="btn btn-block btn-outline-secondary">
+          Delete menu appearance
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Recipe
+      </dt>
+      <dd>
+        <%= @menu_appearance.recipe_id %>
+      </dd>
+
+      <dt>
+        Menu
+      </dt>
+      <dd>
+        <%= @menu_appearance.menu_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@menu_appearance.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@menu_appearance.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

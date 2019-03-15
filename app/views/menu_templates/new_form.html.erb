@@ -1,0 +1,73 @@
+<h1>
+  Add a new menu
+</h1>
+
+
+<hr>
+
+<div class="card">
+  <div class="card-header">
+    Add a menu
+  </div>
+<div class="card-body">
+  <form action="/create_menu" method="post">
+    <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%=current_user.id%>">
+    <div class="form-row">
+      <div class="col">
+        <label for="name">
+          Menu Name
+        </label>
+      </div>
+      <div class="col">
+        <label for="servings">
+          How many people are you serving?
+        </label>
+      </div>
+      <div class="col">
+        <label for="target_completion_time">
+          When is dinner served? (allegedly...)        
+        </label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" id="name" name="name" class="form-control">
+      </div>
+      <div class="col">
+        <select class="custom-select w-100" id="servings" name="servings">
+          <option selected>Dinner for...</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+          <option value="4">Four</option>
+          <option value="5">Five</option>
+          <option value="6">Six</option>
+          <option value="7">Seven</option>
+          <option value="8">Eight</option>
+          <option value="9">Nine</option>
+          <option value="10">Ten</option>
+          <option value="11">Eleven</option>
+          <option value="12">Twelve </option>
+        </select>
+      </div>
+      <div class="col">
+        INPUT TEXT FOR time inpUT
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">
+        Description
+      </label>
+      <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+    </div>
+  
+    <button class="btn btn-block btn-outline-secondary">
+      Create menu
+    </button>
+  </form>
+
+<hr>
+
+<a href="/menus">
+  Go back
+</a>

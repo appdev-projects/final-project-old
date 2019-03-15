@@ -1,0 +1,195 @@
+<div class="row mb-3">
+  <div class="container">
+    <div class="jumbotron container">
+      <h1 class="display-4"> <%= @recipe.title %></h1>
+      <p class="lead"><%= @recipe.description %></p>
+      <hr class="my-4">
+      <p> This recipe serves <%= @recipe.number_served %> people and 
+      <% if @recipe.total_time.to_i > 0 %>
+      currently takes <%= @recipe.total_time %> minutes to prepare with existing steps.
+      <% else %>
+      you should add some steps to see how long it will take to make! 
+      <% end %>
+      Big thanks to <a href="/users/<% @recipe.user_id%>"> <%= @recipe.user.email %></a> for adding it!
+      </p>
+    </div>
+    <div class = "row mb-3 container mx-auto">
+      <div class="card w-auto">
+        <div class="card-header">
+          Add a step to this recipe!
+        </div>
+        <div class="card-body">
+          <form action="/create_step" method="post">
+            <input type="hidden" id="recipe_id" name="recipe_id" class="form-control" value = "<%=@recipe.id%>">
+            <input type="hidden" id="user_id" name="user_id" class="form-control" value = "<%= current_user.id %>">
+            <div class="form-row">
+              <div class ="col">
+                <label>
+                  Active step? (as in, can you sit around and scroll twitter or are you chopping shit?)
+                </label>
+              </div>
+              <div class ="col">
+                <label>
+                  Step Number (as in, what step in the recipe is this?
+                </label>
+              </div>
+              <div class ="col">
+                <label>
+                  Step time (in minutes - it is ok to estimate!)
+                </label>
+              </div>              
+            </div>    
+            <div class="form-row">
+              <div class="col">
+                <select class="form-control form-control-md" id="active" name="active">
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="1, 2, 3, 4...how many steps were before this?" id="sequence_number" name="sequence_number" >
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" placeholder="5, 4, 3, 20...you get how to type a number right?" name="time_length" id=" time_lengthclass" class="form-control" >
+              </div>
+            </div>    
+            <div class="form-group">
+              <label for="description">
+                Description
+              </label>
+              <textarea id="description" name="description" class="form-control" rows="1" placeholder= "Dice the onions and begin to heat up a skillet.  Then place onions in the skillet and brown.  You know write something like that."></textarea>
+            </div>
+            <div class="form-group">
+              <label for="equipment_used">
+                What equipment are you gonna use here?
+              </label>
+              <textarea id="equipment_used" name="equipment_used" class="form-control" rows="1" placeholder="Sous vide? Frying pan? Oven?"></textarea>
+            </div>            
+            <button class="btn btn-block btn-outline-secondary">
+              Add Recipe Step!
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class = "row mb-3 container mx-auto">
+      <% @steps.each do |step| %>
+      <% if step.active == 1 %>
+        <div class="card text-white bg-primary mb-3 w-100">
+          <div class="card-header"> 
+           <h5 class= "card-title">
+            Step <%= step.sequence_number %>
+           </h5>
+           <p>
+             This step is active!
+           </p>
+          </div>
+          <div class="card-body text-white">
+            <p class="card-text text-white"><%= step.description %></p>
+            <p class="card-text text-white"> Equipment: <%= step.equipment_used %></p>
+            <div class="row text-white">
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col text-white">
+               <a href="/delete_step/<%= step.id %> " class="text-white"> 
+                  Delete Step
+                </a>                
+              </div>
+              <div class="col text-white">
+                <a href="/steps/<%= step.id %>/edit" class="text-white"> 
+                  Edit Step
+                </a>
+              </div>
+            </div>            
+          </div>
+          <div class="card-footer">
+            This step takes <%= step.time_length %> minutes
+          </div>
+        </div>
+      <%else%>  
+        <div class="card border-primary mb-3 w-100">
+          <div class="card-header"> 
+           <h5 class= "card-title">
+             Step <%= step.sequence_number %>
+           </h5>
+          </div>
+          <div class="card-body text-primary">
+            <p class="card-text"><%= step.description %></p>
+            <p class="card-text"> Equipment: <%= step.equipment_used %></p>
+            <div class="row">
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+              </div>
+              <div class="col">
+               <a href="/delete_step/<%= step.id %> "> 
+                  Delete Step
+                </a>                
+              </div>
+              <div class="col">
+                <a href="/steps/<%= step.id %>/edit "> 
+                  Edit Step
+                </a>
+              </div>
+            </div>            
+          </div>
+          <div class="card-footer">
+            This step takes <%= step.time_length %> minutes
+          </div>
+        </div>      
+      <%end%>
+      <%end%>
+    </div>
+    <div class="container">
+      <div class="row mb-3 mx-auto">
+        <div class="col">
+          <a href = "/update_recipe_time/<%=@recipe.id%>">
+            <button class="btn btn-block btn-success">
+                Complete this recipe!
+            </button>
+          </a>
+        </div>
+      </div>
+      <div class="row mb-3 mx-auto">
+        <div class="col">
+          <a href="/recipes" class="btn btn-block btn-outline-primary">
+            Go Back
+          </a>
+        </div>
+        <div class="col">
+          <a href="/recipes/<%= @recipe.id %>/edit" class="btn btn-block btn-outline-primary">
+            Edit recipe
+          </a>
+        </div>
+        <div class="col">
+          <a href="/delete_recipe/<%= @recipe.id %>" class="btn btn-block btn-outline-danger">
+            Delete recipe
+          </a>
+        </div>      
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,86 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Step #<%= @step.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/steps" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/steps/<%= @step.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit step
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_step/<%= @step.id %>" class="btn btn-block btn-outline-secondary">
+          Delete step
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Recipe
+      </dt>
+      <dd>
+        <%= @step.recipe_id %>
+      </dd>
+
+      <dt>
+        Active
+      </dt>
+      <dd>
+        <%= @step.active %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @step.description %>
+      </dd>
+
+      <dt>
+        Equipment used
+      </dt>
+      <dd>
+        <%= @step.equipment_used %>
+      </dd>
+
+      <dt>
+        Sequence number
+      </dt>
+      <dd>
+        <%= @step.sequence_number %>
+      </dd>
+
+      <dt>
+        Time length
+      </dt>
+      <dd>
+        <%= @step.time_length %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@step.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@step.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

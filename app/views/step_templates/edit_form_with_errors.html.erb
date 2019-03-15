@@ -1,0 +1,66 @@
+<% if @step.errors.any? %>
+  <% @step.errors.full_messages.each do |message| %>
+    <div class="alert">
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<h1>
+  Edit step #<%= @step.id %>
+</h1>
+
+<hr>
+
+<form action="/update_step/<%= @step.id %>" method="post">
+
+  <div class="form-group">
+    <label for="recipe_id">
+      Recipe
+    </label>
+
+    <input type="text" id="recipe_id" name="recipe_id" class="form-control" value="<%= @step.recipe_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="active">
+      Active
+    </label>
+
+    <input type="text" id="active" name="active" class="form-control" value="<%= @step.active %>">
+  </div>
+
+  <div class="form-group">
+    <label for="equipment_used">
+      Equipment used
+    </label>
+
+    <textarea id="equipment_used" name="equipment_used" class="form-control" rows="3"><%= @step.equipment_used %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="sequence_number">
+      Sequence number
+    </label>
+
+    <input type="text" id="sequence_number" name="sequence_number" class="form-control" value="<%= @step.sequence_number %>">
+  </div>
+
+  <div class="form-group">
+    <label for="time_length">
+      Time length
+    </label>
+
+    <input type="text" id="time_length" name="time_length" class="form-control" value="<%= @step.time_length %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update step
+  </button>
+</form>
+
+<hr>
+
+<a href="/steps">
+  Go back
+</a>

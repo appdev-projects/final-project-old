@@ -23,11 +23,56 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    
+    <!--Tempus domus thing-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+    
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">OneRecipe</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/recipes"> Recipes <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/menus">Menus</a>
+            </li>
+          </ul>
+          <ul class = "navbar-nav ml-auto">
+            <% if current_user.blank? %>
+              <li class="nav-item">
+                <a href="/users/sign_in" class="nav-link"> Log In <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a href="/users/sign_up" class="nav-link"> Sign Up </a>
+              </li>
+            <% else %>  
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= current_user.email %>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="/recipes/new">Add a Recipe </a>
+                  <a class="dropdown-item" href="/menus/new">Plan a Menu </a>
+                  <a class="dropdown-item" href="/users/sign_out" data-method="delete">Sign out </a>
+                </div>
+              </li>
+            <% end %>  
+          </ul>
+        </div>
+      </nav>
+      
+      <%= yield %>
 
-    <%= dev_tools if Rails.env.development? %>
+      <%= dev_tools if Rails.env.development? %>
+    </div>
   </body>
 </html>

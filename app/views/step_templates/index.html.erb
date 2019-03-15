@@ -1,0 +1,104 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All steps
+    </h1>
+
+    <a href="/steps/new" class="btn btn-block btn-outline-secondary">
+      Add a new step
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Recipe
+        </th>
+
+        <th>
+          Active
+        </th>
+
+        <th>
+          Equipment used
+        </th>
+         <th>
+          Description
+        </th>
+
+        <th>
+          Sequence number
+        </th>
+
+        <th>
+          Time length
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @steps.each do |step| %>
+      <tr>
+        <td>
+          <%= step.id %>
+        </td>
+
+        <td>
+          <%= step.recipe_id %>
+        </td>
+
+        <td>
+          <%= step.active %>
+        </td>
+
+        <td>
+          <%= step.equipment_used %>
+        </td>
+       <td>
+          <%= step.description %>
+        </td>
+
+        <td>
+          <%= step.sequence_number %>
+        </td>
+
+        <td>
+          <%= step.time_length %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(step.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(step.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/steps/<%= step.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All menu appearances
+    </h1>
+
+    <a href="/menu_appearances/new" class="btn btn-block btn-outline-secondary">
+      Add a new menu appearance
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Recipe
+        </th>
+
+        <th>
+          Menu
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @menu_appearances.each do |menu_appearance| %>
+      <tr>
+        <td>
+          <%= menu_appearance.id %>
+        </td>
+
+        <td>
+          <%= menu_appearance.recipe_id %>
+        </td>
+
+        <td>
+          <%= menu_appearance.menu_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(menu_appearance.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(menu_appearance.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/menu_appearances/<%= menu_appearance.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<!-- Validation failure messages -->
+<% if @menu_appearance.present? %>
+  <% if @menu_appearance.errors.any? %>
+    <% @menu_appearance.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <%= message %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<h1>
+  Add a new menu appearance
+</h1>
+
+
+<hr>
+
+<form action="/create_menu_appearance" method="post">
+
+  <div class="form-group">
+    <label for="recipe_id">
+      Recipe
+    </label>
+
+    <input type="text" id="recipe_id" name="recipe_id" class="form-control" value="<%= @menu_appearance.recipe_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="menu_id">
+      Menu
+    </label>
+
+    <input type="text" id="menu_id" name="menu_id" class="form-control" value="<%= @menu_appearance.menu_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create menu appearance
+  </button>
+</form>
+
+<hr>
+
+<a href="/menu_appearances">
+  Go back
+</a>

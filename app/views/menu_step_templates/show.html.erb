@@ -1,0 +1,58 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Menu step #<%= @menu_step.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/menu_steps" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/menu_steps/<%= @menu_step.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit menu step
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_menu_step/<%= @menu_step.id %>" class="btn btn-block btn-outline-secondary">
+          Delete menu step
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Step
+      </dt>
+      <dd>
+        <%= @menu_step.step_id %>
+      </dd>
+
+      <dt>
+        Menu appearance
+      </dt>
+      <dd>
+        <%= @menu_step.menu_appearance_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@menu_step.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@menu_step.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

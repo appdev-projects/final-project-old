@@ -1,0 +1,79 @@
+<div class="row mb-3">
+  <div class="col-md-8 offset-md-2">
+    <h1>
+      Menu #<%= @menu.id %> details
+    </h1>
+
+    <div class="row mb-3">
+      <div class="col">
+        <a href="/menus" class="btn btn-block btn-outline-secondary">
+          Go back
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/menus/<%= @menu.id %>/edit" class="btn btn-block btn-outline-secondary">
+          Edit menu
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="/delete_menu/<%= @menu.id %>" class="btn btn-block btn-outline-secondary">
+          Delete menu
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @menu.user_id %>
+      </dd>
+
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @menu.name %>
+      </dd>
+
+      <dt>
+        Servings
+      </dt>
+      <dd>
+        <%= @menu.servings %>
+      </dd>
+
+      <dt>
+        Target completion time
+      </dt>
+      <dd>
+        <%= @menu.target_completion_time %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @menu.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@menu.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@menu.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+

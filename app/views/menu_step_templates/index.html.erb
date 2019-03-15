@@ -1,0 +1,74 @@
+<div class="row mb-3">
+  <div class="col-md-12">
+    <h1>
+      All menu steps
+    </h1>
+
+    <a href="/menu_steps/new" class="btn btn-block btn-outline-secondary">
+      Add a new menu step
+    </a>
+  </div>
+</div>
+
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Step
+        </th>
+
+        <th>
+          Menu appearance
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @menu_steps.each do |menu_step| %>
+      <tr>
+        <td>
+          <%= menu_step.id %>
+        </td>
+
+        <td>
+          <%= menu_step.step_id %>
+        </td>
+
+        <td>
+          <%= menu_step.menu_appearance_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(menu_step.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(menu_step.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/menu_steps/<%= menu_step.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

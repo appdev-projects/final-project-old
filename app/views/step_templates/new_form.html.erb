@@ -1,0 +1,67 @@
+<h1>
+  Add a new step
+</h1>
+
+
+<hr>
+
+<form action="/create_step" method="post">
+
+  <div class="form-group">
+    <label for="recipe_id">
+      Recipe
+    </label>
+
+    <input type="text" id="recipe_id" name="recipe_id" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="active">
+      Active
+    </label>
+
+    <input type="text" id="active" name="active" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="description">
+      Description
+    </label>
+
+    <textarea id="description" name="description" class="form-control" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="equipment_used">
+      Equipment used
+    </label>
+
+    <textarea id="equipment_used" name="equipment_used" class="form-control" rows="3"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="sequence_number">
+      Sequence number
+    </label>
+
+    <input type="text" id="sequence_number" name="sequence_number" class="form-control">
+  </div>
+
+  <div class="form-group">
+    <label for="time_length">
+      Time length
+    </label>
+
+    <input type="text" id="time_length" name="time_length" class="form-control">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Create step
+  </button>
+</form>
+
+<hr>
+
+<a href="/steps">
+  Go back
+</a>

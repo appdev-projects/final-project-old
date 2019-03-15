@@ -1,0 +1,34 @@
+<h1>
+  Edit menu appearance #<%= @menu_appearance.id %>
+</h1>
+
+<hr>
+
+<form action="/update_menu_appearance/<%= @menu_appearance.id %>" method="post">
+
+  <div class="form-group">
+    <label for="recipe_id">
+      Recipe
+    </label>
+
+    <input type="text" id="recipe_id" name="recipe_id" class="form-control" value="<%= @menu_appearance.recipe_id %>">
+  </div>
+
+  <div class="form-group">
+    <label for="menu_id">
+      Menu
+    </label>
+
+    <input type="text" id="menu_id" name="menu_id" class="form-control" value="<%= @menu_appearance.menu_id %>">
+  </div>
+
+  <button class="btn btn-block btn-outline-secondary">
+    Update menu appearance
+  </button>
+</form>
+
+<hr>
+
+<a href="/menu_appearances">
+  Go back
+</a>
