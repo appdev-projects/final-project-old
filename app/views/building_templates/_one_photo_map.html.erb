@@ -7,10 +7,12 @@
       {
         "lat": <%= @building.address_latitude %>,
         "lng": <%= @building.address_longitude %>,
-        "infowindow": "<h5><%= @building.created_at %></h5><small><%= @building.address%></small>"
+        "infowindow": "<h5><%= @building.name %></h5><small><%= @building.address%></small>"
       }
     ]);
+    
     handler.bounds.extendWith(markers);
     handler.fitMapToBounds();
+    handler.getMap().setZoom(16);
   });
 </script>
