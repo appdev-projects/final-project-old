@@ -27,7 +27,7 @@ class ApartmentPhotosController < ApplicationController
     if @apartment_photo.valid?
       @apartment_photo.save
 
-      redirect_back(:fallback_location => "/apartment_photos", :notice => "Apartment photo created successfully.")
+      redirect_back(:fallback_location => "/apartment_photos")
     else
       render("apartment_photo_templates/new_form_with_errors.html.erb")
     end

@@ -14,13 +14,14 @@
 #  floor       :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  rent        :integer
 #
 
 class Apartment < ApplicationRecord
 
 # Validations    
-    validates :building_id, :user_id, :bedrooms, :bathrooms, :sq_footage, :floor, presence: true
-    validates :bedrooms, :bathrooms, :sq_footage, :floor, numericality: true
+    validates :building_id, :user_id, :bedrooms, :bathrooms, :rent, :sq_footage, :floor, presence: true
+    validates :bedrooms, :bathrooms, :rent, :sq_footage, :floor, numericality: true
     validates :floor, numericality: { only_integer: true }
 
 # Direct Associations

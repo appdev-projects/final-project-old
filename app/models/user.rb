@@ -29,7 +29,9 @@ class User < ApplicationRecord
   has_many :apartments, :dependent => :destroy
   validates :email, format: { with: /\@chicagobooth.edu/,
     message: "you must register with your student account" }
+  has_many :apartment_bookmarks
   has_many :bookmarked_apartments, :through => :apartment_bookmarks, :source => :apartment
+  has_many :building_bookmarks
   has_many :bookmarked_buildings, :through => :building_bookmarks, :source => :building
     
   # Include default devise modules. Others available are:

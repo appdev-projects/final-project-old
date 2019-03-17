@@ -22,12 +22,12 @@ class ApartmentBookmarksController < ApplicationController
 
     @apartment_bookmark.user_id = params.fetch("user_id")
     @apartment_bookmark.apartment_id = params.fetch("apartment_id")
-    @apartment_bookmark.name = params.fetch("name")
+    #@apartment_bookmark.name = params.fetch("name")
 
     if @apartment_bookmark.valid?
       @apartment_bookmark.save
 
-      redirect_back(:fallback_location => "/apartment_bookmarks", :notice => "Apartment bookmark created successfully.")
+      redirect_back(:fallback_location => "/apartment_bookmarks")
     else
       render("apartment_bookmark_templates/new_form_with_errors.html.erb")
     end
@@ -60,6 +60,5 @@ class ApartmentBookmarksController < ApplicationController
 
     @apartment_bookmark.destroy
 
-    redirect_to("/apartment_bookmarks", :notice => "Apartment bookmark deleted successfully.")
-  end
+    redirect_back(:fallback_location => "/apartment_bookmarks")  end
 end

@@ -1,8 +1,81 @@
+<h3>
+  Apartment at <%=@apartment.building.name%>
+  
+  <%if current_user.bookmarked_apartments.include?(@apartment)%>
+    <a href="/delete_apartment_bookmark/<%=@apartment.apartment_bookmarks.find{|user_id| user_id=current_user.id}.id%>" class="btn btn-link pull-right">
+      <i class="fas fa-heart"></i> Delete Bookmark
+    </a>
+  <%else%>
+    <form action="/create_apartment_bookmark" method="post">
+
+      <input type="hidden" name="user_id" value="<%=current_user.id%>">
+    
+      <input type="hidden" name="apartment_id" value="<%=@apartment.id%>">
+       
+        <button class="btn btn-link pull-right">
+          <i class="far fa-heart"></i> Bookmark apartment
+        </button>
+    </form>
+  <%end%>
+</h3>
+
+<hr>
+
+<div class="row mb-3">
+  <div class="col-md-12">
+    <table class="table">
+      <tr>
+        <th>
+          Monthly rent
+        </th>
+
+        <th>
+          Floor #
+        </th>
+
+        <th>
+          Number of bedrooms
+        </th>
+
+        <th>
+          Number of bathrooms
+        </th>
+
+        <th>
+          Square footage
+        </th>
+      </tr>
+      <tr>
+        <td>
+          <%= number_to_currency(@apartment.rent) %>
+        </td>
+        
+        <td>
+          <%= @apartment.floor %>
+        </td>
+        
+        <td>
+          <%= @apartment.bedrooms %>
+        </td>
+        
+        <td>
+          <%= @apartment.bathrooms %>
+        </td>
+        
+        <td>
+          <%= @apartment.sq_footage %>
+        </td>
+      </tr>
+      
+    </table>
+  </div>
+</div>
+
 <div class="container">
   <div class="row">
     <%@apartment.apartment_photos.each do |photo|%>
       <div class="col-md-3">  
-        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+        <div class="card border-secondary mb-3">
           <div class="card-header">
             <%=photo.description%>
           </div>

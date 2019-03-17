@@ -22,13 +22,15 @@ class ApartmentsController < ApplicationController
 
     @apartment.user_id = params.fetch("user_id")
     @apartment.description = params.fetch("description")
-    @apartment.floor_plan = params.fetch("floor_plan")
+    #@apartment.floor_plan = params.fetch("floor_plan")
     @apartment.building_id = params.fetch("building_id")
     @apartment.bedrooms = params.fetch("bedrooms")
     @apartment.bathrooms = params.fetch("bathrooms")
     @apartment.sq_footage = params.fetch("sq_footage")
     @apartment.orientation = params.fetch("orientation")
     @apartment.floor = params.fetch("floor")
+    @apartment.rent = params.fetch("rent")
+
 
     if @apartment.valid?
       @apartment.save

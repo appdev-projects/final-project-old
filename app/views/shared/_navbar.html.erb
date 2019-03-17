@@ -16,28 +16,28 @@
           <% if "/apartments".in? request.url %>
             <li class="nav-item"><a class="nav-link active" href="/apartments">Apartments</a></li>
             <li class="nav-item"><a class="nav-link" href="/buildings">Buildings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_apartments">Bookmarked Apartments</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_buildings">Bookmarked Buildings</a></li>
+            <li class="nav-item"><a class="nav-link" href="/apartment_bookmarks">Bookmarked Apartments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/building_bookmarks">Bookmarked Buildings</a></li>
           <% elsif "/buildings".in? request.url %>
             <li class="nav-item"><a class="nav-link" href="/apartments">Apartments</a></li>
             <li class="nav-item"><a class="nav-link active" href="/buildings">Buildings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_apartments">Bookmarked Apartments</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_buildings">Bookmarked Buildings</a></li>
-          <% elsif "/bookmarked_apartments".in? request.url %>
+            <li class="nav-item"><a class="nav-link" href="/apartment_bookmarks">Bookmarked Apartments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/building_bookmarks">Bookmarked Buildings</a></li>
+          <% elsif "/apartment_bookmarks".in? request.url %>
             <li class="nav-item"><a class="nav-link" href="/apartments">Apartments</a></li>
             <li class="nav-item"><a class="nav-link" href="/buildings">Buildings</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/bookmarked_apartments">Bookmarked Apartments</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_buildings">Bookmarked Buildings</a></li>
-          <% elsif "/bookmarked_buildings".in? request.url %>
+            <li class="nav-item"><a class="nav-link active" href="/apartment_bookmarks">Bookmarked Apartments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/building_bookmarks">Bookmarked Buildings</a></li>
+          <% elsif "/building_bookmarks".in? request.url %>
             <li class="nav-item"><a class="nav-link" href="/apartments">Apartments</a></li>
             <li class="nav-item"><a class="nav-link" href="/buildings">Buildings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_apartments">Bookmarked Apartments</a></li>
-            <li class="nav-item"><a class="nav-link active" href="/bookmarked_buildings">Bookmarked Buildings</a></li>
+            <li class="nav-item"><a class="nav-link" href="/apartment_bookmarks">Bookmarked Apartments</a></li>
+            <li class="nav-item"><a class="nav-link active" href="/building_bookmarks">Bookmarked Buildings</a></li>
           <% else %>
             <li class="nav-item"><a class="nav-link" href="/apartments">Apartments</a></li>
             <li class="nav-item"><a class="nav-link" href="/buildings">Buildings</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_apartments">Bookmarked Apartments</a></li>
-            <li class="nav-item"><a class="nav-link" href="/bookmarked_buildings">Bookmarked Buildings</a></li>
+            <li class="nav-item"><a class="nav-link" href="/apartment_bookmarks">Bookmarked Apartments</a></li>
+            <li class="nav-item"><a class="nav-link" href="/building_bookmarks">Bookmarked Buildings</a></li>
             <% end %>
         </ul>
       <% end %>
