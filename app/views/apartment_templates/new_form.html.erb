@@ -1,94 +1,119 @@
-<!--<h1>-->
-<!--  List a new apartment-->
-<!--</h1>-->
 
+<div class="container" style="border:1px solid #cecece;">
+  <h5 class="mt-1"><p></p>List a new apartment</h5>
+  <hr>
+  <form action="/create_apartment" method="post">
 
-<!--<hr>-->
-<div class="container">
-<span class="border border-secondary">
+    <input type="hidden" id="user_id" name="user_id" value="<%=current_user.id%>">
 
-<form action="/create_apartment" method="post">
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="building_id">
+            Building
+          </label>
+      
+          <%= select_tag("building_id", options_from_collection_for_select(Building.all, :id, :name), :class => "form-control") %>
+          or <a href="/buildings/new">add a new building</a> first
+        </div>
+        
+        <div class="form-group">
+          <label for="bedrooms">
+            Number of bedrooms
+          </label>
+          
+          <select class="form-control" id="bedrooms" name="bedrooms">
+            <option selected>Choose number of bedrooms</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="bathrooms">
+            Number of bathrooms
+          </label>
+      
+          <select class="form-control" id="bathrooms" name="bathrooms">
+            <option selected>Choose number of bathrooms...</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+          </select>        
+        </div>
+        
+        <div class="form-group">
+          <label for="sq_footage">
+            Square footage
+          </label>
+      
+          <input type="text" id="sq_footage" name="sq_footage" class="form-control">
+        </div>
+      </div>
+      
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="description">
+            Description
+          </label>
+      
+          <textarea id="description" name="description" class="form-control">
+          </textarea>
+        </div>
+        
+        <div class="form-group">
+          <label for="orientation">
+            Orientation
+          </label>
+      
+          <select class="form-control" id="orientation" name="orientation">
+            <option selected>Choose apartment's orientation</option>
+            <option>North</option>
+            <option>South</option>
+            <option>West</option>
+            <option>East</option>
+            <option>Northeast</option>
+            <option>Southeast</option>
+            <option>Northwest</option>
+            <option>Southwest</option>
+          </select>  
+        </div>
+      
+        <div class="form-group">
+          <label for="floor">
+            Floor
+          </label>
+      
+          <input type="text" id="floor" name="floor" class="form-control">
+        </div>
+        
+        <div class="form-group">
+          <label for="floor_plan">
+            Floor plan
+          </label>
+      
+          <input type="file" id="floor_plan" name="floor_plan" class="form-control">
+        </div>
+      </div>
+    </div>
+    
+    <hr>
+    <button class="btn btn-block btn-outline-secondary">
+      Create apartment
+    </button>
+  </form>
+  <p></p>
+</div>
 
-    <input type="text" id="user_id" name="user_id" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="description">
-      Description
-    </label>
-
-    <input type="text" id="description" name="description" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="floor_plan">
-      Floor plan
-    </label>
-
-    <input type="text" id="floor_plan" name="floor_plan" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="building_id">
-      Building
-    </label>
-
-    <input type="text" id="building_id" name="building_id" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="bedrooms">
-      Bedrooms
-    </label>
-
-    <input type="text" id="bedrooms" name="bedrooms" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="bathrooms">
-      Bathrooms
-    </label>
-
-    <input type="text" id="bathrooms" name="bathrooms" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="sq_footage">
-      Sq footage
-    </label>
-
-    <input type="text" id="sq_footage" name="sq_footage" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="orientation">
-      Orientation
-    </label>
-
-    <input type="text" id="orientation" name="orientation" class="form-control">
-  </div>
-
-  <div class="form-group">
-    <label for="floor">
-      Floor
-    </label>
-
-    <input type="text" id="floor" name="floor" class="form-control">
-  </div>
-
-  <button class="btn btn-block btn-outline-secondary">
-    Create apartment
-  </button>
-</form>
-
-<hr>
-
+<p></p>
 <a href="/apartments">
-  Go back
-</a>
-</span>
+    Go back
+  </a>
 </div>

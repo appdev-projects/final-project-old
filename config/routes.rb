@@ -120,6 +120,8 @@ Rails.application.routes.draw do
   # CREATE
   get("/apartment_photos/new", { :controller => "apartment_photos", :action => "new_form" })
   post("/create_apartment_photo", { :controller => "apartment_photos", :action => "create_row" })
+  post("/create_apartment_photo_from_apartment", { :controller => "apartment_photos", :action => "create_row" })
+
 
   # READ
   get("/apartment_photos", { :controller => "apartment_photos", :action => "index" })

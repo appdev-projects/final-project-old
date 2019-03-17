@@ -33,7 +33,7 @@ class ApartmentsController < ApplicationController
     if @apartment.valid?
       @apartment.save
 
-      redirect_back(:fallback_location => "/apartments", :notice => "Apartment created successfully.")
+      redirect_to("/apartments", :notice => "Apartment created successfully.")
     else
       render("apartment_templates/new_form_with_errors.html.erb")
     end

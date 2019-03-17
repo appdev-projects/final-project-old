@@ -1,111 +1,116 @@
-<div class="row mb-3">
-  <div class="col-md-12">
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/buildings" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="/buildings/<%= @building.id %>/edit" class="btn btn-block btn-outline-secondary">
-          Edit building
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="/delete_building/<%= @building.id %>" class="btn btn-block btn-outline-secondary">
-          Delete building
-        </a>
-      </div>
-    </div>
-    <div class="row mb-3 mt-3">
-      <div class="col-md-6">
-        <dl>
-          <dt>
-            Address
-          </dt>
-          <dd>
-            <div>
-              <%= render partial: "building_templates/one_photo_map" %>
-            </div>
-          </dd>
-        </dl>
-      </div>
-      <div class="col-md-6">
-        <dl>
-          <dt>
-            Name
-          </dt>
-          <dd>
-            <%= @building.name %>
-          </dd>
-          
-          <dt>
-            Neighborhood
-          </dt>
-          <dd>
-            <%= @building.neighborhood %>
-          </dd>
-    
-          <dt>
-            Web Page
-          </dt>
-          <dd>
-            <a target="_blank" href="<%= @building.webpage %>"><%= @building.webpage %></a>
-          </dd>
-        </dl>
-        
-        <div class="row">
-            <div class="container-fluid">
-            	<div class="row">
-            	  <div class="row">
-                  <%@building.building_amenities.each do |building_amenity|%>
-                    <%building_amenity.amenity_pictures.each do |amenity_picture|%>
-                      <div class="col-lg-4 col-md-4 col-6 thumb">
-                        <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="" data-image="<%=amenity_picture.picture%>" data-target="#image-gallery">
-                          <img class="img-thumbnail" src="<%=amenity_picture.picture%>" alt="Another alt text">
-                        </a>
-                      </div>
-                    <%end%>
-                  <%end%>
-                </div>
-                
-                <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                  <div class="modal-dialog modal-lg">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h4 class="modal-title" id="image-gallery-title"></h4>
-                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
-                              </button>
-                          </div>
-                          <div class="modal-body">
-                              <img id="image-gallery-image" class="img-responsive col-md-12" src="">
-                          </div>
-                          <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="fa fa-arrow-left"></i>
-                              </button>
+<div class="container" style="border:1px solid #cecece;">
+  <p></p>
+  <div class="row mb-3">
+    <div class="col-md-12">
+      <div class="row mb-3 mt-3">
+        <div class="col-md-6">
+          <dl>
+            <dt>
+              Address
+            </dt>
+            <dd>
+              <div>
+                <%= render partial: "building_templates/one_photo_map" %>
+              </div>
+            </dd>
+          </dl>
+        </div>
+        <div class="col-md-6">
+          <dl>
+            <dt>
+              Name
+            </dt>
+            <dd>
+              <%= @building.name %>
+            </dd>
+            
+            <dt>
+              Neighborhood
+            </dt>
+            <dd>
+              <%= @building.neighborhood %>
+            </dd>
       
-                              <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="fa fa-arrow-right"></i>
-                              </button>
-                          </div>
-                      </div>
+            <dt>
+              Web Page
+            </dt>
+            <dd>
+              <a target="_blank" href="<%= @building.webpage %>"><%= @building.webpage %></a>
+            </dd>
+          </dl>
+          
+          <div class="row">
+              <div class="container-fluid">
+              	<div class="row">
+              	  <div class="row">
+                    <%@building.building_amenities.each do |building_amenity|%>
+                      <%building_amenity.amenity_pictures.each do |amenity_picture|%>
+                        <div class="col-lg-4 col-md-4 col-6 thumb">
+                          <a class="thumbnail" href="#" data-image-id="" data-toggle="modal" data-title="" data-image="<%=amenity_picture.picture%>" data-target="#image-gallery">
+                            <img class="img-thumbnail" src="<%=amenity_picture.picture%>" alt="Another alt text">
+                          </a>
+                        </div>
+                      <%end%>
+                    <%end%>
                   </div>
+                  
+                  <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="image-gallery-title"></h4>
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <img id="image-gallery-image" class="img-responsive col-md-12" src="">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary float-left" id="show-previous-image"><i class="fa fa-arrow-left"></i>
+                                </button>
+        
+                                <button type="button" id="show-next-image" class="btn btn-secondary float-right"><i class="fa fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+                  
                 </div>
-                
               </div>
             </div>
           </div>
         </div>
         
+        <div class="row mb-3">
+          <div class="col">
+            <a href="/buildings" class="btn btn-block btn-outline-secondary">
+              Go back
+            </a>
+          </div>
+    
+          <div class="col">
+            <a href="/buildings/<%= @building.id %>/edit" class="btn btn-block btn-outline-secondary">
+              Edit building
+            </a>
+          </div>
+    
+          <div class="col">
+            <a href="/delete_building/<%= @building.id %>" class="btn btn-block btn-outline-secondary">
+              Delete building
+            </a>
+          </div>
+        </div>
+        
+        <div class="row mb-3">
+          <div class="col-md-12">
+            <%= render partial: "building_templates/building_building_amenities" %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  <p></p>
 </div>
 
-<div class="row mb-3">
-  <div class="col-md-12">
-    <%= render partial: "building_templates/building_building_amenities" %>
-  </div>
-</div>
+
 

@@ -11,6 +11,7 @@
 #
 
 class ApartmentPhoto < ApplicationRecord
+  mount_uploader :photo, PhotoUploader
 
 # Validations
     validates :apartment_id, :photo, presence: true

@@ -1,107 +1,32 @@
-<div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h1>
-      Apartment #<%= @apartment.id %> details
-    </h1>
-
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/apartments" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
+<div class="container">
+  <div class="row">
+    <%@apartment.apartment_photos.each do |photo|%>
+      <div class="col-md-3">  
+        <div class="card border-secondary mb-3" style="max-width: 20rem;">
+          <div class="card-header">
+            <%=photo.description%>
+          </div>
+          <div class="card-body">
+            <img style="height: 200px; width: 100%; display: block;" class="img-responsive" src="<%=photo.photo%>" alt="Card image">
+          </div>
+        </div>
       </div>
-
-      <div class="col">
-        <a href="/apartments/<%= @apartment.id %>/edit" class="btn btn-block btn-outline-secondary">
-          Edit apartment
-        </a>
-      </div>
-
-      <div class="col">
-        <a href="/delete_apartment/<%= @apartment.id %>" class="btn btn-block btn-outline-secondary">
-          Delete apartment
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @apartment.user_id %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @apartment.description %>
-      </dd>
-
-      <dt>
-        Floor plan
-      </dt>
-      <dd>
-        <%= @apartment.floor_plan %>
-      </dd>
-
-      <dt>
-        Building
-      </dt>
-      <dd>
-        <%= @apartment.building_id %>
-      </dd>
-
-      <dt>
-        Bedrooms
-      </dt>
-      <dd>
-        <%= @apartment.bedrooms %>
-      </dd>
-
-      <dt>
-        Bathrooms
-      </dt>
-      <dd>
-        <%= @apartment.bathrooms %>
-      </dd>
-
-      <dt>
-        Sq footage
-      </dt>
-      <dd>
-        <%= @apartment.sq_footage %>
-      </dd>
-
-      <dt>
-        Orientation
-      </dt>
-      <dd>
-        <%= @apartment.orientation %>
-      </dd>
-
-      <dt>
-        Floor
-      </dt>
-      <dd>
-        <%= @apartment.floor %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@apartment.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@apartment.updated_at) %> ago
-      </dd>
-    </dl>
+    <%end%>
   </div>
 </div>
 
+<%if current_user.id==@apartment.user_id%>
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    <a data-toggle="collapse" href="#building_building_amenities_new_form">
+      Add a photo
+    </a>
+  </div>
+
+  <div class="card-footer">
+    <div class="collapse" id="building_building_amenities_new_form">
+      <%= render partial: "apartment_templates/apartment_photo_new_form" %>
+    </div>
+  </div>
+</div>
+<%end%>

@@ -20,6 +20,8 @@ class Apartment < ApplicationRecord
 
 # Validations    
     validates :building_id, :user_id, :bedrooms, :bathrooms, :sq_footage, :floor, presence: true
+    validates :bedrooms, :bathrooms, :sq_footage, :floor, numericality: true
+    validates :floor, numericality: { only_integer: true }
 
 # Direct Associations
     belongs_to :user
