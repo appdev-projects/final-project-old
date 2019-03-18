@@ -12,9 +12,14 @@
 }
 
 .fa-circle-notch:hover {
-    color: red;
+    color: blue;
 }
 
 .translucid {
   opacity: 0.8;
+  /*background-color: #800000;*/
+}
+
+.special_color {
+  color: red;
 }
