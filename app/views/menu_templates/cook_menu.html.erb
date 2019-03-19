@@ -1,0 +1,74 @@
+<div class = "container">
+    <div class="jumbotron">
+      <h1 class="display-4">Start cooking <%= @menu.name%></h1>
+      <p class="lead">Plan to cook for <%=@menu.menu_total_time %> minutes. To finish by <%= @menu.target_completion_time.hour %>:<%= @menu.target_completion_time.min %>, you need to start at <%= @starttime.hour %>:<%= @starttime.min %>.</p>
+      <hr class="my-4">
+      <a class="btn btn-primary btn-lg" href="/menus/<%=@menu.id%>" role="button">Adjust Menu</a>
+    </div>
+    <div class="row align-center">
+        <div class="col-1">
+            <div class="row">
+               <div class="card bg-light row mb-3 d-flex align-items-center w-100">
+                  Time
+               </div>
+            </div>
+            <div class="row">
+               <div class="card bg-light row mb-3 d-flex align-items-center w-100" style="height: <%=@oneminutesize.to_i%>px">
+                  <div><%=@menu.target_completion_time.hour %>:<%=@menu.target_completion_time.min %></div>
+               </div>
+               <% @time_measures.sort.reverse.each do |timeinteger| %>
+                <% time = Time.at(timeinteger) %>
+                <div class="card bg-light row mb-3 d-flex align-items-center w-100 align-middle" style="height: <%=@oneminutesize.to_i*5%>px">
+                    <span class="align-middle"><%=time.hour %>:<%= time.min %></span>
+                </div>
+                <% end %>
+            </div>
+        </div>
+        <% @menu.recipes.each do |recipe| %>
+        <div class="col">
+            <div class = "row mb-3 container mx-auto d-flex align-items-center">
+                <div class="card text-white bg-primary row mx-auto d-flex align-items-center w-100">
+                  <div><%= recipe.title %></div>
+                </div>
+            </div>
+            <div class="row mb-3 container mx-auto d-flex align-items-center">
+               <div class="card bg-light row mx-auto d-flex align-items-center w-100">
+                   This is the end! Start at the bottom!
+               </div>
+            </div>
+            <div class = "row mb-3 container mx-auto d-flex align-items-center">
+              <% @steps = recipe.steps %>
+              <% @steps= @steps.order(:sequence_number) %>
+              <% @steps.reverse.each do |step|%>
+                <% if step.active == 1 %>
+                  <div class="card text-white bg-primary mb-3 w-100" style="height: <%= (step.time_length.to_i)*@oneminutesize.to_i %>px">
+                    <div class="card-body text-primary">
+                        <small class="align-center">
+                            <p class="card-text text-white text-fluid"><%= step.description %></p>
+                            <p class="card-text text-white text-fluid"> Equipment: <%= step.equipment_used %>. This step takes <%= step.time_length %> minutes.</p>
+                        </small>
+                    </div>
+                  </div>
+                <%else%>  
+                  <div class="card border-primary mb-3 w-100" style="height: <%= (step.time_length.to_i)*@oneminutesize.to_i %>px">
+                    <div class="card-body text-primary">
+                        <small>
+                            <p class="card-text text-fluid"><%= step.description %></p>
+                            <p class="card-text text-fluid"> Equipment: <%= step.equipment_used %>. This step takes <%= step.time_length %> minutes.</p>
+                        </small>
+                    </div>
+                  </div>      
+                <%end%>
+              <%end%>
+            </div>
+        </div>
+        <% end %>
+    </div>    
+    <div class="row mb-3 container mx-auto d-flex align-items-center">
+        <div class="card bg-success row mb-3 d-flex align-text-center align-text-middle w-100">
+                  <h1 class="text-white text-center align-middle">
+                      Start at <%=@starttime.hour %>:<%=@starttime.min %></div>!
+                  </h1>
+        </div>
+    </div>
+</div>

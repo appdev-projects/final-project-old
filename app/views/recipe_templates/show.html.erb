@@ -1,6 +1,6 @@
 <div class="row mb-3">
   <div class="container">
-    <div class="jumbotron container">
+    <div class="jumbotron container bg-light border border-primary">
       <h1 class="display-4"> <%= @recipe.title %></h1>
       <p class="lead"><%= @recipe.description %></p>
       <hr class="my-4">
@@ -13,8 +13,8 @@
       Big thanks to <a href="/users/<% @recipe.user_id%>"> <%= @recipe.user.email %></a> for adding it!
       </p>
     </div>
-    <div class = "row mb-3 container mx-auto">
-      <div class="card w-auto">
+    <div class = "row mb-3 container mx-0">
+      <div class="card w-auto border border-primary">
         <div class="card-header">
           Add a step to this recipe!
         </div>
@@ -73,93 +73,95 @@
       </div>
     </div>
     <div class = "row mb-3 container mx-auto">
-      <% @steps.each do |step| %>
-      <% if step.active == 1 %>
-        <div class="card text-white bg-primary mb-3 w-100">
-          <div class="card-header"> 
-           <h5 class= "card-title">
-            Step <%= step.sequence_number %>
-           </h5>
-           <p>
-             This step is active!
-           </p>
+      <% @steps = @recipe.steps %>
+      <% @steps= @steps.order(:sequence_number) %>
+      <% @steps.each do |step|%>
+        <% if step.active == 1 %>
+          <div class="card text-white bg-primary mb-3 w-100">
+            <div class="card-header"> 
+             <h5 class= "card-title">
+              Step <%= step.sequence_number %>
+             </h5>
+             <p>
+               This step is active!
+             </p>
+            </div>
+            <div class="card-body text-white">
+              <p class="card-text text-white"><%= step.description %></p>
+              <p class="card-text text-white"> Equipment: <%= step.equipment_used %></p>
+              <div class="row text-white">
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col text-white">
+                 <a href="/delete_step/<%= step.id %> " class="text-white"> 
+                    Delete Step
+                  </a>                
+                </div>
+                <div class="col text-white">
+                  <a href="/steps/<%= step.id %>/edit" class="text-white"> 
+                    Edit Step
+                  </a>
+                </div>
+              </div>            
+            </div>
+            <div class="card-footer">
+              This step takes <%= step.time_length %> minutes
+            </div>
           </div>
-          <div class="card-body text-white">
-            <p class="card-text text-white"><%= step.description %></p>
-            <p class="card-text text-white"> Equipment: <%= step.equipment_used %></p>
-            <div class="row text-white">
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col text-white">
-               <a href="/delete_step/<%= step.id %> " class="text-white"> 
-                  Delete Step
-                </a>                
-              </div>
-              <div class="col text-white">
-                <a href="/steps/<%= step.id %>/edit" class="text-white"> 
-                  Edit Step
-                </a>
-              </div>
-            </div>            
-          </div>
-          <div class="card-footer">
-            This step takes <%= step.time_length %> minutes
-          </div>
-        </div>
-      <%else%>  
-        <div class="card border-primary mb-3 w-100">
-          <div class="card-header"> 
-           <h5 class= "card-title">
-             Step <%= step.sequence_number %>
-           </h5>
-          </div>
-          <div class="card-body text-primary">
-            <p class="card-text"><%= step.description %></p>
-            <p class="card-text"> Equipment: <%= step.equipment_used %></p>
-            <div class="row">
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-              </div>
-              <div class="col">
-               <a href="/delete_step/<%= step.id %> "> 
-                  Delete Step
-                </a>                
-              </div>
-              <div class="col">
-                <a href="/steps/<%= step.id %>/edit "> 
-                  Edit Step
-                </a>
-              </div>
-            </div>            
-          </div>
-          <div class="card-footer">
-            This step takes <%= step.time_length %> minutes
-          </div>
-        </div>      
-      <%end%>
+        <%else%>  
+          <div class="card border-primary mb-3 w-100">
+            <div class="card-header"> 
+             <h5 class= "card-title">
+               Step <%= step.sequence_number %>
+             </h5>
+            </div>
+            <div class="card-body text-primary">
+              <p class="card-text"><%= step.description %></p>
+              <p class="card-text"> Equipment: <%= step.equipment_used %></p>
+              <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                </div>
+                <div class="col">
+                 <a href="/delete_step/<%= step.id %> "> 
+                    Delete Step
+                  </a>                
+                </div>
+                <div class="col">
+                  <a href="/steps/<%= step.id %>/edit "> 
+                    Edit Step
+                  </a>
+                </div>
+              </div>            
+            </div>
+            <div class="card-footer">
+              This step takes <%= step.time_length %> minutes
+            </div>
+          </div>      
+        <%end%>
       <%end%>
     </div>
     <div class="container">

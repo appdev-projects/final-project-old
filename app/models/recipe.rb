@@ -7,7 +7,7 @@
 #  number_served :integer
 #  user_id       :integer
 #  description   :text
-#  total_time    :integer
+#  total_time    :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #

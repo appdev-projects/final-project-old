@@ -6,10 +6,11 @@
 #  user_id                :integer
 #  name                   :string
 #  servings               :integer
-#  target_completion_time :time
+#  target_completion_time :datetime
 #  description            :text
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  menu_total_time        :integer
 #
 
 class Menu < ApplicationRecord

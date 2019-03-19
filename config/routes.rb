@@ -46,11 +46,14 @@ Rails.application.routes.draw do
   # READ
   get("/menus", { :controller => "menus", :action => "index" })
   get("/menus/:id_to_display", { :controller => "menus", :action => "show" })
+  get("/menus/cook/:id_to_display", { :controller => "menus", :action => "cook" })
 
   # UPDATE
   get("/menus/:prefill_with_id/edit", { :controller => "menus", :action => "edit_form" })
   post("/update_menu/:id_to_modify", { :controller => "menus", :action => "update_row" })
-
+  get("/update_menu_time_index/:prefill_with_id", { :controller => "menus", :action => "update_time_index" })
+  get("/update_menu_time_cook/:prefill_with_id", { :controller => "menus", :action => "update_time_cook" })
+  
   # DELETE
   get("/delete_menu/:id_to_remove", { :controller => "menus", :action => "destroy_row" })
 

@@ -1,13 +1,10 @@
-<h1>
-  Add a new menu
-</h1>
-
-
 <hr>
 
 <div class="card">
   <div class="card-header">
-    Add a menu
+    <h1>
+      Add a menu
+    </h1>
   </div>
 <div class="card-body">
   <form action="/create_menu" method="post">
@@ -50,8 +47,27 @@
           <option value="12">Twelve </option>
         </select>
       </div>
-      <div class="col">
-        INPUT TEXT FOR time inpUT
+      <div class='col input-group date' id='datetimepicker1'>
+        <input type='text' class="form-control" name="target_completion_time" id="target_completion_time">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-calendar"></span>
+        </span>
+        <script type="text/javascript">
+          $(function () {
+            $('#datetimepicker1').datetimepicker();
+          });
+        </script>
+      </div>
+      <!--<div class="col">-->
+      <!--  <div class="form-group">-->
+      <!--  <input type="datetime-local" id="target_completion_time" name="target_completion_time">-->
+      <!--</div>-->
+        <!--<select class="custom-select w-100" id="target_completion_time" name="target_completion_time">-->
+          <!--<option selected>Eat O'Clock!...</option>-->
+          <!--<option value="<%= Date.today%> 19:00:00">7:00PM</option>-->
+          <!--<option value="19:30:00">7:30PM</option>-->
+          <!--<option value="20:00:00">8:00PM</option>-->
+        <!--</select>-->
       </div>
     </div>
     <div class="form-group">
@@ -62,7 +78,7 @@
     </div>
   
     <button class="btn btn-block btn-outline-secondary">
-      Create menu
+      Begin picking recipes to serve!
     </button>
   </form>
 

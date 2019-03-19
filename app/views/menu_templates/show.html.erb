@@ -1,79 +1,123 @@
 <div class="row mb-3">
-  <div class="col-md-8 offset-md-2">
-    <h1>
-      Menu #<%= @menu.id %> details
-    </h1>
-
-    <div class="row mb-3">
-      <div class="col">
-        <a href="/menus" class="btn btn-block btn-outline-secondary">
-          Go back
-        </a>
+  <div class="container">
+    <div class="jumbotron container bg-dark text-white">
+      <h1 class="font-italic text-center">
+        <%= @menu.name %> 
+      </h1>
+      <hr>
+      <div class= "row mb-3">
+        <div class="col-sm text-center align-middle">
+          Original Chef: <a href="users/<%= @menu.user_id%>"> <%= @menu.user.email %></a>
+        </div>
+        <div class="col-sm text-center align-middle">
+          Intended to Serve: <%= @menu.servings %>
+        </div>
+        <div class="col-sm text-center align-middle">
+          Scheduled for <%= @menu.target_completion_time.hour %>:<%= @menu.target_completion_time.min %>
+        </div>
       </div>
-
-      <div class="col">
-        <a href="/menus/<%= @menu.id %>/edit" class="btn btn-block btn-outline-secondary">
-          Edit menu
-        </a>
+      <div class= "row">
+        <div class="col text-center font-italic">
+          <%= @menu.description %>    
+        </div>
       </div>
-
-      <div class="col">
-        <a href="/delete_menu/<%= @menu.id %>" class="btn btn-block btn-outline-secondary">
-          Delete menu
-        </a>
+      <hr>
+      <div class="row">
+        <small class="col text-center text-muted">
+          <a href="/menus" class="text-reset">
+            <i class="fas fa-hand-point-left"></i> Go back
+          </a>
+          <a href="/menus/<%= @menu.id %>/edit">
+            <i class="fas fa-edit ml-5"></i> Edit menu
+          </a>
+          <a href="/delete_menu/<%= @menu.id %>">
+            <i class="ml-5 fas fa-trash-alt"></i> Delete menu
+          </a>
+        </small>  
+      </div>
+      <hr>
+      <div class="container">
+        <% @menu.recipes.each do |dish|%>
+          <div class="text-center font-italic mb-5">
+            <h5>
+              <%= dish.title %>
+            </h5>
+            <p>
+                <%= dish.description %>
+            </p>
+            <div class="row">
+              <div class="col"></div>
+              <div class="col">
+                <small>
+                  <a href="/recipes/<%= dish.id %>">
+                    See this recipe
+                  </a>
+                </small>
+              </div>
+              <div class="col">
+                <small>
+                  <a href= "/recipes/<%=dish.id%>/edit">
+                    Edit/modify recipe for this dish                  
+                  </a>
+                </small>
+              </div>
+              <div class="col">
+                <small>
+                  <a href= "/delete_menu_appearance/<%=@menu.menu_appearances.find_by(recipe_id: dish.id).id %>">
+                    Remove this dish
+                  </a>
+                </small>
+              </div>
+              <div class="col"></div>
+            </div>
+          </div>
+        <% end %>
       </div>
     </div>
-
-    <dl>
-      <dt>
-        User
-      </dt>
-      <dd>
-        <%= @menu.user_id %>
-      </dd>
-
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @menu.name %>
-      </dd>
-
-      <dt>
-        Servings
-      </dt>
-      <dd>
-        <%= @menu.servings %>
-      </dd>
-
-      <dt>
-        Target completion time
-      </dt>
-      <dd>
-        <%= @menu.target_completion_time %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @menu.description %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@menu.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@menu.updated_at) %> ago
-      </dd>
-    </dl>
   </div>
 </div>
-
+<div class="row mb-3 container mb-3 w-100">
+  <div class="card w-auto border-dark w-100">
+    <div class="card-header">
+      Add a recipe to this menu!
+    </div>
+    <div class="card-body mb-3">
+      <form action="/create_menu_appearance" method="post">
+        <input type="hidden" id="menu_id" name="menu_id" class="form-control" value="<%=@menu.id%>">      
+        <div class="form-group">
+          <p>
+            <%= select_tag("recipe_id", options_from_collection_for_select(Recipe.all, :id, :title), :class => "form-control") %>Or add <a href="/recipes/new"> a new recipe </a> first
+          </p>
+        <button class="btn btn-block btn-outline-secondary">
+          Add recipe to this menu!
+        </button>
+      </form>      
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row w-100 mt-3">
+    <div class="col mx-3">
+      <a href = "/update_menu_time_cook/<%=@menu.id%>">
+        <button class="btn btn-block btn-success mx-3">
+            Start Cooking!
+        </button>
+      </a>
+    </div>
+    <div class="col mx-3">
+      <a href = "/delete_menu/<%=@menu.id%>">
+        <button class="btn btn-block btn-danger mx-3">
+            Delete Menu
+        </button>
+      </a>
+    </div>
+    <div class="col mx-3">
+      <a href = "/update_menu_time_index/<%=@menu.id%>">
+        <button class="btn btn-block btn-primary mx-3">
+            Go Back!
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+  

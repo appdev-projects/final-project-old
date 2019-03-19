@@ -6,8 +6,8 @@
 #  recipe_id       :integer
 #  active          :integer
 #  equipment_used  :text
-#  sequence_number :integer
-#  time_length     :integer
+#  sequence_number :string
+#  time_length     :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  description     :text

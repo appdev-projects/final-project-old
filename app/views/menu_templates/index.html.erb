@@ -48,7 +48,9 @@
         <th>
           Updated at
         </th>
-
+        <th>
+          Time
+        </th>
         <th>
         </th>
       </tr>
@@ -84,6 +86,9 @@
         </td>
         <td>
           <%= time_ago_in_words(menu.updated_at) %> ago
+        </td>
+         <td>
+          <%= menu.menu_total_time %>
         </td>
 
         <td>
