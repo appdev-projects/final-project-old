@@ -96,11 +96,19 @@ Rails.application.routes.draw do
   
   # DELETE
   get("/delete_recipe/:id_to_remove", { :controller => "recipes", :action => "destroy_row" })
-
   #------------------------------
   root "recipes#index"
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  # Routes for the users resource:
+
+  get("/account/:user_id", { :controller => "accounts", :action => "show_user_work" })  
+
+  #-----------line 102 is the route that I created to -------------------
+  
+  #------------------------------
+
 end

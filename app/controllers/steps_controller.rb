@@ -44,6 +44,7 @@ class StepsController < ApplicationController
 
   def update_row
     @step = Step.find(params.fetch("id_to_modify"))
+    
 
     @step.recipe_id = params.fetch("recipe_id")
     @step.active = params.fetch("active")
@@ -55,7 +56,7 @@ class StepsController < ApplicationController
     if @step.valid?
       @step.save
 
-      redirect_to("/steps/#{@step.id}", :notice => "Step updated successfully.")
+      redirect_to("/recipes/#{@step.recipe_id}", :notice => "Step updated successfully.")
     else
       render("step_templates/edit_form_with_errors.html.erb")
     end

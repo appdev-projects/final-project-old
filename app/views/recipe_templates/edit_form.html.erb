@@ -1,58 +1,55 @@
 <h1>
-  Edit recipe #<%= @recipe.id %>
+  Edit recipe <%= @recipe.title %>
 </h1>
 
 <hr>
 
-<form action="/update_recipe/<%= @recipe.id %>" method="post">
-
-  <div class="form-group">
-    <label for="title">
-      Title
-    </label>
-
-    <input type="text" id="title" name="title" class="form-control" value="<%= @recipe.title %>">
+<div class="card">
+  <div class="card-header">
+    <h1>
+      Add a Recipe
+    </h1>
   </div>
-
-  <div class="form-group">
-    <label for="number_served">
-      Number served
-    </label>
-
-    <input type="text" id="number_served" name="number_served" class="form-control" value="<%= @recipe.number_served %>">
+  <div class="card-body">
+    <form action="/update_recipe/<%=@recipe.id%>" method="post">
+      <div class="form-row">
+        <div class ="col">
+          <label>
+            Recipe Title
+          </label>
+        </div>
+        <div class ="col">
+          <label>
+            Number of People Served
+          </label>
+        </div>
+      </div>    
+      <div class="form-row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="<%=@recipe.title%>" id="title" name="title" value="<%=@recipe.title%>">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="<% @recipe.number_served%>" id="number_served" name="number_served" value="<%=@recipe.number_served %>">
+        </div>
+        <input type="hidden" class="form-control" placeholder="<% @recipe.total_time%>" name="total_time" class="form-control" value="<%=@recipe.total_time%>">
+      </div>    
+      <div class="form-group">
+        <input type="hidden" id="user_id" name="user_id" class="form-control" value = "<%= current_user.id %>">
+      </div>
+      <div class="form-group">
+        <label for="description">
+          Description
+        </label>
+        <textarea id="description" name="description" class="form-control" rows="1"><%= @recipe.description %></textarea>
+      </div>
+      <button class="btn btn-block btn-outline-secondary">
+        Update Recipe
+      </button>
+    </form>
   </div>
-
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @recipe.user_id %>">
-  </div>
-
-  <div class="form-group">
-    <label for="description">
-      Description
-    </label>
-
-    <textarea id="description" name="description" class="form-control" rows="3"><%= @recipe.description %></textarea>
-  </div>
-
-  <div class="form-group">
-    <label for="total_time">
-      Total time
-    </label>
-
-    <input type="text" id="total_time" name="total_time" class="form-control" value="<%= @recipe.total_time %>">
-  </div>
-
-  <button class="btn btn-block btn-outline-secondary">
-    Update recipe
-  </button>
-</form>
-
+</div>
 <hr>
 
 <a href="/recipes">
-  Go back
+  Go back to recipe list
 </a>

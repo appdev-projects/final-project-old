@@ -55,9 +55,10 @@ class MenuAppearancesController < ApplicationController
 
   def destroy_row
     @menu_appearance = MenuAppearance.find(params.fetch("id_to_remove"))
-
+    @menu = @menu_appearance.menu_id
+    
     @menu_appearance.destroy
 
-    redirect_to("/menu_appearances", :notice => "Menu appearance deleted successfully.")
+    redirect_to("/menus/#{@menu}", :notice => "Menu appearance deleted successfully.")
   end
 end

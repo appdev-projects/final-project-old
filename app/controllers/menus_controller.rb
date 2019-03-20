@@ -73,22 +73,30 @@ class MenusController < ApplicationController
   def cook
     @menu = Menu.find(params.fetch("id_to_display"))
     
+    s = []
+    @menu.recipes.each do |recipes|
+      recipes.steps.each do |steps|
+        s.push(steps.time_length.to_i)
+      end
+    end
+
+    @minimumtime = s.sort.first
+    @oneminutesize= 120/@minimumtime
+      
     @finishtime_integer = @menu.target_completion_time.to_i
     @starttime_integer =  @finishtime_integer- @menu.menu_total_time*60
     
     @starttime = Time.at(@starttime_integer)
     
-    @oneminutesize="25"
-    
     @time_measures = []
     
     t = @finishtime_integer 
     
-    while t > @starttime_integer
-      t = t- 5*60
+    while t-60 > @starttime_integer
+      t = t-60
       @time_measures.push(t)
     end
-    
+
     render("menu_templates/cook_menu.html.erb")
   end
   def update_time_index
@@ -99,24 +107,24 @@ class MenusController < ApplicationController
      m.push(recipe.total_time.to_i)
     end
     
-    @max = m.max
+    @menu.menu_total_time = m.max
     
-    a = [0]
-    @menu.menu_steps.each do |step|
-      if step.active = 1
-       a.push(step.time_length.to_i)
-      else
-       a.push(0)
-      end
-    end
+    # a = [0]
+    # @menu.menu_steps.each do |step|
+    #   if step.active = 1
+    #   a.push(step.time_length.to_i)
+    #   else
+    #   a.push(0)
+    #   end
+    # end
     
-    @activetime = a.sum
+    # @activetime = a.sum
     
-    if @activetime > @max
-      @menu.menu_total_time = @activetime
-    else
-      @menu.menu_total_time = @max
-    end
+    # if @activetime > @max
+    #   @menu.menu_total_time = @activetime
+    # else
+    #   @menu.menu_total_time = @max
+    # end
     
     @menu.save
   
@@ -130,24 +138,24 @@ class MenusController < ApplicationController
      m.push(recipe.total_time.to_i)
     end
     
-    @max = m.max
+    @menu.menu_total_time = m.max
     
-    a = [0]
-    @menu.menu_steps.each do |step|
-      if step.active = 1
-       a.push(step.time_length.to_i)
-      else
-       a.push(0)
-      end
-    end
+    # a = [0]
+    # @menu.menu_steps.each do |step|
+    #   if step.active = 1
+    #   a.push(step.time_length.to_i)
+    #   else
+    #   a.push(0)
+    #   end
+    # end
     
-    @activetime = a.sum
+    # @activetime = a.sum
     
-    if @activetime > @max
-      @menu.menu_total_time = @activetime
-    else
-      @menu.menu_total_time = @max
-    end
+    # if @activetime > @max
+    #   @menu.menu_total_time = @activetime
+    # else
+    #   @menu.menu_total_time = @max
+    # end
     
     @menu.save 
   
@@ -160,5 +168,8 @@ class MenusController < ApplicationController
     @menu.destroy
 
     redirect_to("/menus", :notice => "Menu deleted successfully.")
+  end
+  def user_show
+  
   end
 end

@@ -10,89 +10,24 @@
   </div>
 </div>
 
-
-<hr>
-
-<div class="row mb-3">
-  <div class="col-md-12">
-    <table class="table">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Title
-        </th>
-
-        <th>
-          Number served
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Total time
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @recipes.each do |recipe| %>
-      <tr>
-        <td>
-          <%= recipe.id %>
-        </td>
-
-        <td>
-          <%= recipe.title %>
-        </td>
-
-        <td>
-          <%= recipe.number_served %>
-        </td>
-
-        <td>
-          <%= recipe.user_id %>
-        </td>
-
-        <td>
-          <%= recipe.description %>
-        </td>
-
-        <td>
-          <%= recipe.total_time %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(recipe.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(recipe.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/recipes/<%= recipe.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<% @recipes.each do |recipe|%>
+  <div class="card text-center mb-3">
+    <div class="card-header">
+      <h2>
+        <%=recipe.title%>
+      </h2>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%=recipe.description%></p>
+      <p> This recipe was created by <a href="account/<%=recipe.user_id%>"><%=recipe.user.email%></a> and serves <%= recipe.number_served %> </p>
+      <div class = "row">
+        <div class="col">
+          <a href="/recipes/<%=recipe.id%>" class="btn btn-primary">View Recipe</a>          
+        </div> 
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      Time to prepare: <%= recipe.total_time %> minutes
+    </div>
   </div>
-</div>
+<% end %>

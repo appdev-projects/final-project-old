@@ -10,94 +10,25 @@
   </div>
 </div>
 
-
-<hr>
-
-<div class="row mb-3">
-  <div class="col-md-12">
-    <table class="table">
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          User
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Servings
-        </th>
-
-        <th>
-          Target completion time
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-        <th>
-          Time
-        </th>
-        <th>
-        </th>
-      </tr>
-
-      <% @menus.each do |menu| %>
-      <tr>
-        <td>
-          <%= menu.id %>
-        </td>
-
-        <td>
-          <%= menu.user_id %>
-        </td>
-
-        <td>
-          <%= menu.name %>
-        </td>
-
-        <td>
-          <%= menu.servings %>
-        </td>
-
-        <td>
-          <%= menu.target_completion_time %>
-        </td>
-
-        <td>
-          <%= menu.description %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(menu.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(menu.updated_at) %> ago
-        </td>
-         <td>
-          <%= menu.menu_total_time %>
-        </td>
-
-        <td>
-          <a href="/menus/<%= menu.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
+<% @menus.each do |menu| %>
+ <div class="card text-center mx-3">
+    <div class="card-header">
+      <h2>
+        <%=menu.name%>
+      </h2>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%=menu.description%></p>
+      <p> This menu was designed by <a href="users/<%=menu.user_id%>"><%=menu.user.email%></a> and serves <%= menu.servings %>. Under current settings, the menu is scheduled to be served at <%=menu.target_completion_time.hour%>:<%=menu.target_completion_time.min%> </p>
+      <div class = "row">
+        <div class="col">
+          <a href="/menus/<%=menu.id%>" class="btn btn-primary">View menu</a>          
+          <a href="/menus/cook/<%=menu.id%>" class="btn btn-primary">Cook menu</a>          
+        </div> 
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      Time to prepare: <%= menu.menu_total_time %> minutes
+    </div>
   </div>
-</div>
+<% end %>

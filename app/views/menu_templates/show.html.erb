@@ -13,7 +13,7 @@
           Intended to Serve: <%= @menu.servings %>
         </div>
         <div class="col-sm text-center align-middle">
-          Scheduled for <%= @menu.target_completion_time.hour %>:<%= @menu.target_completion_time.min %>
+          Scheduled for <%= @menu.target_completion_time.strftime("%l:%M %p") %>
         </div>
       </div>
       <div class= "row">

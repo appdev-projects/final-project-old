@@ -18,5 +18,5 @@ class Menu < ApplicationRecord
     has_many :menu_appearances, :dependent => :destroy
     has_many :recipes, :through => :menu_appearances, :source => :recipe
     has_many :menu_steps, :through => :menu_appearances, :source => :menu_steps
-has_many :steps, :through => :menu_steps, :source => :step
+    has_many :steps, :through => :menu_steps, :source => :step
 end

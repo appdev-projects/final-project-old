@@ -1,58 +1,70 @@
 <h1>
-  Edit menu #<%= @menu.id %>
+  Edit menu <%= @menu.name %>
 </h1>
 
 <hr>
 
-<form action="/update_menu/<%= @menu.id %>" method="post">
-
-  <div class="form-group">
-    <label for="user_id">
-      User
-    </label>
-
-    <input type="text" id="user_id" name="user_id" class="form-control" value="<%= @menu.user_id %>">
+<div class="card">
+  <div class="card-header">
+    <h1>
+      Add a menu
+    </h1>
   </div>
-
-  <div class="form-group">
-    <label for="name">
-      Name
-    </label>
-
-    <input type="text" id="name" name="name" class="form-control" value="<%= @menu.name %>">
-  </div>
-
-  <div class="form-group">
-    <label for="servings">
-      Servings
-    </label>
-
-    <input type="text" id="servings" name="servings" class="form-control" value="<%= @menu.servings %>">
-  </div>
-
-  <div class="form-group">
-    <label for="target_completion_time">
-      Target completion time
-    </label>
-
-    <input type="text" id="target_completion_time" name="target_completion_time" class="form-control" value="<%= @menu.target_completion_time %>">
-  </div>
-
-  <div class="form-group">
-    <label for="description">
-      Description
-    </label>
-
-    <textarea id="description" name="description" class="form-control" rows="3"><%= @menu.description %></textarea>
-  </div>
-
-  <button class="btn btn-block btn-outline-secondary">
-    Update menu
-  </button>
-</form>
-
-<hr>
-
+<div class="card-body">
+  <form action="/update_menu/<%=@menu.id%>" method="post">
+    <input type="hidden" id="user_id" name="user_id" class="form-control" value="<%=current_user.id%>">
+    <div class="form-row">
+      <div class="col">
+        <label for="name">
+          Menu Name
+        </label>
+      </div>
+      <div class="col">
+        <label for="servings">
+          How many people are you serving?
+        </label>
+      </div>
+      <div class="col">
+        <label for="target_completion_time">
+          When is dinner served? (allegedly...)        
+        </label>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <input type="text" id="name" name="name" class="form-control" value="<%=@menu.name%>">
+      </div>
+      <div class="col">
+        <select class="custom-select w-100" id="servings" name="servings">
+          <option <% if @menu.servings == 1 %> <%= "selected" %> <%end%> value="1">One</option>
+          <option <% if @menu.servings == 2 %> <%= "selected" %> <%end%> value="2">Two</option>
+          <option <% if @menu.servings == 3 %> <%= "selected" %> <%end%> value="3">Three</option>
+          <option <% if @menu.servings == 4 %> <%= "selected" %> <%end%> value="4">Four</option>
+          <option <% if @menu.servings == 5 %> <%= "selected" %> <%end%> value="5">Five</option>
+          <option <% if @menu.servings == 6 %> <%= "selected" %> <%end%> value="6">Six</option>
+          <option <% if @menu.servings == 7 %> <%= "selected" %> <%end%> value="7">Seven</option>
+          <option <% if @menu.servings == 8 %> <%= "selected" %> <%end%> value="8">Eight</option>
+          <option <% if @menu.servings == 9 %> <%= "selected" %> <%end%> value="9">Nine</option>
+          <option <% if @menu.servings == 10 %> <%= "selected" %> <%end%> value="10">Ten</option>
+          <option <% if @menu.servings == 11 %> <%= "selected" %> <%end%> value="11">Eleven</option>
+          <option <% if @menu.servings == 12 %> <%= "selected" %> <%end%> value="12">Twelve </option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="text" id="target_completion_time" name="target_completion_time" class="form-control" value="<%= @menu.target_completion_time %>">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="description">
+        Description
+      </label>
+        <textarea id="description" name="description" class="form-control" rows="3"><%= @menu.description %></textarea>
+    </div>
+  
+    <button class="btn btn-block btn-outline-secondary">
+      Update Menu
+    </button>
+  </form>
 <a href="/menus">
   Go back
 </a>
