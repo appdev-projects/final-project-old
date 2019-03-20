@@ -19,7 +19,7 @@
     </div>
     <div class="card-body">
       <p class="card-text"><%=menu.description%></p>
-      <p> This menu was designed by <a href="users/<%=menu.user_id%>"><%=menu.user.email%></a> and serves <%= menu.servings %>. Under current settings, the menu is scheduled to be served at <%=menu.target_completion_time.hour%>:<%=menu.target_completion_time.min%> </p>
+      <p> This menu was designed by <a href="users/<%=menu.user_id%>"><%=menu.user.email%></a> and serves <%= menu.servings %>. Under current settings, the menu is scheduled to be served at <%=menu.target_completion_time.strftime("%l:%M%p")%> </p>
       <div class = "row">
         <div class="col">
           <a href="/menus/<%=menu.id%>" class="btn btn-primary">View menu</a>          
