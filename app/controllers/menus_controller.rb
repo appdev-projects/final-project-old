@@ -33,9 +33,10 @@ class MenusController < ApplicationController
     # m = t.to_datetime m.strftime("%Y-%m-%d %H:%M:%S %Z")
     
     
+    
     @settime = params.fetch("target_completion_time")
     
-    @menu.target_completion_time = Chronic.parse(@settime)
+    @menu.target_completion_time = Chronic.parse(@settime) 
 
     if @menu.valid?
       @menu.save
@@ -92,7 +93,7 @@ class MenusController < ApplicationController
     
     t = @finishtime_integer 
     
-    while t-60 > @starttime_integer
+    while t > @starttime_integer
       t = t-60
       @time_measures.push(t)
     end
@@ -169,7 +170,15 @@ class MenusController < ApplicationController
 
     redirect_to("/menus", :notice => "Menu deleted successfully.")
   end
-  def user_show
-  
-  end
+  # def give_five
+  #   @menu = Menu.find(params.fetch("prefill_with_id"))
+   
+  #   @latetime = @menu.target_completion_time.to_i + 5*60
+    
+  #   @menu.target_completion_time = Chronic.parse(@latetime)
+    
+  #   @menu.save
+   
+  #   redirect_to("/menus/cook/#{@menu.id}", :notice => "Fine you can have 5 more minutes!")      
+  # end
 end

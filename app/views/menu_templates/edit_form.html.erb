@@ -51,7 +51,11 @@
         </select>
       </div>
       <div class="form-row">
-        <input type="text" id="target_completion_time" name="target_completion_time" class="form-control" value="<%= @menu.target_completion_time %>">
+         <div class="col">
+        <div class="form-group">
+           <input type="datetime-local" id="target_completion_time" name="target_completion_time">
+        </div>
+      </div>
       </div>
     </div>
     <div class="form-group">

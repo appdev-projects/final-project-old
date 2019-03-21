@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   post("/update_menu/:id_to_modify", { :controller => "menus", :action => "update_row" })
   get("/update_menu_time_index/:prefill_with_id", { :controller => "menus", :action => "update_time_index" })
   get("/update_menu_time_cook/:prefill_with_id", { :controller => "menus", :action => "update_time_cook" })
+  post("/five_more_minutes/:prefill_with_id", { :controller => "menus", :action => "give_five" })
   
   # DELETE
   get("/delete_menu/:id_to_remove", { :controller => "menus", :action => "destroy_row" })

@@ -1,9 +1,12 @@
 <div class = "container">
     <div class="jumbotron">
       <h1 class="display-4">Start cooking <%= @menu.name%></h1>
-      <p class="lead">Plan to cook for <%=@menu.menu_total_time %> minutes. To finish by <%= @menu.target_completion_time.hour %>:<%= @menu.target_completion_time.min %>, you need to start at <%= @starttime.hour %>:<%= @starttime.min %>.</p>
+      <p class="lead">Plan to cook for <%=@menu.menu_total_time %> minutes. To finish by <%= @menu.target_completion_time.strftime("%l:%M %P") %>, you need to start at <%= @starttime.strftime("%l:%M %P") %>.</p>
       <hr class="my-4">
       <a class="btn btn-primary btn-lg" href="/menus/<%=@menu.id%>" role="button">Adjust Menu</a>
+      <!--<form action="/five_more_minutes/<%=@menu.id%>" method="post">-->
+      <!--    <button class="btn btn-danger btn-lg"  role="button">Gimme 5 more minutes!</button>-->
+      <!--</form>-->
     </div>
 </div>
 <div class= "container">
@@ -27,13 +30,21 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-1">
+        <div class="col-1 mb-1">
             <% @time_measures.sort.reverse.each do |timeposts|%>
-            <div class="card bg-light d-flex justify-content-center align-items-center" style= "height: <%=@oneminutesize.to_i%>px">
-                <span>
-                    <%= Time.at(timeposts).strftime("%l:%M") %>
-                </span>
-            </div>
+                <% if Time.at(timeposts).strftime("%l:%M") == Time.at(Time.current.to_i - 5*60*60).strftime("%l:%M") %>
+                    <div class="card mb-auto bg-info position-relative d-flex justify-content-center align-items-center" style="height: <%= @oneminutesize%>px">
+                        <span class="text-white font-weight-bold">
+                            <%= Time.at(timeposts).strftime("%l:%M") %>!
+                        </span>
+                    </div>
+                <% else %>            
+                    <div class="card mb-auto bg-light position-relative d-flex justify-content-center align-items-center" style="height: <%= @oneminutesize%>px">
+                        <span>
+                            <%= Time.at(timeposts).strftime("%l:%M") %>
+                        </span>
+                    </div>
+                <% end %>
             <%end%>
         </div>
         <% @menu.recipes.each do |recipe|%>
@@ -41,28 +52,42 @@
                 <% recipe.steps.order(:sequence_number).reverse_order.each do |step| %>
                     <% if step.active == 1 %>
                         <% if step.time_length.to_i < @minimumtime*2 %>
-                            <div class="card text-white bg-primary justify-content-center" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i)%>px">
+                            <div class="card text-white bg-primary justify-content-center mb-1" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i-4)%>px">
                               <div class="card-body">
                                 <span>
                                     <% s = step.description %>
                                     <p class="card-title">Step <%=step.sequence_number%>: <%= s.truncate(20) %></p>
-                                    <p class="card-text"> <%=step.time_length %> minutes </p>
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%=step.id%>">
-                                      See details
-                                    </button>
+                                    <div class="row">
+                                        <div class = "col card-text">
+                                            <%=step.time_length %> minutes
+                                        </div>
+                                        <div class="col">
+                                            <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary border border-white" data-toggle="modal" data-target="#<%=step.id%>">
+                                              See details
+                                            </button>
+                                        </div>
+                                    </div>
                                     <!-- Modal -->
                                     <div class="modal fade" id="<%=step.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                       <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="<%step.id%>"><%= step.sequence_number %> </h5>
+                                          <div class="modal-header text-primary">
+                                            <h5 class="modal-title" id="<%step.id%>">Step <%= step.sequence_number %> </h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                               <span aria-hidden="true">&times;</span>
                                             </button>
                                           </div>
-                                          <div class="modal-body">
-                                            <%= step.sequence_number %> 
+                                          <div class="modal-body text-primary">
+                                            <p>
+                                                <%= step.description %>
+                                            </p> 
+                                            <p>
+                                                <%= step.time_length %> Minutes
+                                            </p> 
+                                            <p>
+                                                <%= step.equipment_used %>
+                                            </p> 
                                           </div>
                                           <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -75,7 +100,7 @@
                               </div>
                             </div>
                         <% else %>
-                            <div class="card text-white bg-primary" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i)%>px">
+                            <div class="card mb-1 text-white bg-primary" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i)-4%>px">
                               <div class="card-body justify-content-center">
                                 <span>
                                     <p class="card-title">Step <%=step.sequence_number %>: <%=step.description %></p>
@@ -85,14 +110,65 @@
                             </div>
                         <% end %>
                     <% else %>
-                    <div class="card border-primary" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i)%>px">
-                      <div class="card-body text-primary justify-content-center">
-                        <span>
-                            <p class="card-title">Step <%=step.sequence_number %>: <%=step.description %></p>
-                            <p class="card-text"><%=step.time_length %> minutes </p>
-                        </span>
-                      </div>
-                    </div>
+                        <% if step.time_length.to_i < @minimumtime*2 %>
+                            <div class="card mb-1 border-primary" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i)-4%>px">
+                                <div class="card-body text-primary justify-content-center">
+                                    <span>
+                                        <% s = step.description %>
+                                        <p class="card-title">Step <%=step.sequence_number%>: <%= s.truncate(20) %></p>
+                                        <div class="row">
+                                            <div class = "col card-text">
+                                                <%=step.time_length %> minutes
+                                            </div>
+                                            <div class="col">
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#<%=step.id%>">
+                                                  See details
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="<%=step.id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header text-primary">
+                                                <h5 class="modal-title" id="<%step.id%>">Step <%= step.sequence_number %> </h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body text-primary">
+                                                <p>
+                                                    <%= step.description %>
+                                                </p> 
+                                                <p>
+                                                    <%= step.time_length %> Minutes
+                                                </p> 
+                                                <p>
+                                                    <%= step.equipment_used %>
+                                                </p> 
+                                                
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        <% else %>
+                            <div class="card border-primary mb-1" style="height: <%=(@oneminutesize.to_i*step.time_length.to_i)-4%>px">
+                              <div class="card-body text-primary justify-content-center">
+                                <span>
+                                    <p class="card-title">Step <%=step.sequence_number %>: <%=step.description %></p>
+                                    <p class="card-text"><%=step.time_length %> minutes </p>
+                                </span>
+                              </div>
+                            </div>
+                        <% end %>
                     <% end%>
                 <% end %>
             </div>
@@ -104,5 +180,3 @@
         </div>
     </div>
 </div>
-
-
