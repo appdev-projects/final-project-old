@@ -128,14 +128,12 @@ class GameController < ApplicationController
     
         clean_array = []
         
-        puts "sup"
-        puts given_array
-        puts "wtf"
-        
         given_array.each do |object|
             max_min_output = array_compress_helper(object, player)
             clean_array.append(max_min_output)
         end
+    
+        puts "break"
     
         return(clean_array)
     end
@@ -149,25 +147,22 @@ class GameController < ApplicationController
         #keep "purifying" arrays at each level and calling the respective max and mins on those purified arrays until we get to the largest
         #purified array
         
-        
-        
         #given object can be an array, can be a fixnum -- gotta check!
         
-        puts "hi"
-        puts given_object
-        puts given_object.class
-        puts "bye"
+        #this is simply to collapse all the subarrays down into min or max
         
         #base case is that we get a fixnum, which we simply return that number
         if (given_object.class == Fixnum)
-            puts "hello"
+            puts "fixnum"
             return(given_object)
         else
             #we are assuming the only valid inputs that will be passed to array_compress are arrays of Fixnums or Fixnums
             #for arrays, we want to find the max or min according to player
             #flip the player at each time
-            
             if pure_array(given_object) == true
+                
+                #puts "pure array"
+                
                 #first we scan if the new_obj is a pure Array or if it has additional Arrays within it
                 if player == "O"
                         #we want to maximize the score
@@ -176,17 +171,47 @@ class GameController < ApplicationController
                         #we want to minimize the score
                         return(given_object.min)
                 end
-            else
+            else 
+                #Put this off for a few days, work on the rumbler prototype, return to this later
+                #IMPORTANT: for some reason, this branch never gets executed
+                #This should get executed, since we should be going multiple layers into the scores (more than 1 level)
+                #either we aren't going multiple layers in or we're throwing the top layers away
+                
+                #puts "nonpure array"
                 #if new_obj is not a pure Array, we call the function recursively
+                new_pure_array = []
+                
+                given_object.each do |item|
+                    #we will create an array to store the non-array items and call array_compress_helper on the array items
+                    if item.class == Fixnum
+                        new_pure_array.append(item)
+                    else
+                        new_pure_array.append(array_compress_helper(given_object, player_switch(player)))
+                    end
+                    
+                end
+                
+                #puts "scores"
+                #puts new_pure_array
+                #puts "whoooeee"
+                
                 if player == "O"
+                    return(new_pure_array.max)
+                else
+                    return(new_pure_array.min)
+                end
+                    
+              #  if player == "O"
                     #I suspect what's happening here is that we are chucking out all the non-array values with this recursive call
                     #we need to preserve that array and call .max or .min on the entire subarray
                     #what i think this is doing is it's finding the max or min of the furthest subarray, returning a value, and calling
                     #max or min on that value, which is that same value (max of 1 number is that number)
-                    return(array_compress_helper(given_object, player_switch(player)).max)
-                elsif player == "X"
-                    return(array_compress_helper(given_object, player_switch(player)).min)
-                end
+                    
+              #      return(array_compress_helper(given_object, player_switch(player)).max)
+              #  elsif player == "X"
+              #      return(array_compress_helper(given_object, player_switch(player)).min)
+              #  end
+                    
             end
         end
     end
@@ -210,8 +235,6 @@ class GameController < ApplicationController
         #first build super simple AI -- find first available space to play O
         
         curr_board = session[:board]
-        
-        #puts "hello"
         
         #my issue is that there is nothing being saved
         #break exits from if statements and from one loop, not from every loop
@@ -296,19 +319,12 @@ class GameController < ApplicationController
     def computer_move_scores(board, player, poss_moves)
         #this takes an array of moves and returns the highest score
         
-        tempboard = array_dup(board)
-        
         #base case -- check if game is over, score based off of that
-        if (player == "X" && victory_cond(board, player) == "X wins!")
-            #loss for computer if X wins, X is always human
-            return(10)
-        elsif (player == "O" && victory_cond(board, player) == "X wins!")
+        if (victory_cond(board, player) == "X wins!")
             #loss for computer if X wins, X is always human
             return(-10)
-        elsif (player == "O" && victory_cond(board, player) == "O wins!")
+        elsif (victory_cond(board, player) == "O wins!")
             return(10)
-        elsif (player == "X" && victory_cond(board, player) == "O wins!")
-            return(-10)
         #if there are no possible moves left (i.e. a draw)
         elsif poss_moves.empty?
             return(0)
@@ -325,10 +341,12 @@ class GameController < ApplicationController
             poss_moves.each do |movearray|
                 row_index = movearray[0]
                 col_index = movearray[1]
+                        
+                #create a new board each time we run through a possible move        
+                tempboard = array_dup(board)
                 
                 #we have to put all the scores in an array
                 
-                #here is the issue -- place_piece is updating the board each time
                 move_scores.push(
                     computer_move_scores(
                         #new board -- place piece with current player's piece
@@ -360,10 +378,6 @@ class GameController < ApplicationController
         #this uses minimax to find the best computer move and return the best move
                    
         poss_moves_cpu = avail_moves(board)
-        
-        puts "poss moves"
-        puts poss_moves_cpu
-        puts "poss moves end"
 
         #test array of numbers
         #b = [1, 2, 3, [4, 5, 6], [7], [8, 9, 10]]
@@ -377,10 +391,6 @@ class GameController < ApplicationController
         #here is where the extra O's get put in, because place_piece keeps updating the board
         move_score_array = computer_move_scores(board, player, poss_moves_cpu)
         
-        puts "score array"
-        puts move_score_array
-        puts "score array end"
-        
         max_score = move_score_array.max
         
         #recal that Ruby indexes run from 0 to n-1 for array of n values
@@ -388,10 +398,6 @@ class GameController < ApplicationController
         
         #match the highest score with the corresponding move
         best_move = poss_moves_cpu[max_score_index]
-        
-        puts "best move"
-        puts best_move
-        puts "best_move_end"
         
         return(best_move)
         
@@ -406,18 +412,8 @@ class GameController < ApplicationController
         
         best_move = best_computer_move_2(tempboard, player)
         
-        puts "best_move"
-        puts best_move
-        
-        puts "untouched board"
-        puts board
-        
         #now we play the move
         new_board = place_piece(board, player, best_move[0], best_move[1])
-        
-        
-      #  puts "new board"
-      #  puts new_board
         
         session[:board] = new_board
         
