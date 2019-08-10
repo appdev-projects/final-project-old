@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+ruby '2.6.3'
+
 gem "activeadmin"
 gem "coffee-rails"
 gem "devise"
@@ -21,21 +23,24 @@ group :production do
   gem "rails_12factor"
 end
 
+gem 'hashdiff', [">= 1.0.0.beta1", "< 2.0.0"]
 group :development, :test do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'awesome_print'
   gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
-  gem "console_ip_whitelist", github: "firstdraft/console_ip_whitelist"
-  gem "dotenv-rails"
-  gem "grade_runner", github: "firstdraft/grade_runner"
-  gem "pry-rails"
-  gem "sqlite3", "~> 1.3", "< 1.4"
-  gem "web_git", github: "firstdraft/web_git"
+  gem 'console_ip_whitelist', github: 'firstdraft/console_ip_whitelist'
+  gem 'dotenv-rails'
+  gem 'grade_runner', github: 'firstdraft/grade_runner'
+  gem 'pry-rails'
+  gem 'sqlite3', '~> 1.3.6'
+  gem 'table_print'
+  gem 'web_git'
 end
 
 group :development do
   gem "annotate"
   gem "awesome_print"
+  gem 'better_errors'
+  gem 'binding_of_caller'
   gem "draft_generators", github: "firstdraft/draft_generators", branch: "spring-2019"
   gem "letter_opener"
   gem "listen", ">= 3.0.5", "< 3.2"
@@ -46,9 +51,10 @@ group :development do
 end
 
 group :test do
-  gem "capybara"
-  gem "factory_bot_rails"
-  gem "rspec-rails"
-  gem "webmock"
-  gem "rspec-html-matchers"
+  gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'rspec-json_expectations'
+  gem 'rspec-rails'
+  gem 'webmock'
+  gem 'rspec-html-matchers'
 end

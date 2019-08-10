@@ -1,0 +1,19 @@
+{
+// Configure your Run and Preview buttons here.
+
+// Run button configuration
+  "commands": {
+        "Initial project setup (bin/setup)": "bin/setup",
+        "Start web server (rails server)": "rails server -b 0.0.0.0",
+        "Run database migrations (rails db:migrate)": "rails db:migrate",
+        "Hydrate with dummy data (rails dev:prime)": "rails dev:prime"
+  },
+
+// Preview button configuration
+  "preview": {
+        "Live app": "http://{{domain3000}}/",
+        "Git client": "http://{{domain3000}}/git",
+        "ActiveAdmin": "http://{{domain3000}}/admin",
+        "Current File (static)": "http://{{domain}}/{{filepath}}"     
+  }
+}

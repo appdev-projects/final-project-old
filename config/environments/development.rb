@@ -8,7 +8,8 @@ Rails.application.configure do
   if File.exist?(default_whitelist_path)
     whitelisted_ips = whitelisted_ips.concat(YAML.load_file(default_whitelist_path))
   end
-  config.web_console.whitelisted_ips = whitelisted_ips
+  config.web_console.permissions = whitelisted_ips
+  config.web_console.whiny_requests = false
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   # Settings specified here will take precedence over those in config/application.rb.
 
