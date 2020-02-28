@@ -12,7 +12,7 @@ gem "coffee-rails"
 gem "devise"
 gem "faker", :git => "https://github.com/stympy/faker.git", :branch => "master"
 gem "jbuilder", "~> 2.5"
-gem "puma", "~> 3.7"
+gem "puma", "~> 3.12"
 gem "rails", "~> 5.1.5"
 gem "sass-rails", "~> 5.0"
 gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
